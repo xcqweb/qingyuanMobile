@@ -15,7 +15,7 @@ Vue.config.devtools = true
 
 rem(document,window)
 Vue.config.productionTip = false
-//å…¨å±€æ··åˆç»„ä»¶å
+//È«¾Ö»ìºÏ×é¼şÃû
 Vue.mixin({
 	components:{
 		...conponents
