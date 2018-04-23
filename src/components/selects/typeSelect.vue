@@ -2,7 +2,7 @@
 	<div class="box">
 		<div class="titles">报表类型</div>
 		<div class="selectBox">
-			<p class="title" @touchstart='showList'>春节
+			<p class="title" @touchstart='showList'>{{typeName}}
 				<span class="up"></span>
 				<span class="down"></span>
 			</p>
@@ -18,6 +18,7 @@
 		data(){
 			return{
 				status:false,
+				typeName:'春节'
 			}
 		},
 		props:['goldData'],

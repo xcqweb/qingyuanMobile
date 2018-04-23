@@ -8,15 +8,14 @@
 		showArrow:false,
 		smallTitle:false
 	}
- 
- */
+*/
 
 
 <template>
 	<div class="box" :style="{background:titleData.bgcolor}">
     	<p class="titles" v-if="titleData.smallTitle">{{titleData.title}}</p>
     	<p class="smallTitle" v-else>{{titleData.title}}</p>
-    	<span class="back"></span>
+    	<router-link to='/golden' tag='span'><span class="back"></span></router-link>
     	<span class="exact" v-if="titleData.showArrow"></span>
 	</div>
 </template>
@@ -37,6 +36,7 @@
 	.box{
 		position: relative;
 		text-align: center;
+		padding-bottom: 0.12rem;
 		.titles{
 			font-size: 0.44rem;
 			color: #fff;
@@ -61,8 +61,9 @@
 			width: 0.34rem;
 			height: 0.34rem;
 			position: absolute;
-			top: 0.72rem;
+			top: 0.66rem;
 			left: 0.32rem;
+			bottom: 0.24rem;
 			background: url(../../assets/images/title/back1.png) no-repeat 0.02rem;
 			background-size: cover;
 		}
@@ -71,7 +72,7 @@
 			width: 0.34rem;
 			height: 0.34rem;
 			position: absolute;
-			top: 0.72rem;
+			top: 0.62rem;
 			right: 0.32rem;
 			background: url(../../assets/images/title/exact.png) no-repeat 0.02rem;
 			background-size: cover;

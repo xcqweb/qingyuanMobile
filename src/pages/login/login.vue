@@ -18,7 +18,7 @@
     				<input class="ratio" type="checkbox" id="rio" />
     			</p>
     			<p class="loginBtn">
-    				<span class="btn">登录</span>
+    				<span class="btn">登 录</span>
     			</p>
     	</div>
     </div>
@@ -27,8 +27,8 @@
     	<div class="scrollBar" id="touch" :style="{left:lefts+'px'}">
     		
     		
-    		<div class="list">
-    			<div class="title">各区旅游局</div>
+    		<div class="list" v-for="items in reData">
+    			<div class="title">{{items[0].user_type ||"重点"+items[0].userType}}</div>
     			<div class="con">
     				<ul class="subTitle">
     					<li>单位编码</li>
@@ -36,21 +36,15 @@
     				</ul>
     				<div class="subCon">
     					<ul>
-    						<li v-for="i in 10">
-	    						<span>1sasa</span>
-	    						<span>2sdas</span>
+    						<li v-for="item in items">
+	    						<span>{{item.user_code || item.userCode}}</span>
+	    						<span>{{item.user_type ||item.userName}}</span>
 	    					</li>
     					</ul>
     				</div>
     			</div>
     		</div>
     		
-    		
-    		<div class="list">2</div>
-    		<div class="list">3</div>
-    		<div class="list">4</div>
-    		<div class="list">5</div>
-    		<div class="list">6</div>
     	</div>
     </div>
     
@@ -67,6 +61,7 @@ export default {
   		endX:0,
   		endY:0,
   		lefts:35,
+  		reData:[],
   		titleData:{
   			title:'清远旅游业务统计系统',
   			bgcolor:'transparent',
@@ -76,7 +71,21 @@ export default {
   	}
   },
   methods:{
+  	getData(){
+  		this.$axios.get(API_URL+'/mobile/interface/login/html').then( r => {
+  			let re = r.data.data;
+  			//console.log(re)
+  				for(var i=1; i<=5; i++){
+  					let str = `list${i}`
+    					this.reData.push(re[str])
+  				}
+  			
+  		})
+  	}
   	
+  },
+  created(){
+  	this.getData()
   },
   mounted(){
   	this.$nextTick( () => {
@@ -270,7 +279,7 @@ export default {
 			margin-top: 0.7rem;
 			.scrollBar{
 				height: 100%;
-				width: 39.6rem;
+				width: 33rem;
 				float: left;
 				position: relative;
 				left: 0.7rem;
@@ -292,6 +301,7 @@ export default {
 						border-bottom: 0.01rem solid rgba(77,77,77,0.52);
 						width: 5.54rem;
 						margin: auto;
+						letter-spacing: 0.02rem;
 					}
 					.con{
 						  font-size: 0.28rem;

@@ -5,17 +5,18 @@ import App from './App'
 import router from './router'
 import conponents from '@/pages/components.js'
 import rem  from '@/common/rem.js'
-//import instance from '@/http'
+import instance from '@/http'
 
-//Vue.prototype.$axios = instance; 
+Vue.prototype.$axios = instance; 
 
 
 Vue.config.productionTip = false
 Vue.config.devtools = true
 
+window.API_URL = 'http://120.55.190.57'
 rem(document,window)
 Vue.config.productionTip = false
-//È«¾Ö»ìºÏ×é¼þÃû
+//È«ï¿½Ö»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 Vue.mixin({
 	components:{
 		...conponents

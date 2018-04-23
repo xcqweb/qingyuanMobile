@@ -15,6 +15,30 @@
 			:goldData='goldData'
 			class='typeSelect'
 		></date-select>
+		<reports 
+			class='r1'
+			:dataList='reportOne'
+		></reports>
+		<reports
+			:dataList='reportTwo'
+		></reports>
+		<reports
+			:dataList='reportThree'
+		></reports>
+		<reports
+			:dataList='reportFour'
+		></reports>
+		<reports
+			:dataList='reportFive'
+		></reports>
+		<reports
+			:dataList='reportSix'
+		></reports>
+		<reports
+			class='r7'
+			:dataList='reportSeven'
+		></reports>
+		<reports-complete></reports-complete>
 	</div>
 </template>
 
@@ -35,6 +59,34 @@
 		  	dateData:{
 		  		titles:'年份',
 		  		list:[],
+		  	},
+		  	reportOne:{
+		  		title:'前一天',
+		  		type:'黄金周旅行社日报',
+		  	},
+		  	reportTwo:{
+		  		title:'前二天',
+		  		type:'黄金周旅行社日报',
+		  	},
+		  	reportThree:{
+		  		title:'前三天',
+		  		type:'黄金周旅行社日报',
+		  	},
+		  	reportFour:{
+		  		title:'前四天',
+		  		type:'黄金周旅行社日报',
+		  	},
+		  	reportFive:{
+		  		title:'前五天',
+		  		type:'黄金周旅行社日报',
+		  	},
+		  	reportSix:{
+		  		title:'前六天',
+		  		type:'黄金周旅行社日报',
+		  	},
+		  	reportSeven:{
+		  		title:'前七天',
+		  		type:'黄金周旅行社日报',
 		  	}
 				
 			}
@@ -70,5 +122,14 @@
 	.typeSelect{
 		margin-left: 4.7rem;
 	}
+	
+	.r1{
+		margin-top: 2rem;
+	}
+	
+	.r7{
+		margin-bottom: 0.32rem;
+	}
+	
 }
 </style>
