@@ -30,12 +30,18 @@ axios.interceptors.request.use = instance.interceptors.request.use;
  //http response 拦截器
  instance.interceptors.response.use(
     response =>{
+//  	axios.get(API_URL+'/mobile/checkLogin').then( re => {
+//  			
+//  			if(re.data.code==='-1' || re.data.code===-1){
+//  				router.push('/login')
+//  				console.log(router)
+//  			}
+//  		})
     	if(response.data.code===200 || response.data.code==='200'){
-    		//console.log(response)
     		return response
     	}else if(response.data.code==='-1' || response.data.code===-1){
-    		//console.log(response.data)
-    		//window.location.href = API_URL+':8081/login'
+    		console.log(response.data)
+    		router.replace({path:'login'})
     	}
     },
         err => {

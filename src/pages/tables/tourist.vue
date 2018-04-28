@@ -1,7 +1,7 @@
 <template>
-	<div class="box">
+	<div class="box14">
 		<comtitle
-			:titleData='titleData'
+			:titleData='computedTitle'
 		></comtitle>
 		<div class="topTitle">
 			<span></span>
@@ -106,34 +106,32 @@
 </template>
 
 <script>
+	import router from '@/router'
+	import Bus from '@/common/bus'
 	export default{
 		data(){
 			return{
-				rOne:0,
-				rTwo:0,
-				rThree:0,
-				rFour:0,
-				rFive:0,
-				rSix:0,
-				rSeven:0,
-				rEight:0,
-				rNine:0,
-				rten:0,
-				rEl:0,
-				rTw:0,
-				rTheen:0,
-				rFeen:0,
-				
-				titleData:{
-		  			title:'2018年春节前一天报表',
-		  			bgcolor:'#4E76AC',
-		  			showArrow:true,
-		  			smallTitle:false
-			  	},
+				r1:0,
+				r2:0,
+				r3:0,
+				r4:0,
+				r5:0,
+				r6:0,
+				r7:0,
+				r8:0,
+				r9:0,
+				r10:0,
+				r11:0,
+				r12:0,
+				r13:0,
+				r14:0,
+				receviceTotal:0,
+				groupTotals:0,
+				leaveTotal:0,
 			  	inputData1:{
 			  		id:1,
 			  		name:'接团数',
-			  		inputType:'text',
+			  		inputType:'number',
 			  		placeHolder:'请输入接团数量',
 			  		boxWidth:'3.26rem',
 			  		inputWidth:'2.16rem',
@@ -142,7 +140,7 @@
 				inputData2:{
 				  		id:1,
 				  		name:'一日游',
-				  		inputType:'text',
+				  		inputType:'number',
 				  		placeHolder:'请输入一日游人数',
 				  		boxWidth:'3.26rem',
 				  		inputWidth:'2.16rem',
@@ -151,7 +149,7 @@
 				inputData3:{
 				  		id:1,
 				  		name:'省外',
-				  		inputType:'text',
+				  		inputType:'number',
 				  		placeHolder:'游客人数',
 				  		boxWidth:'2.06rem',
 				  		inputWidth:'1.26rem',
@@ -160,7 +158,7 @@
 				inputData4:{
 				  		id:1,
 				  		name:'省内',
-				  		inputType:'text',
+				  		inputType:'number',
 				  		placeHolder:'游客人数',
 				  		boxWidth:'2.06rem',
 				  		inputWidth:'1.26rem',
@@ -169,7 +167,7 @@
 				inputData5:{
 				  		id:1,
 				  		name:'国际',
-				  		inputType:'text',
+				  		inputType:'number',
 				  		placeHolder:'游客人数',
 				  		boxWidth:'2.06rem',
 				  		inputWidth:'1.26rem',
@@ -178,7 +176,7 @@
 				inputData6:{
 			  		id:1,
 			  		name:'组团数',
-			  		inputType:'text',
+			  		inputType:'number',
 			  		placeHolder:'请输入接团数量',
 			  		boxWidth:'3.26rem',
 			  		inputWidth:'2.16rem',
@@ -187,7 +185,7 @@
 				inputData7:{
 				  		id:1,
 				  		name:'省内游',
-				  		inputType:'text',
+				  		inputType:'number',
 				  		placeHolder:'游客人数',
 				  		boxWidth:'3.26rem',
 				  		inputWidth:'2.16rem',
@@ -196,7 +194,7 @@
 				inputData8:{
 			  		id:1,
 			  		name:'省外游',
-			  		inputType:'text',
+			  		inputType:'number',
 			  		placeHolder:'请输入接团数量',
 			  		boxWidth:'3.26rem',
 			  		inputWidth:'2.16rem',
@@ -205,7 +203,7 @@
 				inputData9:{
 				  		id:1,
 				  		name:'香港游',
-				  		inputType:'text',
+				  		inputType:'number',
 				  		placeHolder:'请输入游客人数',
 				  		boxWidth:'3.26rem',
 				  		inputWidth:'2.16rem',
@@ -214,7 +212,7 @@
 				inputData10:{
 				  		id:1,
 				  		name:'澳门游',
-				  		inputType:'text',
+				  		inputType:'number',
 				  		placeHolder:'请输入游客人数',
 				  		boxWidth:'3.26rem',
 				  		inputWidth:'2.16rem',
@@ -223,7 +221,7 @@
 				inputData11:{
 				  		id:1,
 				  		name:'出国游',
-				  		inputType:'text',
+				  		inputType:'number',
 				  		placeHolder:'请输入游客人数',
 				  		boxWidth:'3.26rem',
 				  		inputWidth:'2.16rem',
@@ -232,7 +230,7 @@
 				inputData12:{
 				  		id:1,
 				  		name:'欧洲游',
-				  		inputType:'text',
+				  		inputType:'number',
 				  		placeHolder:'请输入游客人数',
 				  		boxWidth:'3.26rem',
 				  		inputWidth:'2.16rem',
@@ -241,7 +239,7 @@
 				inputData13:{
 				  		id:1,
 				  		name:'营业额(万元)',
-				  		inputType:'text',
+				  		inputType:'number',
 				  		placeHolder:'请输入当日营业额(单位万元)',
 				  		boxWidth:'6.86rem',
 				  		inputWidth:'5.1rem',
@@ -252,64 +250,142 @@
 	 },
 	 methods:{
 	 	getOne(val){
-	 		this.rOne = val
+	 		this.r1 = val
 	 	},
 	 	getTwo(val){
-	 		this.rTwo = val
+	 		this.r2 = val
 	 	},
 	 	getThree(val){
-	 		this.rThree = val
+	 		this.r3 = val
 	 	},
 	 	getFour(val){
-	 		this.rFour = val
+	 		this.r4 = val
 	 	},
 	 	getFive(val){
-	 		this.rFive = val
+	 		this.r5 = val
 	 	},
 	 	getSix(val){
-	 		this.rSix = val
+	 		this.r6 = val
 	 	},
 	 	getSeven(val){
-	 		this.rSeven = val
+	 		this.r7 = val
 	 	},
 	 	getEight(val){
-	 		this.rEight = val
+	 		this.r8 = val
 	 	},
 	 	getNine(val){
-	 		this.rNive = val
+	 		this.r9 = val
 	 	},
-	 	getten(val){
-	 		this.rTen = val
+	 	getTen(val){
+	 		this.r10 = val
 	 	},
 	 	getEl(val){
-	 		this.rEl = val
+	 		this.r11 = val
 	 	},
 	 	getTw(val){
-	 		this.rTw = val
+	 		this.r12 = val
 	 	},
 	 	getThreen(val){
-	 		this.rtheen = val
+	 		this.r13 = val
 	 	},
-	 	getFoureen(val){
-	 		this.rFeen = val
-	 	}
+	 	getFourteen(val){
+	 		this.r14 = val
+	 	},
+	 	sendData(params){
+				this.$axios.post(API_URL+'/mobile/agenct/add',params).then( r => {
+					if(r.data.code==='200' || r.data.code===200){
+						this.$store.commit('COMMIT_SHOWTIPS',{tipsShow:false,title:'恭喜你提交成功!',type:'sucess'})
+						if(timer){
+							clearTimeout(timer)
+						}
+						var timer = setTimeout ( () => {
+							this.$store.commit('COMMIT_SHOWTIPS',{tipsShow:true,title:'恭喜你提交成功!',type:'sucess'})
+						},1000)
+						window.setTimeout(() => {
+							router.push('/')
+						},600)
+					}
+				})
+		},
+		send(){
+				if(!this.r1 || !this.r2 ||!this.r3||!this.r4||!this.r5||!this.r6||!this.r7||!this.r8||!this.r9||!this.r10||!this.r11||!this.r12||!this.r13||!this.r14){
+					this.$store.commit('COMMIT_SHOWTIPS',{tipsShow:false,title:'数据不能为空!',type:'warning'})
+					if(timer){
+						clearTimeout(timer)
+					}
+					var timer = setTimeout ( () => {
+						this.$store.commit('COMMIT_SHOWTIPS',{tipsShow:true,title:'数据不能为空!',type:'warning'})
+					},1000)
+					return;
+				}
+				this.receviceTotal = Number(this.r1)+Number(this.r2)+Number(this.r3)
+				this.groupTotals = Number(this.r4)+Number(this.r5)
+				this.leaveTotal = Number(this.r6)+Number(this.r7)+Number(this.r8)+Number(this.r9)
+				let users = JSON.parse(window.localStorage.getItem('users'))
+				let params = new FormData()
+		  		params.append('groupReceptionNum',this.r11)
+		  		params.append('personReceptionNum',this.receviceTotal)
+		  		params.append('outProvinces',this.r1)
+		  		params.append('inProvinces',this.r2)
+		  		params.append('internationalNum',this.r3)
+		  		params.append('personOneDayNum',this.r14)
+		  		params.append('groupNum',this.r13)
+		  		params.append('acceptGroupNum',this.groupTotals)
+		  		params.append('groupOutProvincesNum',this.r4)
+		  		params.append('groupInProvincesNum',this.r5)
+		  		params.append('leaveTheCountryNum',this.leaveTotal)
+		  		params.append('hongkongNum',this.r6)
+		  		params.append('macauNum',this.r7)
+		  		params.append('outCountryNum',this.r8)
+		  		params.append('europeNum',this.r9)
+		  		params.append('groupOneDayNum',this.r12)
+		  		params.append('revenue',this.r10)
+		  		params.append('companyName',users.companyname)
+		  		params.append('userCode',users.username)
+		  		params.append('date',this.$store.state.commitDate)
+		  		params.append('type',this.$store.state.type)
+				this.sendData(params)
+			},
 	 },
+	 mounted(){
+			Bus.$on('sendData',() => {
+				this.send()
+			})
+			window.onload = () => {
+				router.push('golden')
+			}
+		},
 	 computed:{
 	 	receviveTotal(){
-	 		return Number(this.rOne)+Number(this.rTwo)+Number(this.rThree)
+	 		return Number(this.r1)+Number(this.r2)+Number(this.r3)
 	 	},
 	 	groupTotal(){
-	 		return Number(this.rFour) + Number(this.rFive)
+	 		return Number(this.r4) + Number(this.r5)
 	 	},
 	 	boardTotal(){
-	 		return Number(this.rSix) + Number(this.rSeven)+Number(this.rEight) + Number(this.rNine)
-	 	}
+	 		return Number(this.r6) + Number(this.r7)+Number(this.r8) + Number(this.r9)
+	 	},
+	 	computedTitle(){
+				let types = '';
+				if(this.$store.state.type===1){
+					types = '国庆'
+				}else{
+					types = '春节'
+				}
+				return {
+			  			title:`${this.$store.state.chooseYear}年${types}${this.$store.state.days}报表` ,
+			  			bgcolor:'#4E76AC',
+			  			showArrow:true,
+			  			smallTitle:false,
+			  			showBack:true
+				  	}
+			}
 	 },
 	}
 </script>
 
 <style scoped lang="less">
-.box{
+.box14{
 	.topTitle{
 		margin: 0.4rem 0 0 0.32rem;
 		position: relative;
@@ -335,7 +411,7 @@
 		width: 100%;
 		height: 0.58rem;
 		position: absolute;
-		top: 1.2rem;
+		top: 0.8rem;
 		.o{
 			position: absolute;
 			left: 0.32rem;
@@ -349,13 +425,14 @@
 		height: 1.06rem;
 		width: 100%;
 		position: absolute;
-		top: 3.06rem;
+		top: 2.66rem;
 		.total{
 			font-size: 0.28rem;
 			color: #3C3C3C;
 			font-weight: bold;
 			position: absolute;
 			left: 0.32rem;
+			top: -0.10rem;
 		}
 		.o{
 			position: absolute;
@@ -376,7 +453,7 @@
 	}
 	
 	.topTitle2{
-		margin: 3.24rem 0 0 0.32rem;
+		margin: 3.1rem 0 0 0.32rem;
 		position: relative;
 		p{
 			font-size: 0.28rem;
@@ -400,7 +477,7 @@
 		width: 100%;
 		height: 0.58rem;
 		position: absolute;
-		top: 4.10rem;
+		top: 3.6rem;
 		.o{
 			position: absolute;
 			left: 0.32rem;
@@ -414,7 +491,7 @@
 		height: 1.06rem;
 		width: 100%;
 		position: absolute;
-		top: 5.88rem;
+		top: 5.48rem;
 		.total{
 			font-size: 0.28rem;
 			color: #3C3C3C;
@@ -466,7 +543,7 @@
 	}
 	
 	.bottomTitle2{
-		margin: 8.5rem 0 0 0.32rem;
+		margin: 8.36rem 0 0 0.32rem;
 		position: relative;
 		p{
 			font-size: 0.28rem;
@@ -489,7 +566,7 @@
 	.e{
 		position: absolute;
 		right: 0.32rem;
-		top: 9.36rem;
+		top: 8.9rem;
 	}
 }
 </style>

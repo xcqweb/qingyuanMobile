@@ -1,22 +1,47 @@
 <template>
   <div id="app">
-    <router-view/>
+    <router-view />
+    <alert
+    	:alerts='comTips'
+    	v-show='isShow'
+    ></alert>
+    <tips
+    	 v-show="comShow"
+    ></tips>
+    <!--<selected></selected>-->
+     <user-info></user-info>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  computed:{
+  	comTips(){
+  		return this.$store.state.alert
+  	},
+  	isShow(){
+  		return this.$store.state.showalert
+  	},
+  	comShow(){
+				return this.$store.state.tipInfo.tipsShow
+			}
+  },
+  mounted(){
+//	this.$axios.get(API_URL+'/mobile/checkLogin').then( re => {})
+  }
 }
 </script>
 
 <style>
 #app {
- 
+ 	width: 100%;
+ 	height: 100vh;
 }
 
 html,body{
  	width: 100%;
+ 	
  }
  
   body, div, span, applet, object, iframe,

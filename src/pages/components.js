@@ -5,6 +5,12 @@ let typeSelect = () => import ('@/components/selects/typeSelect')
 let reports = () => import ('@/components/report/reports')
 let reportsComplete = () => import ('@/components/report/reportsComplete')
 let inputs = () => import ('@/components/input/input')
+let alert = () => import ('@/components/dialog/alert')
+let tips = () => import ('@/components/dialog/tips')
+let selected = () => import ('@/components/selects/select')
+let userInfo = () => import ('@/pages/userInfo/userInfo')
+
+
 
 let status=[
 	'login',
@@ -13,7 +19,11 @@ let status=[
 	'typeSelect',
 	'reports',
 	'reportsComplete',
-	'inputs'
+	'inputs',
+	'alert',
+	'tips',
+	'selected',
+	'userInfo'
 ]
 
 let component={}

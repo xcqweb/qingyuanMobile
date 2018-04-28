@@ -5,20 +5,23 @@
     ></comtitle>
     <div class="middle">
     	<div class="loginForm">
-    			<p class="user">
+    			<p class="user"  :class="{error:isError}">
     				<label for="user" class="icon"></label>
-    				<input class="txt" type="text" id="user" value="用户名" />
+    				<input class="txt" type="text" id="user" value="用户名" v-model="loginInfo.username" @focus="focu"/>
     			</p>
-    			<p class="psw">
+    			<p class="psw"  :class="{error:isError}">
     				<label for="psw" class="icon"></label>
-    				<input class="txt" type="password" id="psw" value="565656565" />
+    				<input class="txt" type="password" id="psw" v-model="loginInfo.password" @focus="focu"/>
     			</p>
     			<p class="getPsw">
     				<label for="rio" class="txt">记住密码</label>
-    				<input class="ratio" type="checkbox" id="rio" />
+    				<input class="ratio" type="checkbox" id="rio" v-model="loginInfo.memory"/>
     			</p>
-    			<p class="loginBtn">
-    				<span class="btn">登 录</span>
+    			<p class="loginBtn" @click='login($event)' v-if="status">
+    				<button class="btn"  id="loginBtn">登 录</button>
+    			</p>
+    			<p class="loginBtn" @touchstart='login($event)' v-else>
+    				<button class="btn"  id="loginBtn">登 录</button>
     			</p>
     	</div>
     </div>
@@ -28,7 +31,7 @@
     		
     		
     		<div class="list" v-for="items in reData">
-    			<div class="title">{{items[0].user_type ||"重点"+items[0].userType}}</div>
+    			<div class="title">{{items[0].user_type==='景点'?'景区'+items[0].user_type:items[0].user_type ||"重点"+items[0].userType}}</div>
     			<div class="con">
     				<ul class="subTitle">
     					<li>单位编码</li>
@@ -38,7 +41,7 @@
     					<ul>
     						<li v-for="item in items">
 	    						<span>{{item.user_code || item.userCode}}</span>
-	    						<span>{{item.user_type ||item.userName}}</span>
+	    						<span>{{item.user_name ||item.userName}}</span>
 	    					</li>
     					</ul>
     				</div>
@@ -52,6 +55,8 @@
 </template>
 
 <script>
+	import router from '@/router'
+	import Bus from '@/common/bus'
 export default {
   name: 'login',
   data(){
@@ -62,11 +67,18 @@ export default {
   		endY:0,
   		lefts:35,
   		reData:[],
+  		isError:false,
+  		loginInfo:{
+  			username:'',
+  			password:'',
+  			memory:false
+  		},
   		titleData:{
-  			title:'清远旅游业务统计系统',
+  			title:'清远旅游统计报送分析系统',
   			bgcolor:'transparent',
   			showArrow:false,
-  			smallTitle:true
+  			smallTitle:true,
+  			showBack:false
   		}
   	}
   },
@@ -74,40 +86,116 @@ export default {
   	getData(){
   		this.$axios.get(API_URL+'/mobile/interface/login/html').then( r => {
   			let re = r.data.data;
-  			//console.log(re)
+  			console.log(re)
   				for(var i=1; i<=5; i++){
   					let str = `list${i}`
     					this.reData.push(re[str])
   				}
   			
   		})
+  	},
+  	focu(){
+  		this.isError = false
+  	},
+  	login(e){
+  		if(!this.loginInfo.password && this.loginInfo.username){
+  			this.$store.commit('COMMIT_TIPS',{tips:'密码不能为空!',status:false})
+				this.$store.commit('COMMIT_SHOWALERT',true)
+  			return;
+  		}
+  		if(!this.loginInfo.password && !this.loginInfo.username){
+  			this.$store.commit('COMMIT_TIPS',{tips:'账号密码不能为空!',status:false})
+				this.$store.commit('COMMIT_SHOWALERT',true)
+  			return;
+  		}
+  		if(!this.loginInfo.username&&this.loginInfo.password){
+  			this.$store.commit('COMMIT_TIPS',{tips:'账号不能为空!',status:false})
+				this.$store.commit('COMMIT_SHOWALERT',true)
+  			return;
+  		}
+  		let params = new FormData()
+  		params.append('username',this.loginInfo.username)
+  		params.append('password',this.loginInfo.password)
+  		this.$axios.post(API_URL+'/mobile/interface/login',params).then( r => {
+  			
+  			let reData = r.data.data;
+  			if(reData.e_no==="0" || reData.e_no===0){
+//				this.$store.commit('COMMIT_SHOWTIPS',{tipsShow:false,title:'登录成功!',type:'sucess'})
+//				if(timer){
+//						clearTimeout(timer)
+//					}
+//					var timer = setTimeout ( () => {
+//						this.$store.commit('COMMIT_SHOWTIPS',{tipsShow:true,title:'登录成功!',type:'sucess'})
+//					},1000)
+					this.$store.commit('COMMIT_USERINFO',{companyname:reData.companyName,usertype:reData.userType})
+  				if(this.loginInfo.memory){
+		  			window.localStorage.setItem('userInfo',JSON.stringify(this.loginInfo))
+		  		}else{
+		  			window.localStorage.removeItem('userInfo')
+		  		}
+		  				window.localStorage.setItem('users',JSON.stringify({username:reData.username,usertype:reData.userType,companyname:reData.companyName}))
+		  	router.replace({path:'/'})
+  				
+  			}else{
+  				this.isError = true
+  				//this.loginInfo.password = ''
+  				//this.loginInfo.username=''
+  				this.$store.commit('COMMIT_TIPS',{tips:'账号或密码错误!',status:false})
+					this.$store.commit('COMMIT_SHOWALERT',true)
+					return;
+  			}
+  		})
+  	},
+  	
+  	getUser(){
+  		let users = JSON.parse(window.localStorage.getItem('userInfo'))
+  		if(users){
+  			this.loginInfo.username = users.username
+  			this.loginInfo.password = users.password
+  			this.loginInfo.memory = users.memory
+  		}
+  		
   	}
   	
+  },
+  computed:{
+  	status(){
+  		let flag
+  		if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) { //判断iPhone|iPad|iPod|iOS
+	  		flag = true
+			} else {  
+				flag = false
+			}
+			return flag
+  	}
   },
   created(){
   	this.getData()
   },
   mounted(){
   	this.$nextTick( () => {
-  		let touchItem = document.getElementById('touch');
-  		
-  		touchItem.addEventListener('touchstart',(e) => {
-  			 this.startX = e.changedTouches[0].screenX;
-  			 this.startY = e.changedTouches[0].screenY;
-  		})
-  		
-  		touchItem.addEventListener('touchmove',(e) => {
-    			 this.endX = e.changedTouches[0].screenX;
-    			 this.endY = e.changedTouches[0].screenY;
-    			 
-    			 if(Math.abs(this.endX-this.startX)>=20){
-    			 		this.lefts += 319+"px"
-    			 }
-  		})
-  		
-  		
-  		
+//		let touchItem = document.getElementById('touch');
+//		
+//		touchItem.addEventListener('touchstart',(e) => {
+//			 this.startX = e.changedTouches[0].screenX;
+//			 this.startY = e.changedTouches[0].screenY;
+//		})
+//		
+//		touchItem.addEventListener('touchmove',(e) => {
+//  			 this.endX = e.changedTouches[0].screenX;
+//  			 this.endY = e.changedTouches[0].screenY;
+//  			 
+//  			 if(Math.abs(this.endX-this.startX)>=20){
+//  			 		this.lefts += 319+"px"
+//  			 }
+//		})
+
+//		
   	})
+  	
+  	this.getUser()
+  	
+  	
   },
  
 }
@@ -118,13 +206,13 @@ export default {
   width: 100%;
   height: 13.34rem;
   background: url(../../assets/images/login/login.png) no-repeat;
-  background-size: contain;
+  background-size: cover;
   overflow: hidden;
 }
 
 	
 	.middle{
-		margin-top: 0.96rem;
+		margin-top: 0.5rem;
 		height: 4.58rem;
 	}
 	
@@ -138,11 +226,12 @@ export default {
 	
 	.loginForm{
 		position: relative;
+		
 		.user{
 			position: absolute;
 			width: 5.12rem;
 			height: 0.66rem;
-			border: 0.02rem solid rgba(0,0,0,0.15);
+			border: 0.03rem solid rgba(0,0,0,0.15);
 			border-radius: 0.08rem;
 			left: 0.5rem;
 			top: 0.6rem;
@@ -171,11 +260,13 @@ export default {
 			}
 		}
 		
+		
+		
 		.psw{
 			position: absolute;
 			width: 5.12rem;
 			height: 0.68rem;
-			border: 0.02rem solid rgba(0,0,0,0.15);
+			border: 0.03rem solid rgba(0,0,0,0.15);
 			border-radius: 0.08rem;
 			left: 0.5rem;
 			top: 1.58rem;
@@ -184,6 +275,7 @@ export default {
 				height: 0.66rem;
 				position: absolute;
 				left: 0;
+				z-index: 10000;
 				background-image: url(../../assets/images/login/psw1.png);
 				background-repeat: no-repeat;
 				background-position: 0.24rem 0.20rem;
@@ -204,6 +296,10 @@ export default {
 			}
 		}
 		
+		.error{
+				border: 0.03rem solid rgba(255,0,0,0.5) !important;
+			}
+			
 		.getPsw{
 			position: absolute;
 			width: 5.12rem;
@@ -243,7 +339,7 @@ export default {
 		.loginBtn{
 			position: absolute;
 			width: 5.12rem;
-			height: 0.68rem;
+			height: 0.7rem;
 			left: 0.5rem;
 			bottom: 0.64rem;
 			color: #898989;
@@ -252,22 +348,26 @@ export default {
 				display: block;
 				position: absolute;
 				top: 0rem;
-				left: 1.56rem;
-				width: 2rem;
+				left: 0rem;
+				-moz-user-select: none;
+				-ms-user-select: none;
+				-webkit-user-select: none;
+				width: 5.12rem;
 				text-align: center;
 				line-height: 0.78rem;
 				height: 0.78rem;
 				color: #898989;
 				font-size: 0.3rem;
-				//background: linear-gradient(left #5EC240 50% #7FD826);
-				background: #5EC240;
+				background: linear-gradient(to right, #5EC240, #7FD826);
 				border: none;
 				border-radius: 0.2rem;
 				color: #fff;
 			}
 			
 			.btn:active{
-				background: #7FD826;
+				background: #CCCCCC;
+				outline: none;
+				border: none;
 			}
 		}
 		
@@ -284,7 +384,7 @@ export default {
 				position: relative;
 				left: 0.7rem;
 				.list{
-					height: 5.6rem;
+					height: 5.7rem;
 					width: 6.1rem;
 					float: left;
 					border-radius: 0.2rem;
@@ -301,7 +401,7 @@ export default {
 						border-bottom: 0.01rem solid rgba(77,77,77,0.52);
 						width: 5.54rem;
 						margin: auto;
-						letter-spacing: 0.02rem;
+						letter-spacing: 0.03rem;
 					}
 					.con{
 						  font-size: 0.28rem;
@@ -332,4 +432,40 @@ export default {
 			
 		}
 		
+		
+		 .subCon::-webkit-scrollbar{
+			    width: 2px;
+			    height: 0rem;
+			}
+			/*定义滚动条的轨道，内阴影及圆角*/
+			.subCon::-webkit-scrollbar-track{
+			    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.1);
+			    border-radius: 10px;
+			}
+			/*定义滑块，内阴影及圆角*/
+			.subCon::-webkit-scrollbar-thumb{
+			    width: 0.2rem;
+			    height: 1rem;
+			    border-radius: 10px;
+			    -webkit-box-shadow: inset 0 0 6px #ccc;
+			    background-color: rgba(0,0,0,1);
+			}
+			
+			.bottom::-webkit-scrollbar{
+			    width: 2px;
+			    height: 0rem;
+			}
+			/*定义滚动条的轨道，内阴影及圆角*/
+			.bottom::-webkit-scrollbar-track{
+			    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.9);
+			    border-radius: 10px;
+			}
+			/*定义滑块，内阴影及圆角*/
+			.bottom::-webkit-scrollbar-thumb{
+			    width: 0px;
+			    height: 3rem;
+			    border-radius: 10px;
+			    -webkit-box-shadow: inset 0 0 6px #ccc;
+			    background-color: #0F2059;
+			}
 </style>

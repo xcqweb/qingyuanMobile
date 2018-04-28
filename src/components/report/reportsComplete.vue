@@ -1,6 +1,6 @@
 <template>
-	<div class="box">
-		全部任务已完成
+	<div class="box10" v-if="datas.status">
+		{{datas.title}}
 	</div>
 </template>
 
@@ -11,16 +11,15 @@
 				
 			}
 		},
-		props:{
-		}
+		props:['datas']
 	}
 </script>
 
 <style scoped lang="less">
-.box{
+.box10{
 	width: 6.86rem;
 	height: 1.96rem;
-	border: 0.02rem solid #1CB394;
+	border: 0.03rem solid #1CB394;
 	border-radius: 0.18rem;
 	margin-top: 0.32rem;
 	margin-left: 0.32rem;

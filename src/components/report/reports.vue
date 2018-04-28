@@ -1,36 +1,70 @@
+
 <template>
-	<div class="box">
-		<p class="title">{{dataList.title}}</p>
-		<p class="type">{{dataList.type}}</p>
-		<router-link to='/golden' tag='p' class="report">点此上报</router-link>
+	<div class="box6" v-if='!dataList.count'>
+		<p class="title">{{dataList.name}}</p>
+		<p class="type">黄金周{{type}}日报</p>
+		<p  tag='p' class="report"><span @click='report(dataList,$event)'>点此上报</span></p>
 	</div>
 </template>
 
 <script>
+	import router from '@/router'
 	export default{
 		data(){
 			return{
-				
+				type:''
 			}
 		},
 		props:{
 			dataList:Object
-		}
+		},
+		methods:{
+			report(data,e){
+				if(!window.localStorage.getItem('users')){
+						router.replace('login')
+						return;
+					}
+				//this.$axios.get(API_URL+'/mobile/checkLogin').then( re => {})
+				this.$store.commit('COMMIT_DATE',data.reportUrl.split("/")[4])
+				this.$store.commit('COMMIT_DAY',data.name)
+				switch(this.type){
+					case '旅行社':
+					return router.replace({path:'tourist'})
+					case '宾馆酒店':
+					return router.replace({path:'commdation'})
+					case '景点':
+					return  router.replace({path:'science'})
+					case '各区旅游局':
+					return  router.replace({path:'areas'})
+				}
+			}
+		},
+		mounted(){
+			
+			if(window.localStorage.getItem('users')){
+				let users = JSON.parse(window.localStorage.getItem('users'))
+				this.type = users.usertype
+			}else{
+				router.replace('login')
+				return;
+			}
+		},
+		computed:{}
 	}
 </script>
 
 <style scoped lang="less">
-.box{
+.box6{
 	width: 6.86rem;
 	height: 1.96rem;
-	border: 0.02rem solid #1CB394;
+	border: 0.03rem solid #1CB394;
 	border-radius: 0.18rem;
 	margin-top: 0.32rem;
 	margin-left: 0.32rem;
 	text-align: center;
 	.title{
 		font-size: 0.32rem;
-		color: #1CB394;
+		color: rgba(28, 179, 148,0.7);
 		height: 0.44rem;
 		line-height: 0.44rem;
 		margin-top: 0.3rem;
@@ -41,9 +75,11 @@
 		height: 0.34rem;
 	}
 	.report{
-		font-size: 0.16rem;
+		//width: 1rem;
+		font-size: 0.20rem;
+		font-weight: bold;
 		color: #1CB394;
-		margin-top: 0.16rem;
+		margin: 0.16rem auto;
 	}
 	.report:active{
 		color: #f00;

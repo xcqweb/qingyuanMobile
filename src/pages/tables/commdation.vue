@@ -1,7 +1,7 @@
 <template>
-	<div class="box">
+	<div class="box12">
 		<comtitle
-			:titleData='titleData'
+			:titleData='computedTitle'
 		></comtitle>
 		<div class="info">
 			<inputs
@@ -58,6 +58,8 @@
 </template>
 
 <script>
+	import router from '@/router'
+	import Bus from '@/common/bus'
 	export default{
 		data(){
 			return{
@@ -70,12 +72,7 @@
 				r7:0,
 				r8:0,
 				r9:0,
-				titleData:{
-		  			title:'2018年春节前一天报表',
-		  			bgcolor:'#4E76AC',
-		  			showArrow:true,
-		  			smallTitle:false
-			  	},
+				totalCount:0,
 			  	inputData1:{
 			  		id:2,
 			  		name:'填报人',
@@ -89,18 +86,19 @@
 				inputData2:{
 			  		id:2,
 			  		name:'联系电话',
-			  		inputType:'text',
+			  		inputType:'number',
 			  		placeHolder:'请输入联系电话',
 			  		boxWidth:'3.26rem',
 			  		inputWidth:'2rem',
 			  		inputHeight:'0.54rem',
 			  		maright:'0.96rem',
-			  		right:'-0.2rem'
+			  		right:'-0.2rem',
+			  		left:'-0.05rem'
 				},
 				inputData3:{
 			  		id:3,
 			  		name:'国内(人天)',
-			  		inputType:'text',
+			  		inputType:'number',
 			  		placeHolder:'请输入接待国内游客人数',
 			  		boxWidth:'6.86rem',
 			  		inputWidth:'4.26rem',
@@ -110,7 +108,7 @@
 				inputData4:{
 			  		id:3,
 			  		name:'国际(人天)',
-			  		inputType:'text',
+			  		inputType:'number',
 			  		placeHolder:'请输入接待国际游客人数',
 			  		boxWidth:'6.86rem',
 			  		inputWidth:'4.26rem',
@@ -120,7 +118,7 @@
 				inputData5:{
 			  		id:3,
 			  		name:'营业收入(万元)',
-			  		inputType:'text',
+			  		inputType:'number',
 			  		placeHolder:'请输入今日营业收入',
 			  		boxWidth:'6.86rem',
 			  		inputWidth:'4.26rem',
@@ -130,7 +128,7 @@
 				inputData6:{
 			  		id:3,
 			  		name:'平均房价(元)',
-			  		inputType:'text',
+			  		inputType:'number',
 			  		placeHolder:'请输入平均房价',
 			  		boxWidth:'6.86rem',
 			  		inputWidth:'4.26rem',
@@ -140,7 +138,7 @@
 				inputData7:{
 			  		id:3,
 			  		name:'开房率(%)',
-			  		inputType:'text',
+			  		inputType:'number',
 			  		placeHolder:'请输入开房率',
 			  		boxWidth:'6.86rem',
 			  		inputWidth:'4.26rem',
@@ -150,7 +148,7 @@
 				inputData8:{
 			  		id:3,
 			  		name:'实际出租客房(间)',
-			  		inputType:'text',
+			  		inputType:'number',
 			  		placeHolder:'请输入实际出租客房',
 			  		boxWidth:'6.86rem',
 			  		inputWidth:'4.26rem',
@@ -194,17 +192,91 @@
 			get8(val){
 				this.r8 = val
 			},
+			get9(val){
+				this.r9 = val
+			},
+			sendData(params){
+				let _self = this
+				this.$axios.post(API_URL+'/mobile/hotel/add',params).then( r => {
+					if(r.data.code==='200' || r.data.code===200){
+						this.$store.commit('COMMIT_SHOWTIPS',{tipsShow:false,title:'恭喜你提交成功!',type:'sucess'})
+						if(timer){
+							clearTimeout(timer)
+						}
+						var timer = setTimeout ( () => {
+							this.$store.commit('COMMIT_SHOWTIPS',{tipsShow:true,title:'恭喜你提交成功!',type:'sucess'})
+						},1000)
+						window.setTimeout(() => {
+							router.push('/')
+						},600)
+					}
+				})
+			},
+			send(){
+				if(this.r3===''||this.r4===''||this.r5===''||this.r6===''||this.r7===''||this.r8===''||this.r9===''||this.name===''||this.phone===''){
+					this.$store.commit('COMMIT_SHOWTIPS',{tipsShow:false,title:'数据不能为空!',type:'warning'})
+					if(timer){
+						clearTimeout(timer)
+					}
+					var timer = setTimeout ( () => {
+						this.$store.commit('COMMIT_SHOWTIPS',{tipsShow:true,title:'数据不能为空!',type:'warning'})
+					},1000)
+					return;
+				}
+				this.totalCount = this.r3+this.r4
+				let users = JSON.parse(window.localStorage.getItem('users'))
+				let params = new FormData()
+		  		params.append('totalAcceptNum',this.totalCount)
+		  		params.append('inCountryNum',this.r3)
+		  		params.append('outCountryNum',this.r4)
+		  		params.append('revenue',this.r5)
+		  		params.append('avgHousePrices',this.r6)
+		  		params.append('houseUsePersent',this.r7)
+		  		params.append('actualRentalQuantity',this.r8)
+		  		params.append('companyName',users.companyname)
+		  		params.append('userCode',users.username)
+		  		params.append('date',this.$store.state.commitDate)
+		  		params.append('type',this.$store.state.type)
+		  		params.append('inputer',this.name)
+		  		params.append('contactPhone',this.phone)
+		  		
+				this.sendData(params)
+			},
+		},
+		mounted(){
+			Bus.$on('sendData',() => {
+				this.send()
+			})
+			window.onload = () => {
+				router.push('golden')
+			}
 		},
 		computed:{
 			reciviceTotal(){
-				return Number(this.r3)+Number(this.r4)+Number(this.r5)+Number(this.r6)+Number(this.r7)+Number(this.r8)
+				return this.r3+this.r4
+			},
+			
+			computedTitle(){
+				let types = '';
+				if(this.$store.state.type===1){
+					types = '国庆'
+				}else{
+					types = '春节'
+				}
+				return {
+			  			title:`${this.$store.state.chooseYear}年${types}${this.$store.state.days}报表` ,
+			  			bgcolor:'#4E76AC',
+			  			showArrow:true,
+			  			smallTitle:false,
+			  			showBack:true
+				  	}
 			}
 		}
 	}
 </script>
 
 <style scoped lang="less">
-.box{
+.box12{
 	.info{
 		position: absolute;
 		.o{
@@ -263,7 +335,7 @@
 		}
 		.se{
 			position: absolute;
-			top: 5.3rem;
+			top: 5.42rem;
 			left: 0.32rem;
 		}
 	}

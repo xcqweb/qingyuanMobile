@@ -12,7 +12,7 @@
 
 
 <template>
-	<div class="box">
+	<div class="box7">
 		<!--类型一-->
 		<div class="one" :style="{width:inputData.boxWidth}" :class="{outlines:isOutline}" v-show="inputData.id===1">
 			<label for="Oinput">{{inputData.name}}</label>
@@ -20,7 +20,7 @@
 		</div>
 		<!--.类型二文本-->
 		<div class="two" :style="{width:inputData.boxWidth}" v-show="inputData.id===2">
-			<label for="Oinput2">{{inputData.name}}</label>
+			<label for="Oinput2" :style="{left:inputData.left}">{{inputData.name}}</label>
 			<input :type="inputData.inputType" id="Oinput2" :style="{width:inputData.inputWidth,marginLeft:inputData.maright,right:inputData.right}" @focus="foc" @blur="bl" :placeholder="inputData.placeHolder" v-model="val" />
 		</div>
 		
@@ -48,8 +48,11 @@
 		},
 		watch:{
 			val:function(v){
-				this.val = ~~v
-				this.$emit('sendVal',~~v)
+				
+				if(this.inputData.id===4 || this.inputData.id===2){
+					this.val = v	
+				}
+				this.$emit('sendVal',this.val)
 			}
 		},
 		props:{
@@ -71,13 +74,13 @@
 	}
 </script>
 
-<style scoped lang="less">
- .box{
+<style scoped="scoped" lang="less">
+ .box7{
  	margin-top: 1rem;
  	border: none;
  	.one{
  		position: relative;
- 		border: 0.02rem solid rgba(21,21,21,0.28);
+ 		border: 0.03rem solid rgba(21,21,21,0.28);
  		border-radius: 0.04rem;
  		height: 0.58rem;
  		box-sizing: border-box;
@@ -95,9 +98,10 @@
 			position: absolute;
 			font-size: 0.24rem;
 			height: 0.34rem;
-			margin-top: 0.10rem;
 			border: none;
+			top: 0.04rem;
 			outline: none;
+			background-color: transparent;
 		}
 		input::-webkit-input-placeholder{
 			font-size: 0.24rem;
@@ -115,6 +119,7 @@
 			font-weight: bold;
 			position: absolute;
 			left: 0;
+			top: 0.1rem;
 			z-index: 10;
 			height: 0.54rem;
 			line-height: 0.54rem;
@@ -123,10 +128,12 @@
 			position: absolute;
 			font-size: 0.24rem;
 			height: 0.5rem;
-			border: 0.02rem solid rgba(21,21,21,0.28);
+			top: 0.04rem;
+			border: 0.03rem solid rgba(21,21,21,0.28);
 			outline: #1CB394;
 			padding-left: 0.16rem;
 			border-radius: 0.04rem;
+			background-color: transparent;
 		}
 		input::-webkit-input-placeholder{
 			font-size: 0.24rem;
@@ -144,6 +151,7 @@
 			font-weight: bold;
 			position: absolute;
 			left: 0;
+			top: 0.05rem;
 			z-index: 10;
 			height: 0.54rem;
 			line-height: 0.54rem;
@@ -152,11 +160,13 @@
 			position: absolute;
 			font-size: 0.24rem;
 			right: 0;
+			top: 0.04rem;
 			height: 0.5rem;
-			border: 0.02rem solid rgba(21,21,21,0.28);
+			border: 0.03rem solid rgba(21,21,21,0.28);
 			outline: #1CB394;
 			padding-left: 0.16rem;
 			border-radius: 0.04rem;
+			background-color: transparent;
 		}
 		input::-webkit-input-placeholder{
 			font-size: 0.24rem;
@@ -184,10 +194,11 @@
 			left: -0.96rem;
 			top: 0.6rem;
 			height: 3.16rem;
-			border: 0.02rem solid rgba(21,21,21,0.28);
+			border: 0.03rem solid rgba(21,21,21,0.28);
 			outline: #1CB394;
 			padding-left: 0.16rem;
 			border-radius: 0.04rem;
+			background-color: transparent;
 		}
 		textarea::-webkit-input-placeholder{
 			font-size: 0.24rem;
@@ -195,7 +206,7 @@
 		}
  	}
  	.outlines{
- 		border: 0.02rem solid #1CB394;
+ 		border: 0.03rem solid #1CB394;
  	}
 }
 </style>
