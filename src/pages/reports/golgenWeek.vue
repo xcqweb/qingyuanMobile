@@ -1,6 +1,6 @@
 <template>
 		<div class="goldweek" id="box2" :style="{transform:left}" :class="{noscroll:isScroll}">
-			<div class="toast" v-show="comStatus" @click="showToast" @touchnove='tmove($event)'></div>
+			<div class="toast" v-show="comStatus" @click="showToast" id="rrr"></div>
 				<comtitle
 					:titleData='titleData'
 				></comtitle>
@@ -167,7 +167,6 @@
 							num++
 						}
 					})
-					
 					if(num===reData.length){
 						this.status = true
 					}
@@ -193,10 +192,6 @@
 			getDates(data){
 				console.log(data)
 				this.dateyear = data
-			},
-			tmove(e){
-				e.preventDefault()
-				e.stopPropagation()
 			},
 			showToast(e){
 				let _self = this
@@ -247,8 +242,15 @@
 				let params = {}
 				if(val===2){
 					for(let i=1; i<11; i++){
-						let info = calendarTransform.lunar2solar(2018,1,i,false)
-						this.str+=`${info.cMonth}-${info.cDay},`
+						//阳历转农历
+						if(i===1){
+							let infos = calendarTransform.lunar2solar(this.dateyear-1,12,30,false)
+							this.str+=`${infos.cMonth}-${infos.cDay},`
+						}else{
+							let info = calendarTransform.lunar2solar(this.dateyear,1,i,false)
+							this.str+=`${info.cMonth}-${info.cDay},`
+						}
+						//console.log(this.str)
 					}
 					params = {
 						type:val,
@@ -299,6 +301,18 @@
 			}
 		},
 		mounted(){
+			
+			this.$nextTick( () => {
+				let t = document.getElementById('rrr');
+				t.addEventListener('touchmove',function(e){
+					e.preventDefault();
+				},false)
+				
+			})
+			
+			
+			
+			this.dataYear = this.$store.state.chooseYear
 			if(this.users.usertype==='旅游局'){
 				this.isCity = false;
 				this.dataListCom = {
@@ -318,13 +332,14 @@
 				let users = JSON.parse(window.localStorage.getItem('users'))
 				this.users = users
 			}else{
-				router.replace('login')
+				//router.replace('login')
+				window.location.href = API_URLS
 				return;
 			}
 			
 			
 			let params = {
-				type:1,
+				type:this.$store.state.type,
 				username:this.users.username,
 				usertype:this.users.usertype,
 				dataYear:this.$store.state.chooseYear
@@ -340,22 +355,24 @@
 
 <style scoped lang="less"> 
 .noscroll{
-	overflow: hidden;
+	/*width: 100%;*/
+	/*height: 100vh;*/
+	/*position: absolute;*/
 }
 .goldweek{
 	width: 100%;
-	height: 100%;
-	position: absolute;
+	max-height: 100vh;
+	/*overflow: scroll;*/
+	position: fixed;
 	left: 0;
 	-webkit-transform: translate3d(0,0,0);
     transform: translate3d(0,0,0);
-    /*overflow: hidden;*/
 	.toast{
 		width: 100%;
-		height: 100%;
+		height: 100vh;
 		overflow: hidden;
 		background-color: rgba(0,0,0,0.14);
-		position: absolute;
+		position: fixed;
 		top: 0;
 		left: 0;
 		z-index: 100000;
@@ -387,6 +404,8 @@
 	
 	.rr{
 		margin-top: 2rem;
+		max-height: 66vh;
+		overflow: scroll;
 	}
 	
 	.r1{

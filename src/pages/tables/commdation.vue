@@ -3,56 +3,56 @@
 		<comtitle
 			:titleData='computedTitle'
 		></comtitle>
-		<div class="info">
-			<inputs
-				class='o'
-				:inputData='inputData1'
-				@sendVal='get1'
-			></inputs>
-			<inputs
-				class='t'
-				:inputData='inputData2'
-				@sendVal='get2'
-			></inputs>
-		</div>
-		<div class="con">
-			<p class="total">接待人数(人天): <span>{{reciviceTotal}}</span></p>
-			<inputs
-				class='o'
-				:inputData='inputData3'
-				@sendVal='get3'
-			></inputs>
-			<inputs
-				class='tw'
-				:inputData='inputData4'
-				@sendVal='get4'
-			></inputs>
-			<inputs
-				class='th'
-				:inputData='inputData5'
-				@sendVal='get5'
-			></inputs>
-			<inputs
-				class='f'
-				:inputData='inputData6'
-				@sendVal='get6'
-			></inputs>
-			<inputs
-				class='fi'
-				:inputData='inputData7'
-				@sendVal='get7'
-			></inputs>
-			<inputs
-				class='s'
-				:inputData='inputData8'
-				@sendVal='get8'
-			></inputs>
-			
-			<inputs
-				class='se'
-				:inputData='inputData9'
-				@sendVal='get9'
-			></inputs>
+		<div class="conBox">
+			<div class="con">
+				<inputs
+					class='o1'
+					:inputData='inputData1'
+					@sendVal='get1'
+				></inputs>
+				<inputs
+					class='t1'
+					:inputData='inputData2'
+					@sendVal='get2'
+				></inputs>
+				<p class="total">接待人数(人天): <span>{{reciviceTotal}}</span></p>
+				<inputs
+					class='o'
+					:inputData='inputData3'
+					@sendVal='get3'
+				></inputs>
+				<inputs
+					class='tw'
+					:inputData='inputData4'
+					@sendVal='get4'
+				></inputs>
+				<inputs
+					class='th'
+					:inputData='inputData5'
+					@sendVal='get5'
+				></inputs>
+				<inputs
+					class='f'
+					:inputData='inputData6'
+					@sendVal='get6'
+				></inputs>
+				<inputs
+					class='fi'
+					:inputData='inputData7'
+					@sendVal='get7'
+				></inputs>
+				<inputs
+					class='s'
+					:inputData='inputData8'
+					@sendVal='get8'
+				></inputs>
+				
+				<inputs
+					class='se'
+					:inputData='inputData9'
+					@sendVal='get9'
+				></inputs>
+			</div>
 		</div>
 	</div>
 </template>
@@ -65,13 +65,13 @@
 			return{
 				name:'',
 				phone:'',
-				r3:0,
-				r4:0,
-				r5:0,
-				r6:0,
-				r7:0,
-				r8:0,
-				r9:0,
+				r3:'',
+				r4:'',
+				r5:'',
+				r6:'',
+				r7:'',
+				r8:'',
+				r9:'',
 				totalCount:0,
 			  	inputData1:{
 			  		id:2,
@@ -199,12 +199,12 @@
 				let _self = this
 				this.$axios.post(API_URL+'/mobile/hotel/add',params).then( r => {
 					if(r.data.code==='200' || r.data.code===200){
-						this.$store.commit('COMMIT_SHOWTIPS',{tipsShow:false,title:'恭喜你提交成功!',type:'sucess'})
+						this.$store.commit('COMMIT_TIPTXT',{status:true,txt:'上报成功!',err:false})
 						if(timer){
 							clearTimeout(timer)
 						}
 						var timer = setTimeout ( () => {
-							this.$store.commit('COMMIT_SHOWTIPS',{tipsShow:true,title:'恭喜你提交成功!',type:'sucess'})
+							this.$store.commit('COMMIT_TIPTXT',{status:false,txt:'上报成功!',err:false})
 						},1000)
 						window.setTimeout(() => {
 							router.push('/')
@@ -214,16 +214,21 @@
 			},
 			send(){
 				if(this.r3===''||this.r4===''||this.r5===''||this.r6===''||this.r7===''||this.r8===''||this.r9===''||this.name===''||this.phone===''){
-					this.$store.commit('COMMIT_SHOWTIPS',{tipsShow:false,title:'数据不能为空!',type:'warning'})
-					if(timer){
-						clearTimeout(timer)
+						this.$store.commit('COMMIT_TIPTXT',{status:true,txt:'填写未完成!',err:true})
+						if(timer){
+							clearTimeout(timer)
+						}
+						var timer = setTimeout ( () => {
+							this.$store.commit('COMMIT_TIPTXT',{status:false,txt:'填写未完成!',err:true})
+						},1000)
+						return;
+					}else{
+						this.$store.commit('COMMIT_TIPTXT',{status:false,txt:'填写未完成!',err:false})
 					}
-					var timer = setTimeout ( () => {
-						this.$store.commit('COMMIT_SHOWTIPS',{tipsShow:true,title:'数据不能为空!',type:'warning'})
-					},1000)
-					return;
-				}
-				this.totalCount = this.r3+this.r4
+					
+					//this.$store.commit('COMMIT_SUBMIT',true)
+					//this.$store.commit('COMMIT_SAVE',false)
+				this.totalCount = Number(this.r3)+Number(this.r4)
 				let users = JSON.parse(window.localStorage.getItem('users'))
 				let params = new FormData()
 		  		params.append('totalAcceptNum',this.totalCount)
@@ -248,12 +253,12 @@
 				this.send()
 			})
 			window.onload = () => {
-				router.push('golden')
+				//router.push('golden')
 			}
 		},
 		computed:{
 			reciviceTotal(){
-				return this.r3+this.r4
+				return Number(this.r3)+Number(this.r4)
 			},
 			
 			computedTitle(){
@@ -268,7 +273,8 @@
 			  			bgcolor:'#4E76AC',
 			  			showArrow:true,
 			  			smallTitle:false,
-			  			showBack:true
+			  			showBack:true,
+			  			showUser:false
 				  	}
 			}
 		}
@@ -277,18 +283,10 @@
 
 <style scoped lang="less">
 .box12{
-	.info{
-		position: absolute;
-		.o{
-			position: absolute;
-			left: 0.32rem;
-			top: -0.64rem;
-		}
-		.t{
-			position: absolute;
-			left: 3.76rem;
-			top: -0.64rem;
-		}
+	.conBox{
+		width: 100vw;
+		height: 90vw;
+		overflow: scroll;
 	}
 	.con{
 		position: relative;
@@ -303,6 +301,18 @@
 			left: 0.32rem;
 			top: 1.36rem;
 		}
+		
+		.o1{
+			position: absolute;
+			left: 0.32rem;
+			top: -0.64rem;
+		}
+		.t1{
+			position: absolute;
+			left: 3.76rem;
+			top: -0.64rem;
+		}
+		
 		.o{
 			position: absolute;
 			top: 1rem;
@@ -330,6 +340,7 @@
 		}
 		.s{
 			position: absolute;
+			z-index: 100;
 			top: 4.5rem;
 			left: 0.32rem;
 		}

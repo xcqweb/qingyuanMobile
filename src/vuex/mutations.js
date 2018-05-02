@@ -14,6 +14,7 @@ const COMMIT_EXIT= 'COMMIT_EXIT';
 const COMMIT_ShOWINFO= 'COMMIT_ShOWINFO';
 const COMMIT_ISSCROLL= 'COMMIT_ISSCROLL';
 const COMMIT_USERINFO= 'COMMIT_USERINFO';
+const COMMIT_TIPTXT= 'COMMIT_TIPTXT';
 
 COMMIT_ShOWINFO
 
@@ -59,6 +60,9 @@ const mutations={
 	},
 	[COMMIT_USERINFO](state,val){
 		this.state.userInfo = val
+	},
+	[COMMIT_TIPTXT](state,val){
+		this.state.tipTxt = val
 	}
 }
 

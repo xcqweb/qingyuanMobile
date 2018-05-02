@@ -9,6 +9,7 @@ let alert = () => import ('@/components/dialog/alert')
 let tips = () => import ('@/components/dialog/tips')
 let selected = () => import ('@/components/selects/select')
 let userInfo = () => import ('@/pages/userInfo/userInfo')
+let tipInfo = () => import ('@/components/dialog/tipInfo')
 
 
 
@@ -23,7 +24,8 @@ let status=[
 	'alert',
 	'tips',
 	'selected',
-	'userInfo'
+	'userInfo',
+	'tipInfo'
 ]
 
 let component={}

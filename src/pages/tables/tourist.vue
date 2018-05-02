@@ -1,4 +1,4 @@
-<template>
+ <template>
 	<div class="box14">
 		<comtitle
 			:titleData='computedTitle'
@@ -111,20 +111,20 @@
 	export default{
 		data(){
 			return{
-				r1:0,
-				r2:0,
-				r3:0,
-				r4:0,
-				r5:0,
-				r6:0,
-				r7:0,
-				r8:0,
-				r9:0,
-				r10:0,
-				r11:0,
-				r12:0,
-				r13:0,
-				r14:0,
+				r1:'',
+				r2:'',
+				r3:'',
+				r4:'',
+				r5:'',
+				r6:'',
+				r7:'',
+				r8:'',
+				r9:'',
+				r10:'',
+				r11:'',
+				r12:'',
+				r13:'',
+				r14:'',
 				receviceTotal:0,
 				groupTotals:0,
 				leaveTotal:0,
@@ -294,12 +294,12 @@
 	 	sendData(params){
 				this.$axios.post(API_URL+'/mobile/agenct/add',params).then( r => {
 					if(r.data.code==='200' || r.data.code===200){
-						this.$store.commit('COMMIT_SHOWTIPS',{tipsShow:false,title:'恭喜你提交成功!',type:'sucess'})
+						this.$store.commit('COMMIT_TIPTXT',{status:true,txt:'上报成功!',err:false})
 						if(timer){
 							clearTimeout(timer)
 						}
 						var timer = setTimeout ( () => {
-							this.$store.commit('COMMIT_SHOWTIPS',{tipsShow:true,title:'恭喜你提交成功!',type:'sucess'})
+							this.$store.commit('COMMIT_TIPTXT',{status:false,txt:'上报成功!',err:false})
 						},1000)
 						window.setTimeout(() => {
 							router.push('/')
@@ -309,15 +309,25 @@
 		},
 		send(){
 				if(!this.r1 || !this.r2 ||!this.r3||!this.r4||!this.r5||!this.r6||!this.r7||!this.r8||!this.r9||!this.r10||!this.r11||!this.r12||!this.r13||!this.r14){
-					this.$store.commit('COMMIT_SHOWTIPS',{tipsShow:false,title:'数据不能为空!',type:'warning'})
-					if(timer){
-						clearTimeout(timer)
+					this.$store.commit('COMMIT_TIPTXT',{status:true,txt:'填写未完成!',err:true})
+						if(timer){
+							clearTimeout(timer)
+						}
+						var timer = setTimeout ( () => {
+							this.$store.commit('COMMIT_TIPTXT',{status:false,txt:'填写未完成!',err:true})
+						},1000)
+						return;
+					}else{
+						if(!this.$store.state.confirm){
+							this.$store.commit('COMMIT_TIPTXT',{status:false,txt:'填写未完成!',err:false})
+						}else{
+							return
+						}
+						
 					}
-					var timer = setTimeout ( () => {
-						this.$store.commit('COMMIT_SHOWTIPS',{tipsShow:true,title:'数据不能为空!',type:'warning'})
-					},1000)
-					return;
-				}
+					
+					//this.$store.commit('COMMIT_SUBMIT',true)
+					//this.$store.commit('COMMIT_SAVE',false)
 				this.receviceTotal = Number(this.r1)+Number(this.r2)+Number(this.r3)
 				this.groupTotals = Number(this.r4)+Number(this.r5)
 				this.leaveTotal = Number(this.r6)+Number(this.r7)+Number(this.r8)+Number(this.r9)
@@ -352,7 +362,7 @@
 				this.send()
 			})
 			window.onload = () => {
-				router.push('golden')
+				//router.push('golden')
 			}
 		},
 	 computed:{
@@ -377,7 +387,8 @@
 			  			bgcolor:'#4E76AC',
 			  			showArrow:true,
 			  			smallTitle:false,
-			  			showBack:true
+			  			showBack:true,
+			  			showUser:false
 				  	}
 			}
 	 },
@@ -388,7 +399,8 @@
 .box14{
 	.topTitle{
 		margin: 0.4rem 0 0 0.32rem;
-		position: relative;
+		width: 100vw;
+		position: absolute;
 		p{
 			font-size: 0.28rem;
 			color: #3C3C3C;
@@ -454,7 +466,8 @@
 	
 	.topTitle2{
 		margin: 3.1rem 0 0 0.32rem;
-		position: relative;
+		width: 100vw;
+		position: absolute;
 		p{
 			font-size: 0.28rem;
 			color: #3C3C3C;

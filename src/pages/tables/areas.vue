@@ -3,133 +3,135 @@
 		<comtitle
 			:titleData='computedTitle'
 		></comtitle>
-		<div class="topTitle">
-			<span></span>
-			<p>旅游接待总人数和总收入</p>
-		</div>
-		<div class="info">
-			<p class="total">人均消费(元): <span>{{t1}}</span></p>
-			<inputs
-				class='o'
-				:inputData='inputData1'
-				@sendVal='get1'
-			></inputs>
-			<inputs
-				class='t'
-				:inputData='inputData2'
-				@sendVal='get2'
-			></inputs>
-			<inputs
-				class='th'
-				:inputData='inputData3'
-				@sendVal='get3'
-			></inputs>
-		</div>
-		<div class="topTitles">
-			<span></span>
-			<p>一天游情况</p>
-		</div>
-		<div class="con">
-			<p class="total">人均消费(元): <span>{{t2}}</span></p>
-			<inputs
-				class='o'
-				:inputData='inputData4'
-				@sendVal='get4'
-			></inputs>
+		<div class="conBox">
+			<div class="topTitle">
+				<span></span>
+				<p>旅游接待总人数和总收入</p>
+			</div>
+			<div class="info">
+				<p class="total">人均消费(元): <span>{{t1}}</span></p>
+				<inputs
+					class='o'
+					:inputData='inputData1'
+					@sendVal='get1'
+				></inputs>
+				<inputs
+					class='t'
+					:inputData='inputData2'
+					@sendVal='get2'
+				></inputs>
+				<inputs
+					class='th'
+					:inputData='inputData3'
+					@sendVal='get3'
+				></inputs>
+			</div>
+			<div class="topTitles">
+				<span></span>
+				<p>一天游情况</p>
+			</div>
+			<div class="con">
+				<p class="total">人均消费(元): <span>{{t2}}</span></p>
+				<inputs
+					class='o'
+					:inputData='inputData4'
+					@sendVal='get4'
+				></inputs>
+				
+				<inputs
+					class='t'
+					:inputData='inputData5'
+					@sendVal='get5'
+				></inputs>
+			</div>
+			<div class="topTitleth">
+				<span></span>
+				<p>过夜游</p>
+			</div>
+			<div class="con2">
+				<p class="total">人均消费(元): <span>{{t3}}</span></p>
+				<inputs
+					class='o'
+					:inputData='inputData6'
+					@sendVal='get6'
+				></inputs>
+				
+				<inputs
+					class='t'
+					:inputData='inputData7'
+					@sendVal='get7'
+				></inputs>
+			</div>
 			
-			<inputs
-				class='t'
-				:inputData='inputData5'
-				@sendVal='get5'
-			></inputs>
-		</div>
-		<div class="topTitleth">
-			<span></span>
-			<p>过夜游</p>
-		</div>
-		<div class="con2">
-			<p class="total">人均消费(元): <span>{{t3}}</span></p>
-			<inputs
-				class='o'
-				:inputData='inputData6'
-				@sendVal='get6'
-			></inputs>
+			<div class="topTitlef">
+				<span></span>
+				<p>酒店和社会旅馆</p>
+			</div>
+			<div class="con3">
+				<inputs
+					class='o'
+					:inputData='inputData8'
+					@sendVal='get8'
+				></inputs>
+				
+				<inputs
+					class='t'
+					:inputData='inputData9'
+					@sendVal='get9'
+				></inputs>
+				
+				<inputs
+					class='th'
+					:inputData='inputData10'
+					@sendVal='get10'
+				></inputs>
+				
+				<inputs
+					class='f'
+					:inputData='inputData11'
+					@sendVal='get11'
+				></inputs>
+				<inputs
+					class='fi'
+					:inputData='inputData12'
+					@sendVal='get12'
+				></inputs>
+				
+				<inputs
+					class='six'
+					:inputData='inputData13'
+					@sendVal='get13'
+				></inputs>
+				<inputs
+					class='seven'
+					:inputData='inputData14'
+					@sendVal='get14'
+				></inputs>
+			</div>
 			
-			<inputs
-				class='t'
-				:inputData='inputData7'
-				@sendVal='get7'
-			></inputs>
-		</div>
-		
-		<div class="topTitlef">
-			<span></span>
-			<p>酒店和社会旅馆</p>
-		</div>
-		<div class="con3">
-			<inputs
-				class='o'
-				:inputData='inputData8'
-				@sendVal='get8'
-			></inputs>
-			
-			<inputs
-				class='t'
-				:inputData='inputData9'
-				@sendVal='get9'
-			></inputs>
-			
-			<inputs
-				class='th'
-				:inputData='inputData10'
-				@sendVal='get10'
-			></inputs>
-			
-			<inputs
-				class='f'
-				:inputData='inputData11'
-				@sendVal='get11'
-			></inputs>
-			<inputs
-				class='fi'
-				:inputData='inputData12'
-				@sendVal='get12'
-			></inputs>
-			
-			<inputs
-				class='six'
-				:inputData='inputData13'
-				@sendVal='get13'
-			></inputs>
-			<inputs
-				class='seven'
-				:inputData='inputData14'
-				@sendVal='get14'
-			></inputs>
-		</div>
-		
-		<div class="topTitlefi">
-			<span></span>
-			<p>酒店和社会旅馆</p>
-		</div>
-		<div class="con4">
-			<inputs
-				class='o'
-				:inputData='inputData15'
-				@sendVal='get15'
-			></inputs>
-			
-			<inputs
-				class='t'
-				:inputData='inputData16'
-				@sendVal='get16'
-			></inputs>
-			
-			<inputs
-				class='th'
-				:inputData='inputData17'
-				@sendVal='get17'
-			></inputs>
+			<div class="topTitlefi">
+				<span></span>
+				<p>酒店和社会旅馆</p>
+			</div>
+			<div class="con4">
+				<inputs
+					class='o'
+					:inputData='inputData15'
+					@sendVal='get15'
+				></inputs>
+				
+				<inputs
+					class='t'
+					:inputData='inputData16'
+					@sendVal='get16'
+				></inputs>
+				
+				<inputs
+					class='th'
+					:inputData='inputData17'
+					@sendVal='get17'
+				></inputs>
+			</div>
 		</div>
 	</div>
 </template>
@@ -140,23 +142,23 @@
 	export default{
 		data(){
 			return{
-				r1:1,
-				r2:0,
-				r3:0,
-				r4:1,
-				r5:0,
-				r6:1,
-				r7:0,
-				r8:0,
-				r9:0,
-				r10:0,
-				r11:0,
-				r12:0,
-				r13:0,
-				r14:0,
-				r15:0,
-				r16:0,
-				r17:0,
+				r1:'',
+				r2:'',
+				r3:'',
+				r4:'',
+				r5:'',
+				r6:'',
+				r7:'',
+				r8:'',
+				r9:'',
+				r10:'',
+				r11:'',
+				r12:'',
+				r13:'',
+				r14:'',
+				r15:'',
+				r16:'',
+				r17:'',
 			  	inputData1:{
 			  		id:3,
 			  		name:'接待总人数(万人次)',
@@ -344,13 +346,14 @@
 		methods:{
 			sendData(params){
 				this.$axios.post(API_URL+'/mobile/areaTourism/add',params).then( r => {
+					console.log(r)
 					if(r.data.code==='200' || r.data.code===200){
-						this.$store.commit('COMMIT_SHOWTIPS',{tipsShow:false,title:'恭喜你提交成功!',type:'sucess'})
+						this.$store.commit('COMMIT_TIPTXT',{status:true,txt:'上报成功!',err:false})
 						if(timer){
 							clearTimeout(timer)
 						}
 						var timer = setTimeout ( () => {
-							this.$store.commit('COMMIT_SHOWTIPS',{tipsShow:true,title:'恭喜你提交成功!',type:'sucess'})
+							this.$store.commit('COMMIT_TIPTXT',{status:false,txt:'上报成功!',err:false})
 						},1000)
 						window.setTimeout(() => {
 							router.push('/golden')
@@ -361,16 +364,20 @@
 			send(){
 				
 				if(this.r1===''||this.r2===''||this.r3===''||this.r4===''||this.r5===''||this.r6===''||this.r7===''||this.r8===''||this.r9===''||this.r10===''||this.r11===''||this.r12===''||this.r13===''||this.r14===''||this.r15===''||this.r16===''||this.r17===''){
-					this.$store.commit('COMMIT_SHOWTIPS',{tipsShow:false,title:'数据不能为空!',type:'warning'})
+					this.$store.commit('COMMIT_TIPTXT',{status:true,txt:'填写未完成!',err:true})
 					if(timer){
 						clearTimeout(timer)
 					}
 					var timer = setTimeout ( () => {
-						this.$store.commit('COMMIT_SHOWTIPS',{tipsShow:true,title:'数据不能为空!',type:'warning'})
+						this.$store.commit('COMMIT_TIPTXT',{status:false,txt:'填写未完成!',err:true})
 					},1000)
 					
 					return;
+				}else{
+					this.$store.commit('COMMIT_TIPTXT',{status:false,txt:'填写未完成!',err:false})
 				}
+				
+				
 				let users = JSON.parse(window.localStorage.getItem('users'))
 				let params = new FormData()
 				let dates = this.$store.state.commitDate.split('-');
@@ -468,23 +475,24 @@
 				this.send()
 			})
 			
-			window.onload = () => {
-				router.push('golden')
-			}
+			window.onload = () => {}
 		},
 		computed:{
 			t1(){
-				let n = (this.r2*10000/this.r1)
+				this.r1 = this.r1?this.r1:1
+				let n = (this.r2*10000/this.r1).toFixed(2)
 				return n
 				
 				
 			},
 			t2(){
-				let n = (this.r5/this.r4)
+				this.r4 = this.r4?this.r4:1
+				let n = (this.r5/this.r4).toFixed(2)
 					return n
 			},
 			t3(){
-				let n = (this.r7)/this.r6
+				this.r6 = this.r6?this.r6:1
+				let n = (this.r7/this.r6).toFixed(2)
 					return n
 			},
 			computedTitle(){
@@ -499,7 +507,8 @@
 			  			bgcolor:'#4E76AC',
 			  			showArrow:true,
 			  			smallTitle:false,
-			  			showBack:true
+			  			showBack:true,
+			  			showUser:false
 				  	}
 			}
 		}
@@ -509,6 +518,13 @@
 <style scoped lang="less">
 .box1{
 	margin-bottom: 0.2rem;
+	width: 100vw;
+	height: 90vh;
+	.conBox{
+		height: 85vh;
+		overflow-y: scroll;
+		overflow-x: hidden;
+	}
 	.topTitle{
 		margin: 0.4rem 0 0 0.32rem;
 		position: relative;
@@ -623,7 +639,7 @@
 		}
 	}
 	.info{
-		position: absolute;
+		position: relative;
 		.total{
 			width: 100vw;
 			font-size: 0.28rem;
@@ -655,7 +671,7 @@
 	.con{
 		position: relative;
 		span{
-			margin-left: 1.4rem;
+			margin-left: 1.38rem;
 		}
 		.total{
 			font-size: 0.28rem;

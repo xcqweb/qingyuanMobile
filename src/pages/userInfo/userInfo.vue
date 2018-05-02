@@ -22,7 +22,6 @@
 	export default{
 		data(){
 			return{
-				users:{},
 				left:'',
 				flag:true
 			}
@@ -68,16 +67,18 @@
 				}
 			}
 		},
+		computed:{
+			users(){
+				if(this.$store.state.userInfo.usertype){
+					return this.$store.state.userInfo
+				}else{
+					return JSON.parse(window.localStorage.getItem('users'))
+				}
+			}
+		},
 		mounted(){
 			
-			if(window.localStorage.getItem('users')){
-				if(this.$store.state.userInfo.usertype){
-					this.users = this.$store.state.userInfo
-				}else{
-					this.users = JSON.parse(window.localStorage.getItem('users'))
-				}
-				 
-			}else{
+			if(!window.localStorage.getItem('users')){
 				router.replace('login')
 			}
 			
@@ -100,10 +101,9 @@
 		
 				touchItem.addEventListener('touchmove',(e) => {
 					 
-					if(e.target.className==='userInfo'){
+//					if(e.target.className==='userInfo'){
 						e.preventDefault()
-						e.stopPropagation()
-					}
+//					}
 				})
 			})
 		}
@@ -114,8 +114,9 @@
 <style scoped lang="less">
 .box{
 	width: 3.1rem;
-	height: 100%;
+	height: 100vh;
 	position: fixed;
+	overflow: hidden;
 	z-index: 10000;
 	top: 0;
 	left: 0;
@@ -137,22 +138,22 @@
 			height: 1.56rem;
 		}
 		.userName{
-			position: absolute;
-			top: 2.9rem;
-			left: 0.78rem;
+			//position: absolute;
+			padding-top: 2.9rem;
+			padding-left: 0.78rem;
 			width: 1.6rem;	
 			color: #fff;
 		}
 		.userType{
 			position: absolute;
-			top: 4rem;
-			left: 0.78rem;
+			padding-top: 0.2rem;
+			padding-left: 0.78rem;
 			width: 1.6rem;
-			color: rgba(0,0,0,0.43);
+			color: rgba(0,0,0,0.8);
 		}
 		.exit{
 			position: absolute;
-			top: 4.98rem;
+			top: 4.88rem;
 			left: 0.42rem;
 			width: 2.6rem;
 			.icon{

@@ -13,14 +13,14 @@
     				<label for="psw" class="icon"></label>
     				<input class="txt" type="password" id="psw" v-model="loginInfo.password" @focus="focu"/>
     			</p>
-    			<p class="getPsw">
+    			<!--<p class="getPsw">
     				<label for="rio" class="txt">记住密码</label>
     				<input class="ratio" type="checkbox" id="rio" v-model="loginInfo.memory"/>
-    			</p>
+    			</p>-->
     			<p class="loginBtn" @click='login($event)' v-if="status">
     				<button class="btn"  id="loginBtn">登 录</button>
     			</p>
-    			<p class="loginBtn" @touchstart='login($event)' v-else>
+    			<p class="loginBtn" @click='login($event)' v-else>
     				<button class="btn"  id="loginBtn">登 录</button>
     			</p>
     	</div>
@@ -133,7 +133,7 @@ export default {
 		  		}else{
 		  			window.localStorage.removeItem('userInfo')
 		  		}
-		  				window.localStorage.setItem('users',JSON.stringify({username:reData.username,usertype:reData.userType,companyname:reData.companyName}))
+		  window.localStorage.setItem('users',JSON.stringify({username:reData.userName,usertype:reData.userType,companyname:reData.companyName}))
 		  	router.replace({path:'/'})
   				
   			}else{
@@ -234,7 +234,7 @@ export default {
 			border: 0.03rem solid rgba(0,0,0,0.15);
 			border-radius: 0.08rem;
 			left: 0.5rem;
-			top: 0.6rem;
+			top: 0.82rem;
 			.icon{
 				width: 0.74rem;
 				height: 0.66rem;
@@ -269,7 +269,7 @@ export default {
 			border: 0.03rem solid rgba(0,0,0,0.15);
 			border-radius: 0.08rem;
 			left: 0.5rem;
-			top: 1.58rem;
+			top: 1.8rem;
 			.icon{
 				width: 0.74rem;
 				height: 0.66rem;
@@ -341,7 +341,7 @@ export default {
 			width: 5.12rem;
 			height: 0.7rem;
 			left: 0.5rem;
-			bottom: 0.64rem;
+			bottom: 0.86rem;
 			color: #898989;
 		
 			.btn{
@@ -398,7 +398,7 @@ export default {
 						font-weight: bold;
 						padding-top: 0.36rem;
 						padding-bottom: 0.16rem;
-						border-bottom: 0.01rem solid rgba(77,77,77,0.52);
+						border-bottom: 0.03rem solid rgba(77,77,77,0.52);
 						width: 5.54rem;
 						margin: auto;
 						letter-spacing: 0.03rem;

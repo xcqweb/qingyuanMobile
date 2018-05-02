@@ -10,6 +10,9 @@
     ></tips>
     <!--<selected></selected>-->
      <user-info></user-info>
+     <tip-info
+     	:alerts='tipTxt'
+     	></tip-info>
   </div>
 </template>
 
@@ -25,7 +28,10 @@ export default {
   	},
   	comShow(){
 				return this.$store.state.tipInfo.tipsShow
-			}
+		},
+		tipTxt(){
+			return this.$store.state.tipTxt
+		}
   },
   mounted(){
 //	this.$axios.get(API_URL+'/mobile/checkLogin').then( re => {})
@@ -35,12 +41,13 @@ export default {
 
 <style>
 #app {
- 	width: 100%;
+ 	width: 100vw;
  	height: 100vh;
+ 	overflow-x: hidden;
 }
 
 html,body{
- 	width: 100%;
+ 	width: 100vw;
  	
  }
  

@@ -13,11 +13,14 @@
 
 <template>
 	<div class="box3" :style="{background:titleData.bgcolor}">
-    	<p class="titles" v-if="titleData.smallTitle">{{titleData.title}}</p>
-    	<p class="smallTitle" v-else>{{titleData.title}}</p>
-    	<span class="user" @click='showuser($event)' v-if="titleData.showUser"></span>
-    	<span class="back" @click='back($event)' v-else></span>
-    	<span class="exact" v-if="titleData.showArrow" @click='send($event)'></span>
+		<div class="fixBox">
+			<p class="titles" v-if="titleData.smallTitle">{{titleData.title}}</p>
+			
+	    	<p class="smallTitle" v-else>{{titleData.title}}</p>
+	    	<span class="user" @click='showuser($event)' v-if="titleData.showUser"></span>
+			<span class="back2" @click='back($event)' v-if="status"></span>
+	    	<span class="exact" v-if="titleData.showArrow" @click='send($event)'></span>
+		</div>
 	</div>
 </template>
 
@@ -28,17 +31,37 @@
 		name:'titles',
 		data(){
 			return{
-				
 			}
 		},
 		props:['titleData'],
+		computed:{
+			status(){
+				if(!this.titleData.smallTitle && !this.titleData.showUser){
+					return true
+				}
+			}
+		},
+		mounted(){
+			Bus.$on('showtiptxt',() => {
+				if(!this.$store.state.tipTxt.err){
+					Bus.$emit('sendData')
+				}
+			})
+		},
 		methods:{
 			send(e){
-				this.$store.commit('COMMIT_TIPS',{tips:'确认提交报表?',status:true})
-				this.$store.commit('COMMIT_SHOWALERT',true)
-				this.$store.commit('COMMIT_SAVE',true)
-				this.$store.commit('COMMIT_ISBACK',false)
-				this.$store.commit('COMMIT_SUBMIT',true)
+				Bus.$emit('sendData')
+				if(this.$store.state.tipTxt.err){
+					return
+				}else{
+					this.$store.commit('COMMIT_TIPS',{tips:'确认提交报表?',status:true})
+					this.$store.commit('COMMIT_SHOWALERT',true)
+					this.$store.commit('COMMIT_SAVE',true)
+					this.$store.commit('COMMIT_ISBACK',false)
+					this.$store.commit('COMMIT_SUBMIT',true)
+				}
+				
+				
 			},
 			showuser(){
 				this.$store.commit('COMMIT_ISSCROLL',true)
@@ -88,7 +111,20 @@
 			line-height: 0.6rem;
 			font-size: 0.34rem !important;
 		}
-		.back{
+		.back1{
+			display: block;
+			width: 0.34rem;
+			height: 0.34rem;
+			position: absolute;
+			padding: 0.02rem;
+			top: 0.66rem;
+			left: 0.32rem;
+			bottom: 0.24rem;
+			background: url(../../assets/images/title/back1.png) no-repeat 0.02rem;
+			background-size: 80%;
+		}
+		
+		.back2{
 			display: block;
 			width: 0.34rem;
 			height: 0.34rem;

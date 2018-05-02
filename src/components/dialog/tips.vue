@@ -1,6 +1,6 @@
 <template>
 	<transition name='fade'>
-		<div class="box8" :style="{background:combg}">
+		<div class="box8" :style="{background:combg}" id="ttt">
 			{{tipsTitle}}
 		</div>
 	</transition>
@@ -22,6 +22,14 @@
 					return '#C85C57';
 				}
 			}
+		},
+		mounted(){
+			this.$nextTick( () => {
+				let t = document.getElementById('ttt');
+				t.addEventListener('touchmove',function(e){
+					e.preventDefault();
+				},false)
+			})
 		}
 	}
 </script>
@@ -42,6 +50,7 @@
 	margin: auto;
 	font-size: 0.24rem;
 	opacity: 0;
+	z-index: 100000;
 }
 
 

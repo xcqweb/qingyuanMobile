@@ -33,7 +33,7 @@
 				if(this.$store.state.save){
 					this.$store.commit('COMMIT_SUBMIT',true)
 					this.$store.commit('COMMIT_SAVE',false)
-					Bus.$emit('sendData')
+					Bus.$emit('showtiptxt')
 				}
 				if(this.$store.state.isBack){
 					router.replace('golden')
@@ -44,10 +44,12 @@
 					window.localStorage.removeItem('users')
 					this.$store.commit('COMMIT_ShOWINFO',false)
 					Bus.$emit('hideUser')
-					router.replace('login')
-					//window.location.href = 'localhost:8080/login'
+					//router.replace('login')
+					window.location.href = API_URLS
 
 				}
+				e.preventDefault()
+				e.stopPropagation()
 			},
 			cancel(e){
 				this.$store.commit('COMMIT_SAVE',false)
@@ -61,8 +63,9 @@
 					this.$store.commit('COMMIT_ShOWINFO',false)
 				}else{
 					this.$store.commit('COMMIT_EXIT',false)
-//					this.$store.commit('COMMIT_ShOWINFO',false)
 				}
+				e.preventDefault()
+				e.stopPropagation()
 			}
 		}
 	}
@@ -72,18 +75,20 @@
 .box9{
 	width: 100vw;
 	height: 100vh;
-	position: absolute;
+	position: fixed;
 	top: 0;
 	background-color: rgba(0,0,0,0.15);
 	z-index: 1000000;
+	overflow: hidden;
 	.con{
 		width: 5.46rem;
 		height: 2.42rem;
 		background-color: #fff;
 		position: absolute;
-		top: 260/1344*100vh;
+		top: 0;
 		left: 0;
 		right: 0;
+		bottom: 0;
 		margin: auto;
 		border-radius: 0.12rem;
 		font-size: 0.32rem;

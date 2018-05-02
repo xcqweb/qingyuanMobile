@@ -19,6 +19,11 @@
   		companyname:'',
   		usertype:''
   	},
+  	tipTxt:{
+  		status:false,
+  		txt:'上报成功!',
+  		err:false
+  	},
   	tipInfo:{//提示框信息
   		tipsShow:true,
   		title:'',

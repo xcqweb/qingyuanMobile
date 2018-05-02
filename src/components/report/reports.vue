@@ -21,7 +21,7 @@
 		methods:{
 			report(data,e){
 				if(!window.localStorage.getItem('users')){
-						router.replace('login')
+						window.location.href = API_URLS
 						return;
 					}
 				//this.$axios.get(API_URL+'/mobile/checkLogin').then( re => {})
@@ -45,7 +45,7 @@
 				let users = JSON.parse(window.localStorage.getItem('users'))
 				this.type = users.usertype
 			}else{
-				router.replace('login')
+				window.location.href = API_URLS
 				return;
 			}
 		},

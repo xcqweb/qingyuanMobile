@@ -34,6 +34,9 @@
 			    position:[1,1], //初始化定位 两个轮子都选中在索引1的选项
 			    callback:function(indexArr, data){
 			    	_self.$store.commit('COMMIT_ISSCROLL',false)
+			    	if(!data){
+			    		return
+			    	}
 			            _self.typeName = data[0]
 						if(data[0]==='国庆'){
 							_self.$emit('types',1)

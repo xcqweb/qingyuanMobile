@@ -3,48 +3,47 @@
 		<comtitle
 			:titleData='computedTitle'
 		></comtitle>
-		<div class="info">
-			<inputs
-				class='o'
-				:inputData='inputData1'
-				@sendVal='get1'
-			></inputs>
-			<inputs
-				class='t'
-				:inputData='inputData2'
-				@sendVal='get2'
-			></inputs>
-		</div>
-		<div class="con">
-			
-			<inputs
-				class='o'
-				:inputData='inputData3'
-				@sendVal='get3'
-			></inputs>
-			<inputs
-				class='tw'
-				:inputData='inputData4'
-				@sendVal='get4'
-			></inputs>
-			<p class="total">同比: <span>{{t1}}</span></p>
-			<inputs
-				class='th'
-				:inputData='inputData5'
-				@sendVal='get5'
-			></inputs>
-			<inputs
-				class='f'
-				:inputData='inputData6'
-				@sendVal='get6'
-			></inputs>
-			<p class="totals">同比: <span>{{t2}}</span></p>
-			
-			<inputs
-				class='se'
-				:inputData='inputData7'
-				@sendVal='get7'
-			></inputs>
+		<div class="conBox">
+			<div class="con">
+				<inputs
+					class='o1'
+					:inputData='inputData1'
+					@sendVal='get1'
+				></inputs>
+				<inputs
+					class='t1'
+					:inputData='inputData2'
+					@sendVal='get2'
+				></inputs>
+				<inputs
+					class='o'
+					:inputData='inputData3'
+					@sendVal='get3'
+				></inputs>
+				<inputs
+					class='tw'
+					:inputData='inputData4'
+					@sendVal='get4'
+				></inputs>
+				<p class="total">同比: <span>{{t1}}</span></p>
+				<inputs
+					class='th'
+					:inputData='inputData5'
+					@sendVal='get5'
+				></inputs>
+				<inputs
+					class='f'
+					:inputData='inputData6'
+					@sendVal='get6'
+				></inputs>
+				<p class="totals">同比: <span>{{t2}}</span></p>
+				
+				<inputs
+					class='se'
+					:inputData='inputData7'
+					@sendVal='get7'
+				></inputs>
+			</div>
 		</div>
 	</div>
 </template>
@@ -57,10 +56,10 @@
 			return{
 				name:'',
 				phone:'',
-				r3:0,
-				r4:1,
-				r5:0,
-				r6:1,
+				r3:'',
+				r4:'',
+				r5:'',
+				r6:'',
 				r7:"",
 			  	inputData1:{
 			  		id:2,
@@ -152,12 +151,12 @@
 			sendData(params){
 				this.$axios.post(API_URL+'/mobile/science/add',params).then( r => {
 					if(r.data.code==='200' || r.data.code===200){
-						this.$store.commit('COMMIT_SHOWTIPS',{tipsShow:false,title:'恭喜你提交成功!',type:'sucess'})
+						this.$store.commit('COMMIT_TIPTXT',{status:true,txt:'上报成功!',err:false})
 						if(timer){
 							clearTimeout(timer)
 						}
 						var timer = setTimeout ( () => {
-							this.$store.commit('COMMIT_SHOWTIPS',{tipsShow:true,title:'恭喜你提交成功!',type:'sucess'})
+							this.$store.commit('COMMIT_TIPTXT',{status:false,txt:'上报成功!',err:false})
 						},1000)
 						window.setTimeout(() => {
 							router.push('/')
@@ -168,15 +167,20 @@
 			send(){
 				
 				if(!this.r3||!this.r4||!this.r5||!this.r6||!this.r7||!this.name||!this.phone){
-					this.$store.commit('COMMIT_SHOWTIPS',{tipsShow:false,title:'数据不能为空!',type:'warning'})
-					if(timer){
-						clearTimeout(timer)
+					this.$store.commit('COMMIT_TIPTXT',{status:true,txt:'填写未完成!',err:true})
+						if(timer){
+							clearTimeout(timer)
+						}
+						var timer = setTimeout ( () => {
+							this.$store.commit('COMMIT_TIPTXT',{status:false,txt:'填写未完成!',err:true})
+						},1000)
+						return;
+					}else{
+						this.$store.commit('COMMIT_TIPTXT',{status:false,txt:'填写未完成!',err:false})
 					}
-					var timer = setTimeout ( () => {
-						this.$store.commit('COMMIT_SHOWTIPS',{tipsShow:true,title:'数据不能为空!',type:'warning'})
-					},1000)
-					return;
-				}
+					
+					//this.$store.commit('COMMIT_SUBMIT',true)
+					//this.$store.commit('COMMIT_SAVE',false)
 				let users = JSON.parse(window.localStorage.getItem('users'))
 				let params = new FormData()
 		  		params.append('recPerson',this.r3)
@@ -221,26 +225,19 @@
 				this.send()
 			})
 			window.onload = () => {
-				router.push('golden')
+				//router.push('golden')
 			}
 		},
 		computed:{
 			t1(){
+				this.r4 = this.r4?this.r4:1
 				let n = (Number(this.r3)*100/Number(this.r4)).toFixed(2)
-				if(n.toString()==='NaN' || n.toString()==='Infinity'){
-					return "0.00%"
-				}else{
 					return n+"%"
-				}
-				
 			},
 			t2(){
-				let n = (Number(this.r3)*100/Number(this.r4)).toFixed(2)
-				if(n.toString()==='NaN' || n.toString()==='Infinity'){
-					return "0.00%"
-				}else{
+				this.r6 = this.r6?this.r6:1
+				let n = (Number(this.r5)*100/Number(this.r6)).toFixed(2)
 					return n+"%"
-				}
 			},
 			computedTitle(){
 				let types = '';
@@ -254,7 +251,8 @@
 			  			bgcolor:'#4E76AC',
 			  			showArrow:true,
 			  			smallTitle:false,
-			  			showBack:true
+			  			showBack:true,
+			  			showUser:false
 				  	}
 			}
 		}
@@ -263,18 +261,10 @@
 
 <style scoped lang="less">
 .box13{
-	.info{
-		position: absolute;
-		.o{
-			position: absolute;
-			left: 0.32rem;
-			top: -0.64rem;
-		}
-		.t{
-			position: absolute;
-			left: 3.76rem;
-			top: -0.64rem;
-		}
+	.conBox{
+		width: 100vw;
+		height: 90vw;
+		overflow: scroll;
 	}
 	.con{
 		position: relative;
@@ -296,6 +286,16 @@
 			position: absolute;
 			left: 0.32rem;
 			top: 4.9rem;
+		}
+		.o1{
+			position: absolute;
+			left: 0.32rem;
+			top: -0.64rem;
+		}
+		.t1{
+			position: absolute;
+			left: 3.76rem;
+			top: -0.64rem;
 		}
 		.o{
 			position: absolute;
