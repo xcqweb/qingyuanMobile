@@ -43,7 +43,7 @@
 		},
 		mounted(){
 			Bus.$on('showtiptxt',() => {
-				if(!this.$store.state.tipTxt.err){
+				if(!this.$store.state.tipTxt.err){//填写正确时继续提交
 					Bus.$emit('sendData')
 				}
 			})
@@ -51,7 +51,7 @@
 		methods:{
 			send(e){
 				Bus.$emit('sendData')
-				if(this.$store.state.tipTxt.err){
+				if(this.$store.state.tipTxt.err){ //未完成填写阻止代码继续执行
 					return
 				}else{
 					this.$store.commit('COMMIT_TIPS',{tips:'确认提交报表?',status:true})

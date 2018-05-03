@@ -208,7 +208,7 @@
 						},1000)
 						window.setTimeout(() => {
 							router.push('/')
-						},600)
+						},1000)
 					}
 				})
 			},
@@ -223,7 +223,10 @@
 						},1000)
 						return;
 					}else{
-						this.$store.commit('COMMIT_TIPTXT',{status:false,txt:'填写未完成!',err:false})
+						if(!this.$store.state.confirm){
+							this.$store.commit('COMMIT_TIPTXT',{status:false,txt:'填写未完成!',err:false})
+							return
+						}
 					}
 					
 					//this.$store.commit('COMMIT_SUBMIT',true)
@@ -253,7 +256,7 @@
 				this.send()
 			})
 			window.onload = () => {
-				//router.push('golden')
+				router.replace('golden')
 			}
 		},
 		computed:{
@@ -285,7 +288,7 @@
 .box12{
 	.conBox{
 		width: 100vw;
-		height: 90vw;
+		height: 90vh;
 		overflow: scroll;
 	}
 	.con{

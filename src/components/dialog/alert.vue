@@ -1,5 +1,5 @@
 <template>
-	<div class="box9">
+	<div class="box9" id="alertBox">
 		<div class="con">
 			<div class="top"><p>{{alerts.tips}}</p></div>
 			<div class="bottom">
@@ -24,21 +24,27 @@
 			}
 		},
 		props:['alerts'],
+		mounted(){
+			let b = document.getElementById('alertBox')
+			b.addEventListener('touchmove',function(e){
+				e.preventDefault()
+			},false)
+		},
 		methods:{
 			confirm(e){
 				
-				this.$store.commit('COMMIT_SHOWALERT',false)
+				this.$store.commit('COMMIT_SHOWALERT',false) //关闭提示框
 				
 				
 				if(this.$store.state.save){
-					this.$store.commit('COMMIT_SUBMIT',true)
+					this.$store.commit('COMMIT_SUBMIT',true) //记录确认状态
 					this.$store.commit('COMMIT_SAVE',false)
 					Bus.$emit('showtiptxt')
 				}
-				if(this.$store.state.isBack){
+				if(this.$store.state.isBack){ //点击返回按钮
 					router.replace('golden')
 				}
-				if(this.$store.state.exit){
+				if(this.$store.state.exit){ //点击退出按钮
 					this.$store.commit('COMMIT_EXIT',false)
 					window.localStorage.removeItem('userInfo')
 					window.localStorage.removeItem('users')

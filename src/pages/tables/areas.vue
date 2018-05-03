@@ -357,13 +357,14 @@
 						},1000)
 						window.setTimeout(() => {
 							router.push('/golden')
-						},600)
+						},1000)
 					}
 				})
 			},
 			send(){
 				
 				if(this.r1===''||this.r2===''||this.r3===''||this.r4===''||this.r5===''||this.r6===''||this.r7===''||this.r8===''||this.r9===''||this.r10===''||this.r11===''||this.r12===''||this.r13===''||this.r14===''||this.r15===''||this.r16===''||this.r17===''){
+					//填写未完成时记录状态
 					this.$store.commit('COMMIT_TIPTXT',{status:true,txt:'填写未完成!',err:true})
 					if(timer){
 						clearTimeout(timer)
@@ -371,10 +372,12 @@
 					var timer = setTimeout ( () => {
 						this.$store.commit('COMMIT_TIPTXT',{status:false,txt:'填写未完成!',err:true})
 					},1000)
-					
 					return;
 				}else{
-					this.$store.commit('COMMIT_TIPTXT',{status:false,txt:'填写未完成!',err:false})
+					if(!this.$store.state.confirm){ //点击确认后提交
+							this.$store.commit('COMMIT_TIPTXT',{status:false,txt:'填写未完成!',err:false})
+							return
+						}
 				}
 				
 				
@@ -475,7 +478,9 @@
 				this.send()
 			})
 			
-			window.onload = () => {}
+			window.onload = () => {
+				router.replace('golden')
+			}
 		},
 		computed:{
 			t1(){

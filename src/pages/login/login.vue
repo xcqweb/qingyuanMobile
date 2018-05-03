@@ -86,7 +86,7 @@ export default {
   	getData(){
   		this.$axios.get(API_URL+'/mobile/interface/login/html').then( r => {
   			let re = r.data.data;
-  			console.log(re)
+  			//console.log(re)
   				for(var i=1; i<=5; i++){
   					let str = `list${i}`
     					this.reData.push(re[str])
@@ -117,7 +117,9 @@ export default {
   		params.append('username',this.loginInfo.username)
   		params.append('password',this.loginInfo.password)
   		this.$axios.post(API_URL+'/mobile/interface/login',params).then( r => {
-  			
+  			if(!r){
+  				return
+  			}
   			let reData = r.data.data;
   			if(reData.e_no==="0" || reData.e_no===0){
 //				this.$store.commit('COMMIT_SHOWTIPS',{tipsShow:false,title:'登录成功!',type:'sucess'})
@@ -133,6 +135,7 @@ export default {
 		  		}else{
 		  			window.localStorage.removeItem('userInfo')
 		  		}
+		  		
 		  window.localStorage.setItem('users',JSON.stringify({username:reData.userName,usertype:reData.userType,companyname:reData.companyName}))
 		  	router.replace({path:'/'})
   				
@@ -153,6 +156,8 @@ export default {
   			this.loginInfo.username = users.username
   			this.loginInfo.password = users.password
   			this.loginInfo.memory = users.memory
+  		}else{
+  			return
   		}
   		
   	}

@@ -10,6 +10,7 @@ let Areas = () => import ('@/pages/tables/areas')
 Vue.use(Router)
 
 const router = new Router({
+	mode:'hash',
   routes: [
     {
       path:'/',

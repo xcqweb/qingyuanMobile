@@ -303,7 +303,7 @@
 						},1000)
 						window.setTimeout(() => {
 							router.push('/')
-						},600)
+						},1000)
 					}
 				})
 		},
@@ -320,7 +320,6 @@
 					}else{
 						if(!this.$store.state.confirm){
 							this.$store.commit('COMMIT_TIPTXT',{status:false,txt:'填写未完成!',err:false})
-						}else{
 							return
 						}
 						
@@ -362,7 +361,7 @@
 				this.send()
 			})
 			window.onload = () => {
-				//router.push('golden')
+				router.replace('golden')
 			}
 		},
 	 computed:{

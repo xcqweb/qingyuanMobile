@@ -313,7 +313,7 @@
 			
 			
 			this.dataYear = this.$store.state.chooseYear
-			if(this.users.usertype==='旅游局'){
+			if(this.users.companyname==='清远市旅游局'){
 				this.isCity = false;
 				this.dataListCom = {
 					status:true,

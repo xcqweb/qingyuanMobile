@@ -37,7 +37,6 @@
 			},
 			move(){
 				this.flag = !this.flag
-				let dem = document.getElementById('box')
 				let _self = this
 				
 				if(this.flag){
@@ -71,8 +70,10 @@
 			users(){
 				if(this.$store.state.userInfo.usertype){
 					return this.$store.state.userInfo
-				}else{
+				}else if(window.localStorage.getItem('users')){
 					return JSON.parse(window.localStorage.getItem('users'))
+				}else{
+					return {companyname:'',usertype:''}
 				}
 			}
 		},
@@ -98,7 +99,9 @@
 			
 			this.$nextTick( () => {
 				let touchItem = document.getElementById('box');
-		
+				if(!touchItem){
+					return
+				}
 				touchItem.addEventListener('touchmove',(e) => {
 					 
 //					if(e.target.className==='userInfo'){

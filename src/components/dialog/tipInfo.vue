@@ -90,6 +90,38 @@
 }
 
 .fade-enter-active{
-	
+	transition: all 0.5s;
+	-webkit-transition: all 0.5s;
+	-ms-transition: all 0.5s;
+	-moz-transition: all 0.5s;
+	-o-transition: all 0.5s;
+	transform: scale(1); 
+	-webkit-transform: scale(1); 
+	-ms-transform: scale(1); 
+	-o-transform: scale(1); 
+	-moz-transform: scale(1); 
+	opacity: 1;
+}
+.fade-leave-active{
+	transition: all 0.5s;
+	-webkit-transition: all 0.5s;
+	-ms-transition: all 0.5s;
+	-moz-transition: all 0.5s;
+	-o-transition: all 0.5s;
+	transform: scale(1); 
+	-webkit-transform: scale(1); 
+	-ms-transform: scale(1); 
+	-o-transform: scale(1); 
+	-moz-transform: scale(1);  
+	opacity: 1;
+}
+
+.fade-enter,.fade-leave-to{
+	opacity: 0;
+	transform: scale(0); 
+	-webkit-transform: scale(0); 
+	-ms-transform: scale(0); 
+	-o-transform: scale(0); 
+	-moz-transform: scale(0); 
 }
 </style>
