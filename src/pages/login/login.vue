@@ -5,7 +5,7 @@
     ></comtitle>
     <div class="middle">
     	<div class="loginForm">
-    			<p class="user"  :class="{error:isError}">
+    			<p class="user" :class="{error:isError}">
     				<label for="user" class="icon"></label>
     				<input class="txt" type="text" id="user" value="用户名" v-model="loginInfo.username" @focus="focu"/>
     			</p>
@@ -17,17 +17,17 @@
     				<label for="rio" class="txt">记住密码</label>
     				<input class="ratio" type="checkbox" id="rio" v-model="loginInfo.memory"/>
     			</p>-->
-    			<p class="loginBtn" @click='login($event)' v-if="status">
+    			<p class="loginBtn" @touchstart='start($event)' v-show="status">
     				<button class="btn"  id="loginBtn">登 录</button>
     			</p>
-    			<p class="loginBtn" @click='login($event)' v-else>
+    				<p class="loginBtn" @click='login($event)' v-show="!status">
     				<button class="btn"  id="loginBtn">登 录</button>
     			</p>
     	</div>
     </div>
     
     <div class="bottom">
-    	<div class="scrollBar" id="touch" :style="{left:lefts+'px'}">
+    	<div class="scrollBar" id="touch">
     		
     		
     		<div class="list" v-for="items in reData">
@@ -65,7 +65,6 @@ export default {
   		startY:0,
   		endX:0,
   		endY:0,
-  		lefts:35,
   		reData:[],
   		isError:false,
   		loginInfo:{
@@ -89,10 +88,16 @@ export default {
   			//console.log(re)
   				for(var i=1; i<=5; i++){
   					let str = `list${i}`
+  					if(i===1){
+  						re[str] = re[str].splice(1)
+  					}
     					this.reData.push(re[str])
   				}
-  			
   		})
+  	},
+  	start(e){
+  		e.preventDefault()
+  		this.login()
   	},
   	focu(){
   		this.isError = false
@@ -120,29 +125,17 @@ export default {
   			if(!r){
   				return
   			}
+  			
   			let reData = r.data.data;
+  			console.log(reData)
   			if(reData.e_no==="0" || reData.e_no===0){
-//				this.$store.commit('COMMIT_SHOWTIPS',{tipsShow:false,title:'登录成功!',type:'sucess'})
-//				if(timer){
-//						clearTimeout(timer)
-//					}
-//					var timer = setTimeout ( () => {
-//						this.$store.commit('COMMIT_SHOWTIPS',{tipsShow:true,title:'登录成功!',type:'sucess'})
-//					},1000)
-					this.$store.commit('COMMIT_USERINFO',{companyname:reData.companyName,usertype:reData.userType})
-  				if(this.loginInfo.memory){
-		  			window.localStorage.setItem('userInfo',JSON.stringify(this.loginInfo))
-		  		}else{
-		  			window.localStorage.removeItem('userInfo')
-		  		}
-		  		
-		  window.localStorage.setItem('users',JSON.stringify({username:reData.userName,usertype:reData.userType,companyname:reData.companyName}))
-		  	router.replace({path:'/'})
-  				
+					this.$store.commit('COMMIT_USERINFO',{companyname:reData.companyName,usertype:reData.userType})				
+		   window.localStorage.setItem('users',JSON.stringify({'username':reData.userName,'usertype':reData.userType,'companyname':reData.companyName}))
+		  	
+				  	router.replace({path:'/'})
+		  				
   			}else{
   				this.isError = true
-  				//this.loginInfo.password = ''
-  				//this.loginInfo.username=''
   				this.$store.commit('COMMIT_TIPS',{tips:'账号或密码错误!',status:false})
 					this.$store.commit('COMMIT_SHOWALERT',true)
 					return;
@@ -166,7 +159,7 @@ export default {
   computed:{
   	status(){
   		let flag
-  		if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) { //判断iPhone|iPad|iPod|iOS
+  		if (/UCBrowser/i.test(navigator.userAgent)) { //判断uc
 	  		flag = true
 			} else {  
 				flag = false
@@ -178,29 +171,7 @@ export default {
   	this.getData()
   },
   mounted(){
-  	this.$nextTick( () => {
-//		let touchItem = document.getElementById('touch');
-//		
-//		touchItem.addEventListener('touchstart',(e) => {
-//			 this.startX = e.changedTouches[0].screenX;
-//			 this.startY = e.changedTouches[0].screenY;
-//		})
-//		
-//		touchItem.addEventListener('touchmove',(e) => {
-//  			 this.endX = e.changedTouches[0].screenX;
-//  			 this.endY = e.changedTouches[0].screenY;
-//  			 
-//  			 if(Math.abs(this.endX-this.startX)>=20){
-//  			 		this.lefts += 319+"px"
-//  			 }
-//		})
-
-//		
-  	})
-  	
-  	this.getUser()
-  	
-  	
+  	this.ver = /version\/9.0/i.test(navigator.userAgent)
   },
  
 }
@@ -381,6 +352,7 @@ export default {
 	.bottom{
 			width: 100%;
 			overflow-x: scroll;
+			overflow-y: hidden;
 			margin-top: 0.7rem;
 			.scrollBar{
 				height: 100%;

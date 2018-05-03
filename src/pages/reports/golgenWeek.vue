@@ -250,7 +250,7 @@
 							let info = calendarTransform.lunar2solar(this.dateyear,1,i,false)
 							this.str+=`${info.cMonth}-${info.cDay},`
 						}
-						//console.log(this.str)
+						this.$store.commit('COMMIT_ARR',this.str)
 					}
 					params = {
 						type:val,
@@ -328,6 +328,10 @@
 		},
 		created(){
 			
+			this.$store.commit('COMMIT_TIPTXT',{status:false,txt:'',err:false})
+			this.$store.commit('COMMIT_SUBMIT',false)
+			this.$store.commit('COMMIT_SAVE',false)
+			
 			if(window.localStorage.getItem('users')){
 				let users = JSON.parse(window.localStorage.getItem('users'))
 				this.users = users
@@ -336,14 +340,24 @@
 				window.location.href = API_URLS
 				return;
 			}
-			
-			
-			let params = {
-				type:this.$store.state.type,
-				username:this.users.username,
-				usertype:this.users.usertype,
-				dataYear:this.$store.state.chooseYear
+			let params = {}
+			if(this.$store.state.type===1){
+				 params = {
+					type:this.$store.state.type,
+					username:this.users.username,
+					usertype:this.users.usertype,
+					dataYear:this.$store.state.chooseYear
+				}
+			}else{
+				 params = {
+					type:this.$store.state.type,
+					username:this.users.username,
+					usertype:this.users.usertype,
+					dataYear:this.$store.state.chooseYear,
+					arr:this.$store.state.str
+				}
 			}
+			
 			if(this.users.usertype!=='旅游局'){
 				this.getTask(params)
 			}

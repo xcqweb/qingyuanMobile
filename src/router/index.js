@@ -15,7 +15,6 @@ const router = new Router({
     {
       path:'/',
       component:App,
-      name:'home',
       children:[
       	{
 		      path:'login',

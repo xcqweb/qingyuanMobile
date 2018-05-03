@@ -9,13 +9,14 @@ import instance from '@/http'
 import store from '@/vuex/index'
 import FastClick from 'fastclick'
 
-var config = require('../config')  
+//import config from '../config'  
 // 判断开发环境  
 // if(process.env.NODE_ENV!='production'){
 //     console.log(process.env.NODE_ENV);
 // };
 
-window.API_URLS = process.env.NODE_ENV !== 'production' ? 'http://localhost:8080/#/login' : 'http://120.55.190.57/qylym/#/login'
+//window.API_URLS = 'http://120.55.190.57/qylym/#/login'
+window.API_URLS = 'http://localhost:8080/#/login' 
 
 window.onload = function(){
 	FastClick.attach(document.body);

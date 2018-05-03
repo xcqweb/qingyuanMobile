@@ -4,10 +4,10 @@
 			<div class="top"><p>{{alerts.tips}}</p></div>
 			<div class="bottom">
 				
-				<p class="confirmt" @click='confirm($event)' v-show="!alerts.status">确定</p>
+				<p class="confirmt" @click='confirm($event)' v-if="!alerts.status">确定</p>
 				
 				<p class="cancel" @click='cancel($event)' v-show="alerts.status">取消</p>
-				<p class="confirm" @click='confirm($event)' v-show="alerts.status">确定</p>
+				<p class="confirm" v-if="alerts.status" @touchstart='confirm($event)'>确定</p>
 				
 			</div>
 		</div>
@@ -25,21 +25,25 @@
 		},
 		props:['alerts'],
 		mounted(){
-			let b = document.getElementById('alertBox')
-			b.addEventListener('touchmove',function(e){
-				e.preventDefault()
-			},false)
+			this.$nextTick( () => {
+				let b = document.getElementById('alertBox')
+				b.addEventListener('touchmove',function(e){
+					e.preventDefault()
+				},false)
+			})
 		},
 		methods:{
 			confirm(e){
-				
 				this.$store.commit('COMMIT_SHOWALERT',false) //关闭提示框
 				
 				
 				if(this.$store.state.save){
 					this.$store.commit('COMMIT_SUBMIT',true) //记录确认状态
 					this.$store.commit('COMMIT_SAVE',false)
-					Bus.$emit('showtiptxt')
+					if(!this.$store.state.tipTxt.err){//填写正确时继续提交
+						Bus.$emit('sendData')
+						Bus.$off('sendData')
+					}
 				}
 				if(this.$store.state.isBack){ //点击返回按钮
 					router.replace('golden')

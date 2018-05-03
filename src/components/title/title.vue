@@ -60,15 +60,11 @@
 					this.$store.commit('COMMIT_ISBACK',false)
 					this.$store.commit('COMMIT_SUBMIT',true)
 				}
-				
-				
 			},
 			showuser(){
 				this.$store.commit('COMMIT_ISSCROLL',true)
 				this.$store.commit('COMMIT_ShOWINFO',true)
 				Bus.$emit('showUser')
-				
-				
 			},
 			back(e){
 				this.$store.commit('COMMIT_ISBACK',true)
@@ -76,10 +72,6 @@
 				if(router.history.current.name==='tourist' || router.history.current.name==='commdation' ||　router.history.current.name==='science'||router.history.current.name==='areas'){
 					this.$store.commit('COMMIT_TIPS',{tips:'内容尚未保存,是否退出编辑?',status:true})
 					this.$store.commit('COMMIT_SHOWALERT',true)
-					//router.replace('golden')
-				}else{
-					//router.replace({path:'login'})
-					
 				}
 			}
 		}

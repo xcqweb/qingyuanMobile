@@ -15,6 +15,7 @@ const COMMIT_ShOWINFO= 'COMMIT_ShOWINFO';
 const COMMIT_ISSCROLL= 'COMMIT_ISSCROLL';
 const COMMIT_USERINFO= 'COMMIT_USERINFO';
 const COMMIT_TIPTXT= 'COMMIT_TIPTXT';
+const COMMIT_ARR= 'COMMIT_ARR';
 
 COMMIT_ShOWINFO
 
@@ -63,6 +64,9 @@ const mutations={
 	},
 	[COMMIT_TIPTXT](state,val){
 		this.state.tipTxt = val
+	},
+	[COMMIT_ARR](state,val){
+		this.state.str = val
 	}
 }
 

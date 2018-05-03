@@ -159,6 +159,9 @@
 				r15:'',
 				r16:'',
 				r17:'',
+				t1:0,
+				t2:0,
+				t3:0,
 			  	inputData1:{
 			  		id:3,
 			  		name:'接待总人数(万人次)',
@@ -386,7 +389,9 @@
 				let dates = this.$store.state.commitDate.split('-');
 				let y = dates[0];
 				let md = dates[1]+'-'+dates[2]
-				
+//				this.t1 = (this.r2*10000/this.r1).toFixed(2)
+//				this.t2 = (this.r5*10000/this.r4).toFixed(2)
+//				this.t3 = (this.r7*10000/this.r6).toFixed(2)
 		  		params.append('travelRecPersonSum',this.r1)
 		  		params.append('travelRecIncomeSum',this.r2)
 		  		params.append('travelRecOutIncome',this.r3)
@@ -411,7 +416,6 @@
 		  		params.append('scenicPersonSum',this.r15)
 		  		params.append('scenicInSum',this.r16)
 		  		params.append('scenicOutSum',this.r17)
-		  		
 		  		
 		  		
 		  		params.append('userType',users.usertype)
@@ -492,12 +496,12 @@
 			},
 			t2(){
 				this.r4 = this.r4?this.r4:1
-				let n = (this.r5/this.r4).toFixed(2)
+				let n = (this.r5*10000/this.r4).toFixed(2)
 					return n
 			},
 			t3(){
 				this.r6 = this.r6?this.r6:1
-				let n = (this.r7/this.r6).toFixed(2)
+				let n = (this.r7*10000/this.r6).toFixed(2)
 					return n
 			},
 			computedTitle(){
@@ -524,7 +528,7 @@
 .box1{
 	margin-bottom: 0.2rem;
 	width: 100vw;
-	height: 90vh;
+	height: 90vw;
 	.conBox{
 		height: 85vh;
 		overflow-y: scroll;

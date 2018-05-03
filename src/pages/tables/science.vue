@@ -163,9 +163,9 @@
 						},1000)
 					}
 				})
+				
 			},
 			send(){
-				
 				if(!this.r3||!this.r4||!this.r5||!this.r6||!this.r7||!this.name||!this.phone){
 					this.$store.commit('COMMIT_TIPTXT',{status:true,txt:'填写未完成!',err:true})
 						if(timer){
@@ -174,6 +174,7 @@
 						var timer = setTimeout ( () => {
 							this.$store.commit('COMMIT_TIPTXT',{status:false,txt:'填写未完成!',err:true})
 						},1000)
+						
 						return;
 					}else{
 						if(!this.$store.state.confirm){
@@ -182,8 +183,6 @@
 						}
 					}
 					
-					//this.$store.commit('COMMIT_SUBMIT',true)
-					//this.$store.commit('COMMIT_SAVE',false)
 				let users = JSON.parse(window.localStorage.getItem('users'))
 				let params = new FormData()
 		  		params.append('recPerson',this.r3)

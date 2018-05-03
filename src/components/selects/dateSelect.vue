@@ -15,7 +15,8 @@
 	export default{
 		data(){
 			return{
-				currentYear:year
+				currentYear:year,
+				dIndex:0
 			}
 		},
 		props:['dateData'],
@@ -28,7 +29,7 @@
 			    wheels: [
 			                {data:this.dateData.list},
 			            ],
-			    position:[1,1], //初始化定位 两个轮子都选中在索引1的选项
+			    position:[this.dIndex], //初始化定位 两个轮子都选中在索引1的选项
 //			    callbacks:function(r){
 //			    	alert(r)
 //			    },
@@ -37,6 +38,12 @@
 			    	if(!data){
 			    		return
 			    	}
+			    		if(year===data[0]){
+			    			this.dIndex = 0
+			    		}else{
+			    			this.dIndex = year-data[0]
+			    		}
+			    		
 			            _self.$store.commit('COMMIT_YEAR',data[0])
 						_self.currentYear = data[0]
 						_self.$emit('dates',data[0])

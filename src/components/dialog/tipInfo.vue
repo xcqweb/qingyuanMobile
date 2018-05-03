@@ -47,7 +47,7 @@
 	height: 100vh;
 	position: fixed;
 	top: 0;
-	background-color: rgba(0,0,0,0.15);
+	background-color: transparent;
 	z-index: 1000000;
 	overflow: hidden;
 	.con{
@@ -62,12 +62,14 @@
 		margin: auto;
 		border-radius: 0.12rem;
 		font-size: 0.3rem;
+		border: 1px solid #ccc;
+		box-shadow: 1px 1px #C4C4C4;
 		.icon1{
 			position: absolute;
 			left: 0.76rem;
 			top: 0.52rem;
-			width: 0.6rem;
-			height: 0.6rem;
+			width: 0.61rem;
+			height: 0.61rem;
 			background-image: url(../../assets/images/tip/sucess.png);
 			background-size: cover;
 		}
@@ -75,8 +77,8 @@
 			position: absolute;
 			left: 0.76rem;
 			top: 0.52rem;
-			width: 0.6rem;
-			height: 0.6rem;
+			width: 0.61rem;
+			height: 0.61rem;
 			background-image: url(../../assets/images/tip/faile.png);
 			background-size: cover;
 		}

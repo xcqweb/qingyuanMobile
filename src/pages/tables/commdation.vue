@@ -224,13 +224,11 @@
 						return;
 					}else{
 						if(!this.$store.state.confirm){
-							this.$store.commit('COMMIT_TIPTXT',{status:false,txt:'填写未完成!',err:false})
+							this.$store.commit('COMMIT_TIPTXT',{status:false,txt:'',err:false})
 							return
 						}
 					}
 					
-					//this.$store.commit('COMMIT_SUBMIT',true)
-					//this.$store.commit('COMMIT_SAVE',false)
 				this.totalCount = Number(this.r3)+Number(this.r4)
 				let users = JSON.parse(window.localStorage.getItem('users'))
 				let params = new FormData()
@@ -253,7 +251,7 @@
 		},
 		mounted(){
 			Bus.$on('sendData',() => {
-				this.send()
+					this.send()
 			})
 			window.onload = () => {
 				router.replace('golden')
