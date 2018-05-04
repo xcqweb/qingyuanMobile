@@ -14,11 +14,12 @@
 <template>
 	<div class="box3" :style="{background:titleData.bgcolor}">
 		<div class="fixBox">
-			<p class="titles" v-if="titleData.smallTitle">{{titleData.title}}</p>
+			<p class="titles" v-if="titleData.smallTitle" :title="titleData.title">{{titleData.title}}</p>
 			
 	    	<p class="smallTitle" v-else>{{titleData.title}}</p>
 	    	<span class="user" @click='showuser($event)' v-if="titleData.showUser"></span>
 			<span class="back2" @click='back($event)' v-if="status"></span>
+			<span class="back2" @click='backskim($event)' v-if="titleData.skimgoBack"></span>
 	    	<span class="exact" v-if="titleData.showArrow" @click='send($event)'></span>
 		</div>
 	</div>
@@ -36,21 +37,21 @@
 		props:['titleData'],
 		computed:{
 			status(){
-				if(!this.titleData.smallTitle && !this.titleData.showUser){
+				if(!this.titleData.smallTitle && !this.titleData.showUser && this.titleData.showBack){
 					return true
 				}
 			}
 		},
 		mounted(){
 			Bus.$on('showtiptxt',() => {
-				if(!this.$store.state.tipTxt.err){//填写正确时继续提交
-					Bus.$emit('sendData')
+				if(this.$store.state.tipTxt.err){//填写正确时继续提交
+					return
 				}
 			})
 		},
 		methods:{
 			send(e){
-				Bus.$emit('sendData')
+				Bus.$emit('checkData')
 				if(this.$store.state.tipTxt.err){ //未完成填写阻止代码继续执行
 					return
 				}else{
@@ -65,6 +66,9 @@
 				this.$store.commit('COMMIT_ISSCROLL',true)
 				this.$store.commit('COMMIT_ShOWINFO',true)
 				Bus.$emit('showUser')
+			},
+			backskim(){
+				router.go(-1)
 			},
 			back(e){
 				this.$store.commit('COMMIT_ISBACK',true)
@@ -96,9 +100,9 @@
 		.smallTitle{
 			color: #fff;
 			text-shadow: 8px 4px rgba(0,0,0,0.1);
-			width: 4.4rem;
+			width: 100vw;
+			text-align: center;
 			height: 0.6rem;
-			margin: 0 0 0 1.56rem;
 			padding-top: 0.16rem;
 			line-height: 0.6rem;
 			font-size: 0.34rem !important;

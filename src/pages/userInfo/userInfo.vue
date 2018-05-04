@@ -70,8 +70,8 @@
 			users(){
 				if(this.$store.state.userInfo.usertype){
 					return this.$store.state.userInfo
-				}else if(window.localStorage.getItem('users')){
-					return JSON.parse(window.localStorage.getItem('users'))
+				}else if(window.sessionStorage.getItem('users')){
+					return JSON.parse(window.sessionStorage.getItem('users'))
 				}else{
 					return {companyname:'',usertype:''}
 				}
@@ -79,7 +79,7 @@
 		},
 		mounted(){
 			
-			if(!window.localStorage.getItem('users')){
+			if(!window.sessionStorage.getItem('users')){
 				router.replace('login')
 			}
 			

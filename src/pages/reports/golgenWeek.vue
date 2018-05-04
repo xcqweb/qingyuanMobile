@@ -1,9 +1,10 @@
 <template>
-		<div class="goldweek" id="box2" :style="{transform:left}" :class="{noscroll:isScroll}">
+		<div class="goldweek" id="box2" :style="{transform:left}">
 			<div class="toast" v-show="comStatus" @click="showToast" id="rrr"></div>
 				<comtitle
 					:titleData='titleData'
 				></comtitle>
+				<!--市旅游局-->
 				<div class="topTitle" v-show="isCity">
 					<span></span>
 					<p>黄金周日报</p>
@@ -56,6 +57,12 @@
 				<reports-complete
 					:datas='dataListCom'
 				></reports-complete>
+				
+				<!--市旅游局查看模块-->
+				<tourist-skim
+					 v-show="!isCity"
+				></tourist-skim>
+				
 		</div>
 </template>
 
@@ -168,7 +175,15 @@
 						}
 					})
 					if(num===reData.length){
-						this.status = true
+						this.dataListCom = {
+							status:true,
+							title:'全部任务已完成'
+						}
+					}else{
+						this.dataListCom = {
+							status:false,
+							title:'全部任务已完成'
+						}
 					}
 					
 					this.reportOne = reData[0]
@@ -295,9 +310,6 @@
 		computed:{
 			comStatus(){
 				return this.$store.state.isShowInfo
-			},
-			isScroll(){
-				return this.$store.state.isscroll
 			}
 		},
 		mounted(){
@@ -315,10 +327,6 @@
 			this.dataYear = this.$store.state.chooseYear
 			if(this.users.companyname==='清远市旅游局'){
 				this.isCity = false;
-				this.dataListCom = {
-					status:true,
-					title:'市旅游局不需要上报'
-				}
 			}
 			
 			Bus.$on('showUser',() => {
@@ -326,14 +334,17 @@
 			})
 			
 		},
+		beforeDestroy(){
+			Bus.$off('sendData')
+		},
 		created(){
 			
-			this.$store.commit('COMMIT_TIPTXT',{status:false,txt:'',err:false})
+			this.$store.commit('COMMIT_TIPTXT',{status:false,txt:'',err:true})
 			this.$store.commit('COMMIT_SUBMIT',false)
 			this.$store.commit('COMMIT_SAVE',false)
 			
-			if(window.localStorage.getItem('users')){
-				let users = JSON.parse(window.localStorage.getItem('users'))
+			if(window.sessionStorage.getItem('users')){
+				let users = JSON.parse(window.sessionStorage.getItem('users'))
 				this.users = users
 			}else{
 				//router.replace('login')
@@ -368,11 +379,7 @@
 </script>
 
 <style scoped lang="less"> 
-.noscroll{
-	/*width: 100%;*/
-	/*height: 100vh;*/
-	/*position: absolute;*/
-}
+
 .goldweek{
 	width: 100%;
 	max-height: 100vh;
@@ -429,7 +436,6 @@
 	.r7{
 		margin-bottom: 0.32rem;
 	}
-	
 }
 
 @-webkit-keyframes left{

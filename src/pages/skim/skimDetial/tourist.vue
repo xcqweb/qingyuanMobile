@@ -12,31 +12,26 @@
 			<inputs
 				class='o'
 				:inputData='inputData1'
-				@sendVal='getEl'
 			></inputs>
 			<inputs
 				class='t'
 				:inputData='inputData2'
-				@sendVal='getTw'
 			></inputs>
 		</div>
 		
 		<div class="cont">
-			<p class="total">接待总人数: {{receviveTotal}}</p>
+			<p class="total">接待总人数: </p>
 			<inputs
 				class='o'
 				:inputData='inputData3'
-				@sendVal='getOne'
 			></inputs>
 			<inputs
 				class='t'
 				:inputData='inputData4'
-				@sendVal='getTwo'
 			></inputs>
 			<inputs
 				class='th'
 				:inputData='inputData5'
-				@sendVal='getThree'
 			></inputs>
 		</div>
 		
@@ -48,47 +43,39 @@
 			<inputs
 				class='o'
 				:inputData='inputData6'
-				@sendVal='getThreen'
 			></inputs>
 			<inputs
 				class='t'
 				:inputData='inputData2'
-				@sendVal='getFourteen'
 			></inputs>
 		</div>
 		<div class="cont2">
-			<p class="total">组团总人数: {{groupTotal}}</p>
+			<p class="total">组团总人数: </p>
 			<inputs
 				class='o'
 				:inputData='inputData7'
-				@sendVal='getFour'
 			></inputs>
 			<inputs
 				class='t'
 				:inputData='inputData8'
-				@sendVal='getFive'
 			></inputs>
 			
-			<p class="boardtotal">出境游: {{boardTotal}}</p>
+			<p class="boardtotal">出境游: </p>
 			<inputs
 				class='th'
 				:inputData='inputData9'
-				@sendVal='getSix'
 			></inputs>
 			<inputs
 				class='f'
 				:inputData='inputData10'
-				@sendVal='getSeven'
 			></inputs>
 			<inputs
 				class='fi'
 				:inputData='inputData11'
-				@sendVal='getEight'
 			></inputs>
 			<inputs
 				class='s'
 				:inputData='inputData12'
-				@sendVal='getNine'
 			></inputs>
 		</div>
 		
@@ -99,7 +86,6 @@
 		<inputs
 			class='e'
 			:inputData='inputData13'
-			@sendVal='getTen'
 		></inputs>
 		
 	</div>
@@ -249,148 +235,13 @@
 		}
 	 },
 	 methods:{
-	 	getOne(val){
-	 		this.r1 = val
-	 	},
-	 	getTwo(val){
-	 		this.r2 = val
-	 	},
-	 	getThree(val){
-	 		this.r3 = val
-	 	},
-	 	getFour(val){
-	 		this.r4 = val
-	 	},
-	 	getFive(val){
-	 		this.r5 = val
-	 	},
-	 	getSix(val){
-	 		this.r6 = val
-	 	},
-	 	getSeven(val){
-	 		this.r7 = val
-	 	},
-	 	getEight(val){
-	 		this.r8 = val
-	 	},
-	 	getNine(val){
-	 		this.r9 = val
-	 	},
-	 	getTen(val){
-	 		this.r10 = val
-	 	},
-	 	getEl(val){
-	 		this.r11 = val
-	 	},
-	 	getTw(val){
-	 		this.r12 = val
-	 	},
-	 	getThreen(val){
-	 		this.r13 = val
-	 	},
-	 	getFourteen(val){
-	 		this.r14 = val
-	 	},
-	 	sendData(params){
-				this.$axios.post(API_URL+'/mobile/agenct/add',params).then( r => {
-					if(r.data.code==='200' || r.data.code===200){
-						this.$store.commit('COMMIT_TIPTXT',{status:true,txt:'上报成功!',err:false})
-						if(timer){
-							clearTimeout(timer)
-						}
-						var timer = setTimeout ( () => {
-							this.$store.commit('COMMIT_TIPTXT',{status:false,txt:'上报成功!',err:false})
-						},1000)
-						window.setTimeout(() => {
-							router.push('/')
-						},1500)
-					}
-				})
-		},
-		send(){
-				this.receviceTotal = Number(this.r1)+Number(this.r2)+Number(this.r3)
-				this.groupTotals = Number(this.r4)+Number(this.r5)
-				this.leaveTotal = Number(this.r6)+Number(this.r7)+Number(this.r8)+Number(this.r9)
-				let users = JSON.parse(window.sessionStorage.getItem('users'))
-				let params = new FormData()
-		  		params.append('groupReceptionNum',this.r11)
-		  		params.append('personReceptionNum',this.receviceTotal)
-		  		params.append('outProvinces',this.r1)
-		  		params.append('inProvinces',this.r2)
-		  		params.append('internationalNum',this.r3)
-		  		params.append('personOneDayNum',this.r14)
-		  		params.append('groupNum',this.r13)
-		  		params.append('acceptGroupNum',this.groupTotals)
-		  		params.append('groupOutProvincesNum',this.r4)
-		  		params.append('groupInProvincesNum',this.r5)
-		  		params.append('leaveTheCountryNum',this.leaveTotal)
-		  		params.append('hongkongNum',this.r6)
-		  		params.append('macauNum',this.r7)
-		  		params.append('outCountryNum',this.r8)
-		  		params.append('europeNum',this.r9)
-		  		params.append('groupOneDayNum',this.r12)
-		  		params.append('revenue',this.r10)
-		  		params.append('companyName',users.companyname)
-		  		params.append('userCode',users.username)
-		  		params.append('date',this.$store.state.commitDate)
-		  		params.append('type',this.$store.state.type)
-				this.sendData(params)
-			},
+	 	
 	 },
 	 mounted(){
-			Bus.$on('sendData',() => {
-				this.send()
-			});
 			
-			Bus.$on('checkData',() => {
-				if(!this.r1 || !this.r2 ||!this.r3||!this.r4||!this.r5||!this.r6||!this.r7||!this.r8||!this.r9||!this.r10||!this.r11||!this.r12||!this.r13||!this.r14){
-					this.$store.commit('COMMIT_TIPTXT',{status:true,txt:'填写未完成!',err:true})
-						if(timer){
-							clearTimeout(timer)
-						}
-						var timer = setTimeout ( () => {
-							this.$store.commit('COMMIT_TIPTXT',{status:false,txt:'填写未完成!',err:true})
-						},1000)
-						return;
-					}else{
-						if(!this.$store.state.confirm){
-							this.$store.commit('COMMIT_TIPTXT',{status:false,txt:'',err:false})
-							return
-						}
-						
-					}
-			});
-			
-			window.onload = () => {
-				router.replace('golden')
-			};
 		},
 	 computed:{
-	 	receviveTotal(){
-	 		return Number(this.r1)+Number(this.r2)+Number(this.r3)
-	 	},
-	 	groupTotal(){
-	 		return Number(this.r4) + Number(this.r5)
-	 	},
-	 	boardTotal(){
-	 		return Number(this.r6) + Number(this.r7)+Number(this.r8) + Number(this.r9)
-	 	},
-	 	computedTitle(){
-				let types = '';
-				if(this.$store.state.type===1){
-					types = '国庆'
-				}else{
-					types = '春节'
-				}
-				return {
-			  			title:`${this.$store.state.chooseYear}年${types}${this.$store.state.days}报表` ,
-			  			bgcolor:'#4E76AC',
-			  			showArrow:true,
-			  			smallTitle:false,
-			  			showBack:true,
-			  			showUser:false
-				  	}
-			}
+	 	
 	 },
 	}
 </script>

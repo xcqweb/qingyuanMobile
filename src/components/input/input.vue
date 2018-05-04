@@ -26,7 +26,8 @@
 		
 		<div class="three" :style="{width:inputData.boxWidth}" v-show="inputData.id===3">
 			<label for="Oinput2">{{inputData.name}}</label>
-			<input :type="inputData.inputType" id="Oinput2" :style="{width:inputData.inputWidth,marginLeft:inputData.maright}" @focus="foc" @blur="bl" :placeholder="inputData.placeHolder" v-model="val" @keyup="transform"/>
+			<input :type="inputData.inputType" id="Oinput2" :style="{width:inputData.inputWidth,marginLeft:inputData.maright}" @focus="foc" @blur="bl" :placeholder="inputData.placeHolder" v-model="val" @keyup="transform" v-if="!inputData.disable" />
+			<input :type="inputData.inputType" id="Oinput2" :style="{width:inputData.inputWidth,marginLeft:inputData.maright}" @focus="foc" @blur="bl" :placeholder="inputData.placeHolder" v-model="inputData.num" readonly="readonly" @keyup="transform" v-else />
 		</div>
 		
 		<div class="four" :style="{width:inputData.boxWidth}" v-show="inputData.id===4">

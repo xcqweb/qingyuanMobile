@@ -42,7 +42,6 @@
 					this.$store.commit('COMMIT_SAVE',false)
 					if(!this.$store.state.tipTxt.err){//填写正确时继续提交
 						Bus.$emit('sendData')
-						Bus.$off('sendData')
 					}
 				}
 				if(this.$store.state.isBack){ //点击返回按钮
@@ -50,8 +49,8 @@
 				}
 				if(this.$store.state.exit){ //点击退出按钮
 					this.$store.commit('COMMIT_EXIT',false)
-					window.localStorage.removeItem('userInfo')
-					window.localStorage.removeItem('users')
+					window.sessionStorage.removeItem('userInfo')
+					window.sessionStorage.removeItem('users')
 					this.$store.commit('COMMIT_ShOWINFO',false)
 					Bus.$emit('hideUser')
 					//router.replace('login')

@@ -17,7 +17,9 @@ const COMMIT_USERINFO= 'COMMIT_USERINFO';
 const COMMIT_TIPTXT= 'COMMIT_TIPTXT';
 const COMMIT_ARR= 'COMMIT_ARR';
 
-COMMIT_ShOWINFO
+
+//查明功能
+const SKIM_DETIAL= 'SKIM_DETIAL';
 
 const mutations={
 	[COMMIT_DATE](state,val){
@@ -67,6 +69,10 @@ const mutations={
 	},
 	[COMMIT_ARR](state,val){
 		this.state.str = val
+	},
+	//查看功能
+	[SKIM_DETIAL](state,val){
+		this.state.skimData = val
 	}
 }
 

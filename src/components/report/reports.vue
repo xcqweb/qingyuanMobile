@@ -20,7 +20,7 @@
 		},
 		methods:{
 			report(data,e){
-				if(!window.localStorage.getItem('users')){
+				if(!window.sessionStorage.getItem('users')){
 						window.location.href = API_URLS
 						return;
 					}
@@ -41,8 +41,8 @@
 		},
 		mounted(){
 			
-			if(window.localStorage.getItem('users')){
-				let users = JSON.parse(window.localStorage.getItem('users'))
+			if(window.sessionStorage.getItem('users')){
+				let users = JSON.parse(window.sessionStorage.getItem('users'))
 				this.type = users.usertype
 			}else{
 				window.location.href = API_URLS
@@ -64,7 +64,7 @@
 	text-align: center;
 	.title{
 		font-size: 0.32rem;
-		color: rgba(28, 179, 148,0.7);
+		color: #686B6D;
 		height: 0.44rem;
 		line-height: 0.44rem;
 		margin-top: 0.3rem;
@@ -75,7 +75,6 @@
 		height: 0.34rem;
 	}
 	.report{
-		//width: 1rem;
 		font-size: 0.20rem;
 		font-weight: bold;
 		color: #1CB394;

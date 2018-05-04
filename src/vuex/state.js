@@ -22,7 +22,7 @@
   	tipTxt:{
   		status:false,
   		txt:'上报成功!',
-  		err:false
+  		err:true
   	},
   	tipInfo:{//提示框信息
   		tipsShow:true,
@@ -30,6 +30,16 @@
   		type:''
   	}, 
   	str:'',//春节日期
+  	
+  	//查看功能
+  	skimData:{
+  		usertype:'',
+  		usercode:'',
+  		date:'',
+  		dataYear:'',
+  		selDate:'',
+  		dateIndex:0
+  	}
   	
   	
 }

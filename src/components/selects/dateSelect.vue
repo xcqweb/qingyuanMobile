@@ -16,15 +16,15 @@
 		data(){
 			return{
 				currentYear:year,
-				dIndex:0
+				dIndex:0,
+				mySelect:null
 			}
 		},
 		props:['dateData'],
 		methods:{
 			showList(e){
-				this.$store.commit('COMMIT_ISSCROLL',true)
 				let _self = this
-				var mySelect = new MobileSelect({
+				this.mySelect = new MobileSelect({
 			    trigger: '#dateBox', 
 			    wheels: [
 			                {data:this.dateData.list},
@@ -77,16 +77,18 @@
 		height: 0.5rem;
 		border: 0.03rem solid #C4C4C4;
 		border-radius: 0.06rem;
-		padding-right: 0.16rem;
 		box-sizing: border-box;
-		/*box-shadow: 2px 2px #c4c4c4;*/
+		z-index: -1;
+
 		.title{
 			width: 100%;
 			height: 100%;
 			line-height: 0.5rem;
 			font-size: 0.24rem;
-			text-align: center;
-			position: relative;
+			text-align: left;
+			padding-left: 0.2rem;
+			position: absolute;
+			z-index: 100;
 		}
 		.up{
 				position: absolute;
@@ -97,6 +99,7 @@
 				border-color: #3C3C3C transparent transparent transparent;
 				border-style: solid;
 				opacity:0.6881;
+				z-index: -1;
 			}
 			.down{
 				position: absolute;
@@ -107,6 +110,7 @@
 				border-color: transparent transparent #3C3C3C transparent; 
 				border-style: solid;
 				opacity:0.6881;
+				z-index: -1;
 			}
 		.list{
 			font-size: 0.24rem;

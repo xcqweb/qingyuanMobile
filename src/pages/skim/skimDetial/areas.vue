@@ -13,17 +13,14 @@
 				<inputs
 					class='o'
 					:inputData='inputData1'
-					@sendVal='get1'
 				></inputs>
 				<inputs
 					class='t'
 					:inputData='inputData2'
-					@sendVal='get2'
 				></inputs>
 				<inputs
 					class='th'
 					:inputData='inputData3'
-					@sendVal='get3'
 				></inputs>
 			</div>
 			<div class="topTitles">
@@ -35,13 +32,11 @@
 				<inputs
 					class='o'
 					:inputData='inputData4'
-					@sendVal='get4'
 				></inputs>
 				
 				<inputs
 					class='t'
 					:inputData='inputData5'
-					@sendVal='get5'
 				></inputs>
 			</div>
 			<div class="topTitleth">
@@ -53,13 +48,11 @@
 				<inputs
 					class='o'
 					:inputData='inputData6'
-					@sendVal='get6'
 				></inputs>
 				
 				<inputs
 					class='t'
 					:inputData='inputData7'
-					@sendVal='get7'
 				></inputs>
 			</div>
 			
@@ -71,41 +64,34 @@
 				<inputs
 					class='o'
 					:inputData='inputData8'
-					@sendVal='get8'
 				></inputs>
 				
 				<inputs
 					class='t'
 					:inputData='inputData9'
-					@sendVal='get9'
 				></inputs>
 				
 				<inputs
 					class='th'
 					:inputData='inputData10'
-					@sendVal='get10'
 				></inputs>
 				
 				<inputs
 					class='f'
 					:inputData='inputData11'
-					@sendVal='get11'
 				></inputs>
 				<inputs
 					class='fi'
 					:inputData='inputData12'
-					@sendVal='get12'
 				></inputs>
 				
 				<inputs
 					class='six'
 					:inputData='inputData13'
-					@sendVal='get13'
 				></inputs>
 				<inputs
 					class='seven'
 					:inputData='inputData14'
-					@sendVal='get14'
 				></inputs>
 			</div>
 			
@@ -117,19 +103,16 @@
 				<inputs
 					class='o'
 					:inputData='inputData15'
-					@sendVal='get15'
 				></inputs>
 				
 				<inputs
 					class='t'
 					:inputData='inputData16'
-					@sendVal='get16'
 				></inputs>
 				
 				<inputs
 					class='th'
 					:inputData='inputData17'
-					@sendVal='get17'
 				></inputs>
 			</div>
 		</div>
@@ -162,364 +145,254 @@
 				t1:0,
 				t2:0,
 				t3:0,
+				companyname:'',
 			  	inputData1:{
 			  		id:3,
 			  		name:'接待总人数(万人次)',
 			  		inputType:'number',
-			  		placeHolder:'请输入当日接待总人数',
 			  		boxWidth:'6.86rem',
 			  		inputWidth:'3.48rem',
 			  		inputHeight:'0.54rem',
 			  		maright:'0.96rem',
+			  		disable:true,
+			  		num:0
 				},
 				inputData2:{
 			  		id:3,
 			  		name:'旅游总收入(亿)',
 			  		inputType:'number',
-			  		placeHolder:'请输入当日旅游总收入',
 			  		boxWidth:'6.86rem',
 			  		inputWidth:'3.48rem',
 			  		inputHeight:'0.54rem',
 			  		maright:'0.96rem',
+			  		disable:true,
+			  		num:0
 				},
 				inputData3:{
 			  		id:3,
 			  		name:'其中外汇收入(万美金)',
 			  		inputType:'number',
-			  		placeHolder:'请输入当日美金收入',
 			  		boxWidth:'6.86rem',
 			  		inputWidth:'3.48rem',
 			  		inputHeight:'0.54rem',
 			  		maright:'0.96rem',
+			  		disable:true,
+			  		num:0
 				},
 				inputData4:{
 			  		id:3,
 			  		name:'接待总人数(万人次)',
 			  		inputType:'number',
-			  		placeHolder:'请输入接待总人数',
 			  		boxWidth:'6.86rem',
 			  		inputWidth:'3.48rem',
 			  		inputHeight:'0.54rem',
 			  		maright:'0.96rem',
+			  		disable:true,
+			  		num:0
 				},
 				inputData5:{
 			  		id:3,
 			  		name:'旅游总收入(亿)',
 			  		inputType:'number',
-			  		placeHolder:'请输入当日旅游总收入',
 			  		boxWidth:'6.86rem',
 			  		inputWidth:'3.48rem',
 			  		inputHeight:'0.54rem',
 			  		maright:'0.96rem',
+			  		disable:true,
+			  		num:0
 				},
 				inputData6:{
 			  		id:3,
 			  		name:'接待总人数(万人次)',
 			  		inputType:'number',
-			  		placeHolder:'请输入接待总人数',
 			  		boxWidth:'6.86rem',
 			  		inputWidth:'3.48rem',
 			  		inputHeight:'0.54rem',
 			  		maright:'0.96rem',
+			  		disable:true,
+			  		num:0
 				},
 				inputData7:{
 			  		id:3,
 			  		name:'旅游总收入(亿)',
 			  		inputType:'number',
-			  		placeHolder:'请输入当日旅游总收入',
 			  		boxWidth:'6.86rem',
 			  		inputWidth:'3.48rem',
 			  		inputHeight:'0.54rem',
 			  		maright:'0.96rem',
+			  		disable:true,
+			  		num:0
 				},
 				inputData8:{
 			  		id:3,
 			  		name:'接待总人数(万人次)',
 			  		inputType:'number',
-			  		placeHolder:'请输入过夜总人数',
 			  		boxWidth:'6.86rem',
 			  		inputWidth:'3.48rem',
 			  		inputHeight:'0.54rem',
 			  		maright:'0.96rem',
+			  		disable:true,
+			  		num:0
 				},
 				inputData9:{
 			  		id:3,
 			  		name:'其中国内人数(万人次)',
 			  		inputType:'number',
-			  		placeHolder:'请输入国内总人数',
 			  		boxWidth:'6.86rem',
 			  		inputWidth:'3.48rem',
 			  		inputHeight:'0.54rem',
 			  		maright:'0.96rem',
+			  		disable:true,
+			  		num:0
 				},
 				inputData10:{
 			  		id:3,
 			  		name:'其中境外总人数(万人次)',
 			  		inputType:'number',
-			  		placeHolder:'请输入境外总人数',
 			  		boxWidth:'6.86rem',
 			  		inputWidth:'3.48rem',
 			  		inputHeight:'0.54rem',
 			  		maright:'0.96rem',
+			  		disable:true,
+			  		num:0
 				},
 				inputData11:{
 			  		id:3,
 			  		name:'直报系统中宾馆数(家)',
 			  		inputType:'number',
-			  		placeHolder:'请输入直报系统中宾馆数',
 			  		boxWidth:'6.86rem',
 			  		inputWidth:'3.48rem',
 			  		inputHeight:'0.54rem',
 			  		maright:'0.96rem',
+			  		disable:true,
+			  		num:0
 				},
 				inputData12:{
 			  		id:3,
 			  		name:'接待人数(万人)',
 			  		inputType:'number',
-			  		placeHolder:'请输入接待人数',
 			  		boxWidth:'6.86rem',
 			  		inputWidth:'3.48rem',
 			  		inputHeight:'0.54rem',
 			  		maright:'0.96rem',
+			  		disable:true,
+			  		num:0
 				},
 				inputData13:{
 			  		id:3,
 			  		name:'其他社会宾馆数(家)',
 			  		inputType:'number',
-			  		placeHolder:'请输入其他社会宾馆数',
 			  		boxWidth:'6.86rem',
 			  		inputWidth:'3.48rem',
 			  		inputHeight:'0.54rem',
 			  		maright:'0.96rem',
+			  		disable:true,
+			  		num:0
 				},
 				inputData14:{
 			  		id:3,
 			  		name:'接待人数(万人)',
 			  		inputType:'number',
-			  		placeHolder:'请输入接待人数',
-			  		boxWidth:'6.86rem',
+				  		boxWidth:'6.86rem',
 			  		inputWidth:'3.48rem',
 			  		inputHeight:'0.54rem',
 			  		maright:'0.96rem',
+			  		disable:true,
+			  		num:0
 				},
 				inputData15:{
 			  		id:3,
 			  		name:'接待总人数(万人)',
 			  		inputType:'number',
-			  		placeHolder:'请输入接待总人数',
 			  		boxWidth:'6.86rem',
 			  		inputWidth:'3.48rem',
 			  		inputHeight:'0.54rem',
 			  		maright:'0.96rem',
+			  		disable:true,
+			  		num:0
 				},
 				inputData16:{
 			  		id:3,
 			  		name:'其中国内人数(万人)',
 			  		inputType:'number',
-			  		placeHolder:'请输入国内人数',
 			  		boxWidth:'6.86rem',
 			  		inputWidth:'3.48rem',
 			  		inputHeight:'0.54rem',
 			  		maright:'0.96rem',
+			  		disable:true,
+			  		num:0
 				},
 				inputData17:{
 			  		id:3,
 			  		name:'其中境外人数(万人)',
 			  		inputType:'number',
-			  		placeHolder:'请输入境外人数',
 			  		boxWidth:'6.86rem',
 			  		inputWidth:'3.48rem',
 			  		inputHeight:'0.54rem',
 			  		maright:'0.96rem',
+			  		disable:true,
+			  		num:0
 				},
 			}
 		},
 		watch:{
-//			r4:function(val){
-//				if(val===0){
-//					this.r4 = 1
-//				}
-//			},
-//			r6:function(val){
-//				if(val===0){
-//					this.r6 = 1
-//				}
-//			}
+
 		},
 		methods:{
-			sendData(params){
-				this.$axios.post(API_URL+'/mobile/areaTourism/add',params).then( r => {
-					console.log(r)
-					if(r.data.code==='200' || r.data.code===200){
-						this.$store.commit('COMMIT_TIPTXT',{status:true,txt:'上报成功!',err:false})
-						if(timer){
-							clearTimeout(timer)
-						}
-						var timer = setTimeout ( () => {
-							this.$store.commit('COMMIT_TIPTXT',{status:false,txt:'上报成功!',err:false})
-						},1000)
-						window.setTimeout(() => {
-							router.push('/golden')
-						},1500)
-					}
+			getData(params){
+				this.$axios.get(API_URL+'/mobile/mobileMgr/goldenWeekReport',{params:params}).then( r => {
+					console.log(r.data.data.list)
+					let reData = r.data.data.new
+					this.companyname = reData.userName
+					this.inputData1.num = reData.travelRecPersonSum
+					this.inputData2.num = reData.travelRecIncomeSum
+					this.inputData3.num = reData.travelRecOutIncome
+					this.inputData4.num = reData.oneDayPersonSum
+					this.inputData5.num = reData.oneDayIncomeSum
+					this.inputData6.num = reData.passNightPersonSum
+					this.inputData7.num = reData.passNightIncomeSum
+					this.inputData8.num = reData.hotelPersonSum
+					this.inputData9.num = reData.hotelInSum
+					this.inputData10.num = reData.hotelOutSum
+					this.inputData11.num = reData.hotelSum
+					this.inputData12.num = reData.hotelRecSum
+					this.inputData13.num = reData.hotelOtherSum
+					this.inputData14.num = reData.hotelOtherRecSum
+					this.inputData15.num = reData.scenicPersonSum
+					this.inputData16.num = reData.scenicInSum
+					this.inputData17.num = reData.scenicOutSum
+					this.t1 = reData.travelRecCostAvg
+					this.t2 = reData.oneDayCostAvg
+					this.t3 = reData.passNightCostAvg
 				})
-			},
-			send(){
-				
-				let users = JSON.parse(window.sessionStorage.getItem('users'))
-				let params = new FormData()
-				let dates = this.$store.state.commitDate.split('-');
-				let y = dates[0];
-				let md = dates[1]+'-'+dates[2]
-//				this.t1 = (this.r2*10000/this.r1).toFixed(2)
-//				this.t2 = (this.r5*10000/this.r4).toFixed(2)
-//				this.t3 = (this.r7*10000/this.r6).toFixed(2)
-		  		params.append('travelRecPersonSum',this.r1)
-		  		params.append('travelRecIncomeSum',this.r2)
-		  		params.append('travelRecOutIncome',this.r3)
-		  		params.append('travelRecCostAvg',this.t1)
-		  		
-		  		params.append('oneDayPersonSum',this.r4)
-		  		params.append('oneDayIncomeSum',this.r5)
-		  		params.append('oneDayCostAvg',this.t2)
-		  		
-		  		params.append('passNightPersonSum',this.r6)
-		  		params.append('passNightIncomeSum',this.r7)
-		  		params.append('passNightCostAvg',this.t3)
-		  		
-		  		
-		  		params.append('hotelPersonSum',this.r8)
-		  		params.append('hotelInSum',this.r9)
-		  		params.append('hotelOutSum',this.r10)
-		  		params.append('hotelSum',this.r11)
-		  		params.append('hotelRecSum',this.r12)
-		  		params.append('hotelOtherSum',this.r13)
-		  		params.append('hotelOtherRecSum',this.r14)
-		  		params.append('scenicPersonSum',this.r15)
-		  		params.append('scenicInSum',this.r16)
-		  		params.append('scenicOutSum',this.r17)
-		  		
-		  		
-		  		params.append('userType',users.usertype)
-		  		params.append('userCode',users.username)
-		  		params.append('selDate',md)
-		  		params.append('dataYear',y)
-		  		params.append('userName',users.companyname)
-				this.sendData(params)
-			},
-			get1(val){
-				this.r1 = val
-			},
-			get2(val){
-				this.r2 = val
-			},
-			get3(val){
-				this.r3 = val
-			},
-			get4(val){
-				this.r4 = val
-			},
-			get5(val){
-				this.r5 = val
-			},
-			get6(val){
-				this.r6 = val
-			},
-			get7(val){
-				this.r7 = val
-			},
-			get8(val){
-				this.r8 = val
-			},
-			get9(val){
-				this.r9 = val
-			},
-			get10(val){
-				this.r10 = val
-			},
-			get11(val){
-				this.r11 = val
-			},
-			get12(val){
-				this.r12 = val
-			},
-			get13(val){
-				this.r13 = val
-			},
-			get14(val){
-				this.r14 = val
-			},
-			get15(val){
-				this.r15 = val
-			},
-			get16(val){
-				this.r16 = val
-			},
-			get17(val){
-				this.r17 = val
-			},
-		},
-		mounted(){
-			Bus.$on('sendData',() => {
-				this.send()
-			})
-			
-			Bus.$on('checkData',() => {
-				if(this.r1===''||this.r2===''||this.r3===''||this.r4===''||this.r5===''||this.r6===''||this.r7===''||this.r8===''||this.r9===''||this.r10===''||this.r11===''||this.r12===''||this.r13===''||this.r14===''||this.r15===''||this.r16===''||this.r17===''){
-					//填写未完成时记录状态
-					this.$store.commit('COMMIT_TIPTXT',{status:true,txt:'填写未完成!',err:true})
-					if(timer){
-						clearTimeout(timer)
-					}
-					var timer = setTimeout ( () => {
-						this.$store.commit('COMMIT_TIPTXT',{status:false,txt:'填写未完成!',err:true})
-					},1000)
-					return;
-				}else{
-					if(!this.$store.state.confirm){ //点击确认后提交
-							this.$store.commit('COMMIT_TIPTXT',{status:false,txt:'填写未完成!',err:false})
-							return
-						}
-				}
-			})
-			
-			
-			window.onload = () => {
-				router.replace('golden')
 			}
 		},
+		mounted(){
+			window.onload= function(){
+				router.push('golden')
+			}
+			console.log(this.$store.state.skimData)
+			let params = {
+				userType:this.$store.state.skimData.usertype,
+				userCode:this.$store.state.skimData.usercode,
+				dateYear:this.$store.state.skimData.dataYear,
+				selDate:this.$store.state.skimData.selDate,
+				dateIndex:this.$store.state.skimData.dateIndex
+				
+			}
+			this.getData(params)
+		},
 		computed:{
-			t1(){
-				this.r1 = this.r1?this.r1:1
-				let n = (this.r2*10000/this.r1).toFixed(2)
-				return n
+				computedTitle(){
 				
-				
-			},
-			t2(){
-				this.r4 = this.r4?this.r4:1
-				let n = (this.r5*10000/this.r4).toFixed(2)
-					return n
-			},
-			t3(){
-				this.r6 = this.r6?this.r6:1
-				let n = (this.r7*10000/this.r6).toFixed(2)
-					return n
-			},
-			computedTitle(){
-				let types = '';
-				if(this.$store.state.type===1){
-					types = '国庆'
-				}else{
-					types = '春节'
-				}
 				return {
-			  			title:`${this.$store.state.chooseYear}年${types}${this.$store.state.days}报表` ,
+			  			title:this.companyname,
 			  			bgcolor:'#4E76AC',
-			  			showArrow:true,
+			  			showArrow:false,
 			  			smallTitle:false,
-			  			showBack:true,
-			  			showUser:false
+			  			showBack:false,
+			  			showUser:false,
+			  			skimgoBack:true
 				  	}
 			}
 		}

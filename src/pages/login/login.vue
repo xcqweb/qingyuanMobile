@@ -127,10 +127,9 @@ export default {
   			}
   			
   			let reData = r.data.data;
-  			console.log(reData)
   			if(reData.e_no==="0" || reData.e_no===0){
 					this.$store.commit('COMMIT_USERINFO',{companyname:reData.companyName,usertype:reData.userType})				
-		   window.localStorage.setItem('users',JSON.stringify({'username':reData.userName,'usertype':reData.userType,'companyname':reData.companyName}))
+		   window.sessionStorage.setItem('users',JSON.stringify({'username':reData.userName,'usertype':reData.userType,'companyname':reData.companyName}))
 		  	
 				  	router.replace({path:'/'})
 		  				
@@ -144,7 +143,7 @@ export default {
   	},
   	
   	getUser(){
-  		let users = JSON.parse(window.localStorage.getItem('userInfo'))
+  		let users = JSON.parse(window.sessionStorage.getItem('userInfo'))
   		if(users){
   			this.loginInfo.username = users.username
   			this.loginInfo.password = users.password

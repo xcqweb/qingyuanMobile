@@ -22,7 +22,7 @@ window.onload = function(){
 	FastClick.attach(document.body);
 }
 
-if(window.localStorage.getItem('users')){
+if(window.sessionStorage.getItem('users')){
 	router.replace('login');
 }
 

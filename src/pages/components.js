@@ -9,8 +9,11 @@ let alert = () => import ('@/components/dialog/alert')
 let tips = () => import ('@/components/dialog/tips')
 let selected = () => import ('@/components/selects/select')
 let userInfo = () => import ('@/pages/userInfo/userInfo')
+let touristSkim = () => import ('@/pages/skim/cityTouristSkim')
+let detialSkim = () => import ('@/pages/skim/children/detial')
+let manageSkim = () => import ('@/pages/skim/children/manage')
 let tipInfo = () => import ('@/components/dialog/tipInfo')
-
+let selectGroup = () => import ('@/components/selects/selectGroup')
 
 
 let status=[
@@ -25,7 +28,11 @@ let status=[
 	'tips',
 	'selected',
 	'userInfo',
-	'tipInfo'
+	'tipInfo',
+	'touristSkim',
+	'selectGroup',
+	'detialSkim',
+	'manageSkim'
 ]
 
 let component={}
