@@ -1,6 +1,6 @@
 <template>
-  <div id="app">
-    <router-view />
+  <div id="appBox">
+    <router-view></router-view>
     <alert
     	:alerts='comTips'
     	v-show='isShow'
@@ -14,11 +14,12 @@
      	:alerts='tipTxt'
      	></tip-info>
   </div>
+  
 </template>
 
 <script>
 export default {
-  name: 'App',
+  name: 'appBox',
   computed:{
   	comTips(){
   		return this.$store.state.alert
@@ -40,7 +41,7 @@ export default {
 </script>
 
 <style>
-#app {
+#appBox {
  	width: 100vw;
  	height: 100vh;
  	overflow-x: hidden;

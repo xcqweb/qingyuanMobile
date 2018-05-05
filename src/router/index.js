@@ -7,7 +7,11 @@ let Tourist = () => import ('@/pages/tables/tourist')
 let Commdation = () => import ('@/pages/tables/commdation')
 let Science = () => import ('@/pages/tables/science')
 let Areas = () => import ('@/pages/tables/areas')
+
 let AreasDetial = () => import ('@/pages/skim/skimDetial/areas')
+let TouristDetial = () => import ('@/pages/skim/skimDetial/tourist')
+let CommdationDetial = () => import ('@/pages/skim/skimDetial/commdation')
+let ScienceDetial = () => import ('@/pages/skim/skimDetial/science')
 Vue.use(Router)
 
 const router = new Router({
@@ -39,7 +43,6 @@ const router = new Router({
 		      component:Tourist,
 		      name:'tourist',
 		      meta:{requireAuth:true}
-		      
 		    },
 		    {
 		      path:'commdation',
@@ -57,14 +60,26 @@ const router = new Router({
 		      component:Areas,
 		      name:'areas',
 		      meta:{requireAuth:true},
-		      children:[
-		      	
-		      ]
 		    },
 		    {
 	      		path:'areaDetial',
 	      		name:'areaDetial',
 	      		component:AreasDetial
+		    },
+		    {
+	      		path:'touristDetial',
+	      		name:'touristDetial',
+	      		component:TouristDetial
+		    },
+		    {
+	      		path:'commdationDetial',
+	      		name:'commdationDetial',
+	      		component:CommdationDetial
+		    },
+		    {
+	      		path:'scienceDetial',
+	      		name:'scienceDetial',
+	      		component:ScienceDetial
 		    }
       ]
     },

@@ -9,7 +9,6 @@
 					<span></span>
 					<p>黄金周日报</p>
 				</div>
-				
 				<type-select
 					:goldData='goldData'
 					@types='getType'
@@ -21,7 +20,7 @@
 					@dates='getDates'
 					v-show="isCity"
 				></date-select>
-				<div v-show="isShow" class="rr" v-if="isCity">
+				<div :class="{hide:!isShow}" class="rr" v-show="isCity" id="reloadCon" :style="{transform:comTranslate}">
 					<reports 
 						:dataList='reportOne'
 					></reports>
@@ -62,7 +61,7 @@
 				<tourist-skim
 					 v-show="!isCity"
 				></tourist-skim>
-				
+				<loading></loading>
 		</div>
 </template>
 
@@ -149,23 +148,62 @@
 				isCity:true,
 				type:1,
 				dateyear:2018,
-				isShow:true,
 				str:'',
+				isShow:false,
 				left:'0%',
-				flag:true
+				flag:true,
+				comTranslate:'translate3d(0,-20px,0)'
 			  	
 			}
 			
 		},
 		props:[],
 		methods:{
+			initData(){
+				if(window.sessionStorage.getItem('users')){
+				let users = JSON.parse(window.sessionStorage.getItem('users'))
+				this.users = users
+			}else{
+				//router.replace('login')
+				window.location.href = API_URLS
+				return;
+			}
+			let params = {}
+			if(this.$store.state.type===1){
+				 params = {
+					type:this.$store.state.type,
+					username:this.users.username,
+					usertype:this.users.usertype,
+					dataYear:this.$store.state.chooseYear
+				}
+			}else{
+				 params = {
+					type:this.$store.state.type,
+					username:this.users.username,
+					usertype:this.users.usertype,
+					dataYear:this.$store.state.chooseYear,
+					arr:this.$store.state.str
+				}
+			}
+			
+			if(this.users.usertype!=='旅游局'){
+				this.getTask(params)
+			}
+			
+			},
 			getTask(params){
-				this.isShow = false
-				window.setTimeout( () => {
-					this.isShow = true
-				},100)
+				this.$store.commit('COMMIT_LOADING',true)
 				this.$axios.get(API_URL+'/mobile/mobileView/mytask',{params:params}).then( r => {
-					let reData = r.data.data.list
+					if(!r){
+						return;
+					}
+					if(r.data.code==='200' || r.data.code===200){
+						window.setTimeout( () => {
+							this.dragDown(-20)
+						},600)
+						this.$store.commit('COMMIT_LOADING',false)
+						this.isShow = true
+						let reData = r.data.data.list
 					let num=0;
 					reData.forEach( (v,i) => {
 						if(v.count===0){
@@ -196,16 +234,15 @@
 					this.reportEight = reData[7]
 					this.reportNine = reData[8]
 					this.reportTen = reData[9]
+					}
 				})
 			},
 			
 			getType(data){
-				console.log(data)
 				this.type = data
 				
 			},
 			getDates(data){
-				console.log(data)
 				this.dateyear = data
 			},
 			showToast(e){
@@ -217,9 +254,7 @@
 			},
 			
 			move(){
-				
 				this.flag = !this.flag
-				let dem = document.getElementById('box2')
 				let _self = this
 				
 				if(this.flag){
@@ -247,6 +282,18 @@
 					}
 					window.requestAnimationFrame(movel)
 				}
+			},
+			
+			dragDown(step){
+				function down(){
+					if(step<20){
+						window.requestAnimationFrame(down)
+					}else{
+						return
+					}
+				}
+				this.comTranslate = `translate3d(0,${step}px,0)`
+				window.requestAnimationFrame(down)
 			}
 		},
 			beforeDestory(){
@@ -319,7 +366,36 @@
 				t.addEventListener('touchmove',function(e){
 					e.preventDefault();
 				},false)
+				let reloadCon = document.getElementById('reloadCon');
+				let sY=0;
+				let eY=0;
+				reloadCon.addEventListener('touchstart',(e) => {
+					sY = e.changedTouches[0].pageY
+				},false)
+				reloadCon.addEventListener('touchmove',(e) => {
+					if(reloadCon.scrollTop>0){
+						return
+					}
+					eY = e.changedTouches[0].pageY
+					let dis = eY-sY>=20?eY-sY:20
+					this.dragDown(dis)
+				},false)
 				
+				reloadCon.addEventListener('touchend',(e) => {
+					if(reloadCon.scrollTop>0){
+						return
+					}
+					let dis = eY-sY
+					if(dis<0){
+						return
+					}else{
+						dis>=20?eY-sY:20;
+					}
+					if(dis>=20){
+						this.initData()
+						this.dragDown(0)
+					}
+				},false)
 			})
 			
 			
@@ -343,36 +419,7 @@
 			this.$store.commit('COMMIT_SUBMIT',false)
 			this.$store.commit('COMMIT_SAVE',false)
 			
-			if(window.sessionStorage.getItem('users')){
-				let users = JSON.parse(window.sessionStorage.getItem('users'))
-				this.users = users
-			}else{
-				//router.replace('login')
-				window.location.href = API_URLS
-				return;
-			}
-			let params = {}
-			if(this.$store.state.type===1){
-				 params = {
-					type:this.$store.state.type,
-					username:this.users.username,
-					usertype:this.users.usertype,
-					dataYear:this.$store.state.chooseYear
-				}
-			}else{
-				 params = {
-					type:this.$store.state.type,
-					username:this.users.username,
-					usertype:this.users.usertype,
-					dataYear:this.$store.state.chooseYear,
-					arr:this.$store.state.str
-				}
-			}
-			
-			if(this.users.usertype!=='旅游局'){
-				this.getTask(params)
-			}
-			
+			this.initData()
 		},
 		
 	}
@@ -383,7 +430,6 @@
 .goldweek{
 	width: 100%;
 	max-height: 100vh;
-	/*overflow: scroll;*/
 	position: fixed;
 	left: 0;
 	-webkit-transform: translate3d(0,0,0);
@@ -427,6 +473,9 @@
 		margin-top: 2rem;
 		max-height: 66vh;
 		overflow: scroll;
+	}
+	.hide{
+		visibility: hidden;
 	}
 	
 	.r1{

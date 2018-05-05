@@ -5,18 +5,14 @@ import App from './App'
 import router from './router'
 import conponents from '@/pages/components.js'
 import rem  from '@/common/rem.js'
-import instance from '@/http'
+
 import store from '@/vuex/index'
+import instance from '@/http'
 import FastClick from 'fastclick'
 
-//import config from '../config'  
-// 判断开发环境  
-// if(process.env.NODE_ENV!='production'){
-//     console.log(process.env.NODE_ENV);
-// };
 
-//window.API_URLS = 'http://120.55.190.57/qylym/#/login'
-window.API_URLS = 'http://localhost:8080/#/login' 
+window.API_URLS = 'http://120.55.190.57/qylym/cs/#/login'
+//window.API_URLS = 'http://localhost:8080/#/login' 
 
 window.onload = function(){
 	FastClick.attach(document.body);

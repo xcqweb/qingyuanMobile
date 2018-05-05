@@ -8,41 +8,35 @@
 				<inputs
 					class='o1'
 					:inputData='inputData1'
-					@sendVal='get1'
 				></inputs>
 				<inputs
 					class='t1'
 					:inputData='inputData2'
-					@sendVal='get2'
 				></inputs>
 				<inputs
 					class='o'
 					:inputData='inputData3'
-					@sendVal='get3'
 				></inputs>
 				<inputs
 					class='tw'
 					:inputData='inputData4'
-					@sendVal='get4'
 				></inputs>
 				<p class="total">同比: <span>{{t1}}</span></p>
 				<inputs
 					class='th'
 					:inputData='inputData5'
-					@sendVal='get5'
 				></inputs>
 				<inputs
 					class='f'
 					:inputData='inputData6'
-					@sendVal='get6'
 				></inputs>
 				<p class="totals">同比: <span>{{t2}}</span></p>
 				
 				<inputs
 					class='se'
 					:inputData='inputData7'
-					@sendVal='get7'
 				></inputs>
+				<loading></loading>
 			</div>
 		</div>
 	</div>
@@ -54,13 +48,9 @@
 	export default{
 		data(){
 			return{
-				name:'',
-				phone:'',
-				r3:'',
-				r4:'',
-				r5:'',
-				r6:'',
-				r7:"",
+				t1:'',
+				t2:'',
+				companyname:'',
 			  	inputData1:{
 			  		id:2,
 			  		name:'填报人',
@@ -69,7 +59,9 @@
 			  		boxWidth:'3.26rem',
 			  		inputWidth:'2rem',
 			  		inputHeight:'0.54rem',
-			  		maright:'0.96rem'
+			  		maright:'0.96rem',
+			  		disable:true,
+			  		num:''
 				},
 				inputData2:{
 			  		id:2,
@@ -79,9 +71,10 @@
 			  		boxWidth:'3.26rem',
 			  		inputWidth:'2rem',
 			  		inputHeight:'0.54rem',
-//			  		maright:'0.96rem',
 			  		right:'-0.2rem',
-			  		left:'-0.05rem'
+			  		left:'-0.05rem',
+			  		disable:true,
+			  		num:''
 				},
 				inputData3:{
 			  		id:3,
@@ -92,6 +85,8 @@
 			  		inputWidth:'3.48rem',
 			  		inputHeight:'0.54rem',
 			  		maright:'0.96rem',
+			  		disable:true,
+			  		num:''
 				},
 				inputData4:{
 			  		id:3,
@@ -102,6 +97,8 @@
 			  		inputWidth:'3.48rem',
 			  		inputHeight:'0.54rem',
 			  		maright:'0.96rem',
+			  		disable:true,
+			  		num:''
 				},
 				inputData5:{
 			  		id:3,
@@ -112,6 +109,8 @@
 			  		inputWidth:'3.48rem',
 			  		inputHeight:'0.54rem',
 			  		maright:'0.96rem',
+			  		disable:true,
+			  		num:''
 				},
 				inputData6:{
 			  		id:3,
@@ -122,6 +121,8 @@
 			  		inputWidth:'3.48rem',
 			  		inputHeight:'0.54rem',
 			  		maright:'0.96rem',
+			  		disable:true,
+			  		num:''
 				},
 				inputData7:{
 			  		id:4,
@@ -132,132 +133,59 @@
 			  		inputWidth:'6.62rem',
 			  		inputHeight:'0.54rem',
 			  		maright:'0.96rem',
+			  		disable:true,
+			  		num:'暂无'
 				},
 			}
 		},
-		watch:{
-			r4:function(val){
-				if(val===0){
-					this.r4 = 1
-				}
-			},
-			r6:function(val){
-				if(val===0){
-					this.r6 = 1
-				}
-			}
-		},
+		
 		methods:{
-			sendData(params){
-				this.$axios.post(API_URL+'/mobile/science/add',params).then( r => {
+			getData(params){
+				this.$store.commit('COMMIT_LOADING',true)
+				this.$axios.get(API_URL+'/mobile/mobileMgr/weekDetail',{params:params}).then( r => {
+					if(!r){
+						return
+					}
 					if(r.data.code==='200' || r.data.code===200){
-						this.$store.commit('COMMIT_TIPTXT',{status:true,txt:'上报成功!',err:false})
-						if(timer){
-							clearTimeout(timer)
-						}
-						var timer = setTimeout ( () => {
-							this.$store.commit('COMMIT_TIPTXT',{status:false,txt:'上报成功!',err:false})
-						},1000)
-						window.setTimeout(() => {
-							router.push('/')
-						},1500)
+						this.$store.commit('COMMIT_LOADING',false)
+						let reData = r.data.data.list
+						this.companyname = reData.userName
+						this.inputData1.num = reData.inputer
+						this.inputData2.num = reData.contactPhone
+						this.inputData3.num = reData.recPerson
+						this.inputData4.num = reData.lastYearRecPerson
+						this.inputData5.num = reData.income
+						this.inputData6.num = reData.lastYearIncome
+						this.inputData7.num = reData.description
+						this.t1 = reData.personPercent
+						this.t2 = reData.incomePercent
 					}
 				})
-				
-			},
-			send(){
-				let users = JSON.parse(window.sessionStorage.getItem('users'))
-				let params = new FormData()
-		  		params.append('recPerson',this.r3)
-		  		params.append('lastYearRecPerson',this.r4)
-		  		params.append('personPercent',Number(this.r3)*100/Number(this.r4))
-		  		params.append('income',this.r5)
-		  		params.append('lastYearIncome',this.r6)
-		  		params.append('incomePercent',Number(this.r3)*100/Number(this.r4))
-		  		params.append('description',this.r7)
-		  		params.append('userName',users.companyname)
-		  		params.append('userCode',users.username)
-		  		params.append('date',this.$store.state.commitDate)
-		  		params.append('type',this.$store.state.type)
-		  		params.append('inputer',this.name)
-		  		params.append('contactPhone',this.phone)
-				this.sendData(params)
-			},
-			get1(val){
-				this.name = val
-			},
-			get2(val){
-				this.phone = val
-			},
-			get3(val){
-				this.r3 = val
-			},
-			get4(val){
-				this.r4 = val
-			},
-			get5(val){
-				this.r5 = val
-			},
-			get6(val){
-				this.r6 = val
-			},
-			get7(val){
-				this.r7 = val
-			},
+		  		
+			}
 		},
 		mounted(){
-			Bus.$on('sendData',() => {
-				this.send()
-			})
-			
-			Bus.$on('checkData',() => {
-				if(!this.r3||!this.r4||!this.r5||!this.r6||!this.r7||!this.name||!this.phone){
-					this.$store.commit('COMMIT_TIPTXT',{status:true,txt:'填写未完成!',err:true})
-						if(timer){
-							clearTimeout(timer)
-						}
-						var timer = setTimeout ( () => {
-							this.$store.commit('COMMIT_TIPTXT',{status:false,txt:'填写未完成!',err:true})
-						},1000)
-						
-						return;
-					}else{
-						if(!this.$store.state.confirm){
-							this.$store.commit('COMMIT_TIPTXT',{status:false,txt:'填写未完成!',err:false})
-							return
-						}
-					}
-			})
+			let params = {
+				userType:this.$store.state.skimData.usertype,
+				userCode:this.$store.state.skimData.usercode,
+				date:this.$store.state.skimData.date,
+			}
+			this.getData(params)
 			
 			window.onload = () => {
 				router.replace('golden')
 			};
 		},
 		computed:{
-			t1(){
-				this.r4 = this.r4?this.r4:1
-				let n = (Number(this.r3)*100/Number(this.r4)).toFixed(2)
-					return n+"%"
-			},
-			t2(){
-				this.r6 = this.r6?this.r6:1
-				let n = (Number(this.r5)*100/Number(this.r6)).toFixed(2)
-					return n+"%"
-			},
 			computedTitle(){
-				let types = '';
-				if(this.$store.state.type===1){
-					types = '国庆'
-				}else{
-					types = '春节'
-				}
 				return {
-			  			title:`${this.$store.state.chooseYear}年${types}${this.$store.state.days}报表` ,
+			  			title:this.companyname,
 			  			bgcolor:'#4E76AC',
-			  			showArrow:true,
+			  			showArrow:false,
 			  			smallTitle:false,
-			  			showBack:true,
-			  			showUser:false
+			  			showBack:false,
+			  			showUser:false,
+			  			skimgoBack:true
 				  	}
 			}
 		}

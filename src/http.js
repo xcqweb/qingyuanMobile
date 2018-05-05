@@ -5,7 +5,7 @@ import router from '@/router'
 axios.defaults.timeout = 50000;
 //axios.defaults.baseURL = window.API_URL+'/qy/api/';
 
-
+window.isLoading = false
 let instance = axios.create()
 let token='213345dsdsddfdgdyyrtsdsdwew32335t';
 //let token=window.localStorage.getItem('token');

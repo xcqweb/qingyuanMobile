@@ -17,6 +17,8 @@ const COMMIT_USERINFO= 'COMMIT_USERINFO';
 const COMMIT_TIPTXT= 'COMMIT_TIPTXT';
 const COMMIT_ARR= 'COMMIT_ARR';
 
+const COMMIT_LOADING= 'COMMIT_LOADING';
+
 
 //查明功能
 const SKIM_DETIAL= 'SKIM_DETIAL';
@@ -70,6 +72,12 @@ const mutations={
 	[COMMIT_ARR](state,val){
 		this.state.str = val
 	},
+	
+	[COMMIT_LOADING](state,val){
+		this.state.isLoading = val
+	},
+	
+	
 	//查看功能
 	[SKIM_DETIAL](state,val){
 		this.state.skimData = val

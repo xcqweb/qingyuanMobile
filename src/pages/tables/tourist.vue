@@ -101,7 +101,7 @@
 			:inputData='inputData13'
 			@sendVal='getTen'
 		></inputs>
-		
+		<loading></loading>
 	</div>
 </template>
 
@@ -292,8 +292,10 @@
 	 		this.r14 = val
 	 	},
 	 	sendData(params){
+	 		this.$store.commit('COMMIT_LOADING',true)
 				this.$axios.post(API_URL+'/mobile/agenct/add',params).then( r => {
 					if(r.data.code==='200' || r.data.code===200){
+						this.$store.commit('COMMIT_LOADING',false)
 						this.$store.commit('COMMIT_TIPTXT',{status:true,txt:'上报成功!',err:false})
 						if(timer){
 							clearTimeout(timer)

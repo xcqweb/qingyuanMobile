@@ -54,6 +54,7 @@
 				></inputs>
 			</div>
 		</div>
+		<loading></loading>
 	</div>
 </template>
 
@@ -196,9 +197,11 @@
 				this.r9 = val
 			},
 			sendData(params){
+				this.$store.commit('COMMIT_LOADING',true)
 				let _self = this
 				this.$axios.post(API_URL+'/mobile/hotel/add',params).then( r => {
 					if(r.data.code==='200' || r.data.code===200){
+						this.$store.commit('COMMIT_LOADING',false)
 						this.$store.commit('COMMIT_TIPTXT',{status:true,txt:'上报成功!',err:false})
 						if(timer){
 							clearTimeout(timer)

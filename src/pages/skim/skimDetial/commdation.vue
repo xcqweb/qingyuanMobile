@@ -8,50 +8,42 @@
 				<inputs
 					class='o1'
 					:inputData='inputData1'
-					@sendVal='get1'
 				></inputs>
 				<inputs
 					class='t1'
 					:inputData='inputData2'
-					@sendVal='get2'
 				></inputs>
-				<p class="total">接待人数(人天): <span>{{reciviceTotal}}</span></p>
+				<p class="total">接待人数(人天): <span>{{t1}}</span></p>
 				<inputs
 					class='o'
 					:inputData='inputData3'
-					@sendVal='get3'
 				></inputs>
 				<inputs
 					class='tw'
 					:inputData='inputData4'
-					@sendVal='get4'
 				></inputs>
 				<inputs
 					class='th'
 					:inputData='inputData5'
-					@sendVal='get5'
 				></inputs>
 				<inputs
 					class='f'
 					:inputData='inputData6'
-					@sendVal='get6'
 				></inputs>
 				<inputs
 					class='fi'
 					:inputData='inputData7'
-					@sendVal='get7'
 				></inputs>
 				<inputs
 					class='s'
 					:inputData='inputData8'
-					@sendVal='get8'
 				></inputs>
 				
 				<inputs
 					class='se'
 					:inputData='inputData9'
-					@sendVal='get9'
 				></inputs>
+				<loading></loading>
 			</div>
 		</div>
 	</div>
@@ -63,16 +55,8 @@
 	export default{
 		data(){
 			return{
-				name:'',
-				phone:'',
-				r3:'',
-				r4:'',
-				r5:'',
-				r6:'',
-				r7:'',
-				r8:'',
-				r9:'',
-				totalCount:0,
+				companyname:'',
+				t1:'',
 			  	inputData1:{
 			  		id:2,
 			  		name:'填报人',
@@ -81,7 +65,9 @@
 			  		boxWidth:'3.26rem',
 			  		inputWidth:'2rem',
 			  		inputHeight:'0.54rem',
-			  		maright:'0.96rem'
+			  		maright:'0.96rem',
+			  			disable:true,
+			  			num:''
 				},
 				inputData2:{
 			  		id:2,
@@ -93,7 +79,9 @@
 			  		inputHeight:'0.54rem',
 			  		maright:'0.96rem',
 			  		right:'-0.2rem',
-			  		left:'-0.05rem'
+			  		left:'-0.05rem',
+			  			disable:true,
+			  			num:''
 				},
 				inputData3:{
 			  		id:3,
@@ -104,6 +92,8 @@
 			  		inputWidth:'4.26rem',
 			  		inputHeight:'0.54rem',
 			  		maright:'0.96rem',
+			  			disable:true,
+			  			num:''
 				},
 				inputData4:{
 			  		id:3,
@@ -114,6 +104,8 @@
 			  		inputWidth:'4.26rem',
 			  		inputHeight:'0.54rem',
 			  		maright:'0.96rem',
+			  			disable:true,
+			  			num:''
 				},
 				inputData5:{
 			  		id:3,
@@ -124,6 +116,8 @@
 			  		inputWidth:'4.26rem',
 			  		inputHeight:'0.54rem',
 			  		maright:'0.96rem',
+			  		disable:true,
+			  			num:''
 				},
 				inputData6:{
 			  		id:3,
@@ -134,6 +128,8 @@
 			  		inputWidth:'4.26rem',
 			  		inputHeight:'0.54rem',
 			  		maright:'0.96rem',
+			  		disable:true,
+			  			num:''
 				},
 				inputData7:{
 			  		id:3,
@@ -144,6 +140,8 @@
 			  		inputWidth:'4.26rem',
 			  		inputHeight:'0.54rem',
 			  		maright:'0.96rem',
+			  		disable:true,
+			  			num:''
 				},
 				inputData8:{
 			  		id:3,
@@ -154,6 +152,8 @@
 			  		inputWidth:'4.26rem',
 			  		inputHeight:'0.54rem',
 			  		maright:'0.96rem',
+			  		disable:true,
+			  			num:''
 				},
 				inputData9:{
 			  		id:4,
@@ -164,121 +164,56 @@
 			  		inputWidth:'6.62rem',
 			  		inputHeight:'0.54rem',
 			  		maright:'0.96rem',
+			  		disable:true,
+			  		num:'暂无'
 				},
 			}
 		},
 		methods:{
-			get1(val){
-				this.name = val
-			},
-			get2(val){
-				this.phone = val
-			},
-			get3(val){
-				this.r3 = val
-			},
-			get4(val){
-				this.r4 = val
-			},
-			get5(val){
-				this.r5 = val
-			},
-			get6(val){
-				this.r6 = val
-			},
-			get7(val){
-				this.r7 = val
-			},
-			get8(val){
-				this.r8 = val
-			},
-			get9(val){
-				this.r9 = val
-			},
-			sendData(params){
-				let _self = this
-				this.$axios.post(API_URL+'/mobile/hotel/add',params).then( r => {
+			getData(params){
+				this.$store.commit('COMMIT_LOADING',true)
+				this.$axios.get(API_URL+'/mobile/mobileMgr/weekDetail',{params:params}).then( r => {
+					if(!r){
+						return
+					}
 					if(r.data.code==='200' || r.data.code===200){
-						this.$store.commit('COMMIT_TIPTXT',{status:true,txt:'上报成功!',err:false})
-						if(timer){
-							clearTimeout(timer)
-						}
-						var timer = setTimeout ( () => {
-							this.$store.commit('COMMIT_TIPTXT',{status:false,txt:'上报成功!',err:false})
-						},1000)
-						window.setTimeout(() => {
-							router.push('/')
-						},1500)
+						this.$store.commit('COMMIT_LOADING',false)
+						let reData = r.data.data.list
+						this.companyname = reData.companyName
+						this.inputData1.num = reData.inputer
+						this.inputData2.num = reData.contactPhone
+						this.inputData3.num = reData.inCountryNum
+						this.inputData4.num = reData.outCountryNum
+						this.inputData5.num = reData.revenue
+						this.inputData6.num = reData.avgHousePrices
+						this.inputData7.num = reData.houseUsePersent
+						this.inputData8.num = reData.actualRentalQuantity
+						this.t1 = reData.totalAcceptNum
 					}
 				})
-			},
-			send(){
-				this.totalCount = Number(this.r3)+Number(this.r4)
-				let users = JSON.parse(window.sessionStorage.getItem('users'))
-				let params = new FormData()
-		  		params.append('totalAcceptNum',this.totalCount)
-		  		params.append('inCountryNum',this.r3)
-		  		params.append('outCountryNum',this.r4)
-		  		params.append('revenue',this.r5)
-		  		params.append('avgHousePrices',this.r6)
-		  		params.append('houseUsePersent',this.r7)
-		  		params.append('actualRentalQuantity',this.r8)
-		  		params.append('companyName',users.companyname)
-		  		params.append('userCode',users.username)
-		  		params.append('date',this.$store.state.commitDate)
-		  		params.append('type',this.$store.state.type)
-		  		params.append('inputer',this.name)
-		  		params.append('contactPhone',this.phone)
-		  		
-				this.sendData(params)
-			},
+			}
 		},
 		mounted(){
-			Bus.$on('sendData',() => {
-					this.send()
-			})
-			
-			Bus.$on('checkData',() => {
-				if(this.r3===''||this.r4===''||this.r5===''||this.r6===''||this.r7===''||this.r8===''||this.r9===''||this.name===''||this.phone===''){
-						this.$store.commit('COMMIT_TIPTXT',{status:true,txt:'填写未完成!',err:true})
-						if(timer){
-							clearTimeout(timer)
-						}
-						var timer = setTimeout ( () => {
-							this.$store.commit('COMMIT_TIPTXT',{status:false,txt:'填写未完成!',err:true})
-						},1000)
-						return;
-					}else{
-						if(!this.$store.state.confirm){
-							this.$store.commit('COMMIT_TIPTXT',{status:false,txt:'',err:false})
-							return
-						}
-					}
-			})
-			
 			window.onload = () => {
 				router.replace('golden')
 			}
+			let params = {
+				userType:this.$store.state.skimData.usertype,
+				userCode:this.$store.state.skimData.usercode,
+				date:this.$store.state.skimData.date,
+			}
+			this.getData(params)
 		},
 		computed:{
-			reciviceTotal(){
-				return Number(this.r3)+Number(this.r4)
-			},
-			
 			computedTitle(){
-				let types = '';
-				if(this.$store.state.type===1){
-					types = '国庆'
-				}else{
-					types = '春节'
-				}
 				return {
-			  			title:`${this.$store.state.chooseYear}年${types}${this.$store.state.days}报表` ,
+			  			title:this.companyname ,
 			  			bgcolor:'#4E76AC',
-			  			showArrow:true,
+			  			showArrow:false,
 			  			smallTitle:false,
-			  			showBack:true,
-			  			showUser:false
+			  			showBack:false,
+			  			showUser:false,
+			  			skimgoBack:true
 				  	}
 			}
 		}

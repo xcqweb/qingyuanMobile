@@ -9,10 +9,12 @@
 		<select-group
 			@cData='getChooseData'
 		></select-group>
-		<component 
-			:is='comcomponents'
-			:choseData='choseData'
-		></component>
+		<keep-alive>
+			<component 
+				:is='comcomponents'
+				:choseData='choseData'
+			></component>
+		</keep-alive>
 	</div>
 </template>
 
@@ -63,7 +65,7 @@
 					this.choseData.mDay = '10-01'
 				}
 				
-				console.log(this.choseData)
+				//console.log(this.choseData)
 			}
 		}
 	}

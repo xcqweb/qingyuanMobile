@@ -219,7 +219,6 @@
 				            ],
 				    position:[_self.dIndex3], //初始化定位 两个轮子都选中在索引1的选项
 				    callback:function(indexArr, data){
-				    		alert(data)
 					    	if(!data){
 					    		return
 					    	}
@@ -259,25 +258,6 @@
 		},
 		
 		mounted(){
-//			this.$nextTick( () => {
-//				this.mySelect1 = new MobileSelect({
-//				    trigger: '#dateBox1', 
-//				    wheels: [{data:this.DataList1},]
-//				});
-//				this.mySelect1 = new MobileSelect({
-//				    trigger: '#dateBox2', 
-//				    wheels: [{data:this.DataList2},]
-//				});
-//				this.mySelect1 = new MobileSelect({
-//				    trigger: '#dateBox3', 
-//				    wheels: [{data:yearData},]
-//				});
-//				this.mySelect1 = new MobileSelect({
-//				    trigger: '#dateBox4', 
-//				    wheels: [{data:this.DataList4},]
-//				});
-//				
-//			})
 		}
 	}
 </script>

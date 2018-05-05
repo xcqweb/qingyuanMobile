@@ -5,7 +5,7 @@
 			<li>单位名称</li>
 			<li>操作</li>
 		</ul>
-		<ul class="con">
+		<ul class="con" id="con" :style="{transform:comTranslate}">
 			<li v-for="item in dataList">
 				<span>{{item.user_code}}</span>
 				<span>{{item.user_name}}</span>
@@ -21,15 +21,42 @@
 	export default{
 		data(){
 			return{
-				dataList:[]
+				dataList:[],
+				page:1,
+				comTranslate:'translate3d(0,0,0)'
 			}
 		},
 		props:['choseData'],
 		methods:{
+			initData(page){
+				let parmas = {
+					userType:this.choseData.usertype,
+					type:this.choseData.type,
+					year:this.choseData.year,
+					monthDay:this.choseData.mDay,
+					key:this.choseData.key,
+					isImportant:0,
+					offset:page,
+					limit:10
+				}
+			this.getData(parmas)
+			},
 			getData(params){
+				this.$store.commit('COMMIT_LOADING',true)
 				this.$axios.get(API_URL+'/mobile/mobileMgr/list',{params:params}).then( (r) => {
-					this.dataList = r.data.data.list.rows
-					console.log(r)
+					if(!r){
+						return;
+					}
+					if(r.data.code==='200' || r.data.code===200){
+						this.$store.commit('COMMIT_LOADING',false)
+						let reData = r.data.data.list.rows
+						reData.forEach( (item,index) => {
+							this.dataList.push(item)
+						})
+						
+					}else{
+						return;
+					}
 				})
 			},
 			skim(data){
@@ -41,21 +68,35 @@
 				
 				switch(this.choseData.usertype){
 					case '旅行社':
-					//router.push({path:'areaDetial'});
+					router.push({path:'touristDetial'});
 					break;
 					case '宾馆酒店':
-					//router.push({path:'areas/areaDetial'});
+					router.push({path:'commdationDetial'});
 					break;
 					case '景点':
-					//router.push({path:'areas/areaDetial'});
+					router.push({path:'scienceDetial'});
 					break;
-					//case '重点景点':
-					router.push({path:'areas/areaDetial'});
+					case '重点景点':
+					router.push({path:'scienceDetial'});
 					break;
 					case '各区旅游局':
 					router.push({path:'areaDetial'});
 					break;
 				}
+			},
+			
+			dragUp(step){
+				function down(){
+					let num=0
+					if(num<20){
+						num+=step
+						window.requestAnimationFrame(down)
+					}else{
+						return
+					}
+				}
+				this.comTranslate = `translate3d(0,${step}px,0)`
+				window.requestAnimationFrame(down)
 			}
 		},
 		watch:{
@@ -69,25 +110,47 @@
 						key:val.key,
 						isImportant:0,
 						offset:1,
-						limit:1000
+						limit:10
 					}
 					this.getData(parmas)
 				},
 				deep:true
 			}
 		},
+		mounted(){
+			this.$nextTick( () => {
+				let con = document.getElementById('con');
+				let sY=0;
+				let eY=0;
+				con.addEventListener('touchstart',(e) => {
+					sY = e.changedTouches[0].pageY
+				},false)
+				con.addEventListener('touchmove',(e) => {
+					eY = e.changedTouches[0].pageY;
+				},false)
+				
+				con.addEventListener('touchend',(e) => {
+					let oli = con.getElementsByTagName('li');
+					let olen = oli[0].clientHeight;
+					let theight = olen*(this.page-1)*10;
+					let srolltop = con.scrollTop;
+					if(srolltop-theight>=0 || this.page===1){
+						let dis = sY-eY;
+						if(dis<0){
+							return;
+						}
+						
+						if(dis>=50){
+							this.initData(++this.page)
+							 sY=0;
+							 eY=0;
+						}
+					}
+				},false)
+			})
+		},
 		created(){
-			let parmas = {
-				userType:this.choseData.usertype,
-				type:this.choseData.type,
-				year:this.choseData.year,
-				monthDay:this.choseData.mDay,
-				key:this.choseData.key,
-				isImportant:0,
-				offset:1,
-				limit:1000
-			}
-			this.getData(parmas)
+			this.initData(this.page)
 		}
 	}
 </script>
@@ -129,7 +192,7 @@
 	
 	.con{
 		width: 6.86rem;
-		height: 66vh;
+		height: 8.8rem;
 		margin: 0.2rem auto;
 		font-size: 0.24rem;
 		color: #767676;
@@ -139,7 +202,7 @@
 			text-align: center;
 			justify-content: center;
 			align-items: center;
-			height: 0.86rem;
+			height: 0.84rem;
 			border-bottom: 1px solid rgba(118, 118, 118,0.12);
 			span{
 				word-wrap: break-word;
@@ -191,7 +254,7 @@
 }
 
 			.con::-webkit-scrollbar{
-			    width: 1px;
+			    width: 0px;
 			    height: 0rem;
 			}
 			/*定义滚动条的轨道，内阴影及圆角*/

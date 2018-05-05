@@ -7,7 +7,6 @@
 			<span></span>
 			<p>接团数据</p>
 		</div>
-		
 		<div class="con">
 			<inputs
 				class='o'
@@ -20,7 +19,7 @@
 		</div>
 		
 		<div class="cont">
-			<p class="total">接待总人数: </p>
+			<p class="total">接待总人数: {{t1}}</p>
 			<inputs
 				class='o'
 				:inputData='inputData3'
@@ -46,11 +45,11 @@
 			></inputs>
 			<inputs
 				class='t'
-				:inputData='inputData2'
+				:inputData='inputData14'
 			></inputs>
 		</div>
 		<div class="cont2">
-			<p class="total">组团总人数: </p>
+			<p class="total">组团总人数:{{t2}} </p>
 			<inputs
 				class='o'
 				:inputData='inputData7'
@@ -60,7 +59,7 @@
 				:inputData='inputData8'
 			></inputs>
 			
-			<p class="boardtotal">出境游: </p>
+			<p class="boardtotal">出境游: {{t3}}</p>
 			<inputs
 				class='th'
 				:inputData='inputData9'
@@ -87,7 +86,7 @@
 			class='e'
 			:inputData='inputData13'
 		></inputs>
-		
+		<loading></loading>
 	</div>
 </template>
 
@@ -97,23 +96,10 @@
 	export default{
 		data(){
 			return{
-				r1:'',
-				r2:'',
-				r3:'',
-				r4:'',
-				r5:'',
-				r6:'',
-				r7:'',
-				r8:'',
-				r9:'',
-				r10:'',
-				r11:'',
-				r12:'',
-				r13:'',
-				r14:'',
-				receviceTotal:0,
-				groupTotals:0,
-				leaveTotal:0,
+				companyname:'',
+				t1:'',
+				t2:'',
+				t3:'',
 			  	inputData1:{
 			  		id:1,
 			  		name:'接团数',
@@ -121,7 +107,9 @@
 			  		placeHolder:'请输入接团数量',
 			  		boxWidth:'3.26rem',
 			  		inputWidth:'2.16rem',
-			  		maright:'0.96rem'
+			  		maright:'0.96rem',
+			  		disable:true,
+			  		num:''
 				},
 				inputData2:{
 				  		id:1,
@@ -130,7 +118,9 @@
 				  		placeHolder:'请输入一日游人数',
 				  		boxWidth:'3.26rem',
 				  		inputWidth:'2.16rem',
-			  			maright:'0.96rem'
+			  			maright:'0.96rem',
+			  			disable:true,
+			  			num:''
 				},
 				inputData3:{
 				  		id:1,
@@ -139,7 +129,9 @@
 				  		placeHolder:'游客人数',
 				  		boxWidth:'2.06rem',
 				  		inputWidth:'1.26rem',
-				  		maright:'0.7rem'
+				  		maright:'0.7rem',
+			  			disable:true,
+			  			num:''
 				},
 				inputData4:{
 				  		id:1,
@@ -148,7 +140,9 @@
 				  		placeHolder:'游客人数',
 				  		boxWidth:'2.06rem',
 				  		inputWidth:'1.26rem',
-				  		maright:'0.7rem'
+				  		maright:'0.7rem',
+			  			disable:true,
+			  			num:''
 				},
 				inputData5:{
 				  		id:1,
@@ -157,7 +151,9 @@
 				  		placeHolder:'游客人数',
 				  		boxWidth:'2.06rem',
 				  		inputWidth:'1.26rem',
-				  		maright:'0.7rem'
+				  		maright:'0.7rem',
+			  			disable:true,
+			  			num:''
 				},
 				inputData6:{
 			  		id:1,
@@ -166,7 +162,9 @@
 			  		placeHolder:'请输入接团数量',
 			  		boxWidth:'3.26rem',
 			  		inputWidth:'2.16rem',
-			  		maright:'0.96rem'
+			  		maright:'0.96rem',
+		  			disable:true,
+		  			num:''
 				},
 				inputData7:{
 				  		id:1,
@@ -175,7 +173,9 @@
 				  		placeHolder:'游客人数',
 				  		boxWidth:'3.26rem',
 				  		inputWidth:'2.16rem',
-				  		maright:'0.96rem'
+				  		maright:'0.96rem',
+			  			disable:true,
+			  			num:''
 				},
 				inputData8:{
 			  		id:1,
@@ -184,7 +184,9 @@
 			  		placeHolder:'请输入接团数量',
 			  		boxWidth:'3.26rem',
 			  		inputWidth:'2.16rem',
-				  	maright:'0.96rem'
+				  	maright:'0.96rem',
+		  			disable:true,
+		  			num:''
 				},
 				inputData9:{
 				  		id:1,
@@ -193,7 +195,9 @@
 				  		placeHolder:'请输入游客人数',
 				  		boxWidth:'3.26rem',
 				  		inputWidth:'2.16rem',
-				  		maright:'0.96rem'
+				  		maright:'0.96rem',
+			  			disable:true,
+			  			num:''
 				},
 				inputData10:{
 				  		id:1,
@@ -202,7 +206,9 @@
 				  		placeHolder:'请输入游客人数',
 				  		boxWidth:'3.26rem',
 				  		inputWidth:'2.16rem',
-				  		maright:'0.96rem'
+				  		maright:'0.96rem',
+			  			disable:true,
+			  			num:''
 				},
 				inputData11:{
 				  		id:1,
@@ -211,7 +217,9 @@
 				  		placeHolder:'请输入游客人数',
 				  		boxWidth:'3.26rem',
 				  		inputWidth:'2.16rem',
-				  		maright:'0.96rem'
+				  		maright:'0.96rem',
+			  			disable:true,
+			  			num:''
 				},
 				inputData12:{
 				  		id:1,
@@ -220,7 +228,9 @@
 				  		placeHolder:'请输入游客人数',
 				  		boxWidth:'3.26rem',
 				  		inputWidth:'2.16rem',
-				  		maright:'0.96rem'
+				  		maright:'0.96rem',
+			  			disable:true,
+			  			num:''
 				},
 				inputData13:{
 				  		id:1,
@@ -229,19 +239,89 @@
 				  		placeHolder:'请输入当日营业额(单位万元)',
 				  		boxWidth:'6.86rem',
 				  		inputWidth:'5.1rem',
-				  		maright:'1.66rem'
+				  		maright:'1.66rem',
+			  			disable:true,
+			  			num:''
+				},
+				inputData14:{
+				  		id:1,
+				  		name:'一日游',
+				  		inputType:'number',
+				  		placeHolder:'请输入一日游人数',
+				  		boxWidth:'3.26rem',
+				  		inputWidth:'2.16rem',
+			  			maright:'0.96rem',
+			  			disable:true,
+			  			num:''
 				},
 			
 		}
 	 },
 	 methods:{
-	 	
+	 	getData(params){
+	 			this.$store.commit('COMMIT_LOADING',true)
+				this.$axios.get(API_URL+'/mobile/mobileMgr/weekDetail',{params:params}).then( r => {
+					if(!r){
+						return
+					}
+					if(r.data.code==='200' || r.data.code===200){
+						this.$store.commit('COMMIT_LOADING',false)
+						let reData = r.data.data.list
+					this.companyname = reData.companyName
+					this.inputData1.num = reData.groupReceptionNum
+					this.inputData2.num = reData.groupOneDayNum
+					
+					this.inputData3.num = reData.outProvinces
+					this.inputData4.num = reData.inProvinces
+					
+					this.inputData5.num = reData.internationalNum
+					
+					this.inputData6.num = reData.groupNum
+					
+					this.inputData7.num = reData.groupOutProvincesNum
+					
+					this.inputData8.num = reData.groupInProvincesNum
+					this.inputData9.num = reData.hongkongNum
+					this.inputData10.num = reData.macauNum
+					
+					this.inputData11.num = reData.outCountryNum
+					this.inputData12.num = reData.europeNum
+					
+					this.inputData13.num = reData.revenue
+					this.inputData14.num = reData.personOneDayNum
+					
+					this.t1 = reData.personReceptionNum
+					this.t2 = reData.acceptGroupNum
+					this.t3 = reData.leaveTheCountryNum
+					}
+				})
+		  		
+			}
 	 },
 	 mounted(){
-			
-		},
+		window.onload= function(){
+				router.push('golden')
+			}
+			console.log(this.$store.state.skimData)
+			let params = {
+				userType:this.$store.state.skimData.usertype,
+				userCode:this.$store.state.skimData.usercode,
+				date:this.$store.state.skimData.date,
+			}
+			this.getData(params)	
+	},
 	 computed:{
-	 	
+	 	computedTitle(){
+				return {
+			  			title:this.companyname,
+			  			bgcolor:'#4E76AC',
+			  			showArrow:false,
+			  			smallTitle:false,
+			  			showBack:false,
+			  			showUser:false,
+			  			skimgoBack:true
+				  	}
+			}
 	 },
 	}
 </script>

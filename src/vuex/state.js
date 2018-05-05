@@ -39,7 +39,8 @@
   		dataYear:'',
   		selDate:'',
   		dateIndex:0
-  	}
+  	},
+  	isLoading:false,//加载动画
   	
   	
 }

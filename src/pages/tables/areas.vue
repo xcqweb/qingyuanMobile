@@ -133,6 +133,7 @@
 				></inputs>
 			</div>
 		</div>
+		<loading></loading>
 	</div>
 </template>
 
@@ -159,9 +160,9 @@
 				r15:'',
 				r16:'',
 				r17:'',
-				t1:0,
-				t2:0,
-				t3:0,
+				t11:0,
+				t22:0,
+				t33:0,
 			  	inputData1:{
 			  		id:3,
 			  		name:'接待总人数(万人次)',
@@ -335,22 +336,13 @@
 			}
 		},
 		watch:{
-//			r4:function(val){
-//				if(val===0){
-//					this.r4 = 1
-//				}
-//			},
-//			r6:function(val){
-//				if(val===0){
-//					this.r6 = 1
-//				}
-//			}
 		},
 		methods:{
 			sendData(params){
+				this.$store.commit('COMMIT_LOADING',true)
 				this.$axios.post(API_URL+'/mobile/areaTourism/add',params).then( r => {
-					console.log(r)
 					if(r.data.code==='200' || r.data.code===200){
+						this.$store.commit('COMMIT_LOADING',false)
 						this.$store.commit('COMMIT_TIPTXT',{status:true,txt:'上报成功!',err:false})
 						if(timer){
 							clearTimeout(timer)
@@ -371,21 +363,21 @@
 				let dates = this.$store.state.commitDate.split('-');
 				let y = dates[0];
 				let md = dates[1]+'-'+dates[2]
-//				this.t1 = (this.r2*10000/this.r1).toFixed(2)
-//				this.t2 = (this.r5*10000/this.r4).toFixed(2)
-//				this.t3 = (this.r7*10000/this.r6).toFixed(2)
+				this.t11 = (this.r2*10000/this.r1).toFixed(2)
+				this.t22 = (this.r5*10000/this.r4).toFixed(2)
+				this.t33 = (this.r7*10000/this.r6).toFixed(2)
 		  		params.append('travelRecPersonSum',this.r1)
 		  		params.append('travelRecIncomeSum',this.r2)
 		  		params.append('travelRecOutIncome',this.r3)
-		  		params.append('travelRecCostAvg',this.t1)
+		  		params.append('travelRecCostAvg',this.t11)
 		  		
 		  		params.append('oneDayPersonSum',this.r4)
 		  		params.append('oneDayIncomeSum',this.r5)
-		  		params.append('oneDayCostAvg',this.t2)
+		  		params.append('oneDayCostAvg',this.t22)
 		  		
 		  		params.append('passNightPersonSum',this.r6)
 		  		params.append('passNightIncomeSum',this.r7)
-		  		params.append('passNightCostAvg',this.t3)
+		  		params.append('passNightCostAvg',this.t33)
 		  		
 		  		
 		  		params.append('hotelPersonSum',this.r8)

@@ -47,10 +47,9 @@
     				</div>
     			</div>
     		</div>
-    		
     	</div>
     </div>
-    
+    <loading></loading>
   </div>
 </template>
 
@@ -83,9 +82,11 @@ export default {
   },
   methods:{
   	getData(){
+  		this.$store.commit('COMMIT_LOADING',true)
   		this.$axios.get(API_URL+'/mobile/interface/login/html').then( r => {
-  			let re = r.data.data;
-  			//console.log(re)
+  			if(r.data.code==='200' || r.data.code===200){
+  				this.$store.commit('COMMIT_LOADING',false)
+  				let re = r.data.data;
   				for(var i=1; i<=5; i++){
   					let str = `list${i}`
   					if(i===1){
@@ -93,6 +94,9 @@ export default {
   					}
     					this.reData.push(re[str])
   				}
+  			}else{
+  				return
+  			}
   		})
   	},
   	start(e){
@@ -103,20 +107,21 @@ export default {
   		this.isError = false
   	},
   	login(e){
+  		
   		if(!this.loginInfo.password && this.loginInfo.username){
   			this.$store.commit('COMMIT_TIPS',{tips:'密码不能为空!',status:false})
 				this.$store.commit('COMMIT_SHOWALERT',true)
   			return;
-  		}
-  		if(!this.loginInfo.password && !this.loginInfo.username){
+  		}else if(!this.loginInfo.password && !this.loginInfo.username){
   			this.$store.commit('COMMIT_TIPS',{tips:'账号密码不能为空!',status:false})
 				this.$store.commit('COMMIT_SHOWALERT',true)
   			return;
-  		}
-  		if(!this.loginInfo.username&&this.loginInfo.password){
+  		}else if(!this.loginInfo.username&&this.loginInfo.password){
   			this.$store.commit('COMMIT_TIPS',{tips:'账号不能为空!',status:false})
 				this.$store.commit('COMMIT_SHOWALERT',true)
   			return;
+  		}else{
+  			this.$store.commit('COMMIT_LOADING',true)
   		}
   		let params = new FormData()
   		params.append('username',this.loginInfo.username)
@@ -128,6 +133,7 @@ export default {
   			
   			let reData = r.data.data;
   			if(reData.e_no==="0" || reData.e_no===0){
+  				this.$store.commit('COMMIT_LOADING',false)
 					this.$store.commit('COMMIT_USERINFO',{companyname:reData.companyName,usertype:reData.userType})				
 		   window.sessionStorage.setItem('users',JSON.stringify({'username':reData.userName,'usertype':reData.userType,'companyname':reData.companyName}))
 		  	

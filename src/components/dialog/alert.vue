@@ -34,6 +34,7 @@
 		},
 		methods:{
 			confirm(e){
+				this.$store.commit('COMMIT_LOADING',false)
 				this.$store.commit('COMMIT_SHOWALERT',false) //关闭提示框
 				
 				

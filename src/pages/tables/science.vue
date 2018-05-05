@@ -45,6 +45,7 @@
 				></inputs>
 			</div>
 		</div>
+		<loading></loading>
 	</div>
 </template>
 
@@ -149,8 +150,10 @@
 		},
 		methods:{
 			sendData(params){
+				this.$store.commit('COMMIT_LOADING',true)
 				this.$axios.post(API_URL+'/mobile/science/add',params).then( r => {
 					if(r.data.code==='200' || r.data.code===200){
+						this.$store.commit('COMMIT_LOADING',false)
 						this.$store.commit('COMMIT_TIPTXT',{status:true,txt:'上报成功!',err:false})
 						if(timer){
 							clearTimeout(timer)
@@ -173,7 +176,7 @@
 		  		params.append('personPercent',Number(this.r3)*100/Number(this.r4))
 		  		params.append('income',this.r5)
 		  		params.append('lastYearIncome',this.r6)
-		  		params.append('incomePercent',Number(this.r3)*100/Number(this.r4))
+		  		params.append('incomePercent',Number(this.r5)*100/Number(this.r6))
 		  		params.append('description',this.r7)
 		  		params.append('userName',users.companyname)
 		  		params.append('userCode',users.username)

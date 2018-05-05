@@ -114,6 +114,7 @@
 					class='th'
 					:inputData='inputData17'
 				></inputs>
+				<loading></loading>
 			</div>
 		</div>
 	</div>
@@ -125,26 +126,6 @@
 	export default{
 		data(){
 			return{
-				r1:'',
-				r2:'',
-				r3:'',
-				r4:'',
-				r5:'',
-				r6:'',
-				r7:'',
-				r8:'',
-				r9:'',
-				r10:'',
-				r11:'',
-				r12:'',
-				r13:'',
-				r14:'',
-				r15:'',
-				r16:'',
-				r17:'',
-				t1:0,
-				t2:0,
-				t3:0,
 				companyname:'',
 			  	inputData1:{
 			  		id:3,
@@ -155,7 +136,7 @@
 			  		inputHeight:'0.54rem',
 			  		maright:'0.96rem',
 			  		disable:true,
-			  		num:0
+			  		num:''
 				},
 				inputData2:{
 			  		id:3,
@@ -166,7 +147,7 @@
 			  		inputHeight:'0.54rem',
 			  		maright:'0.96rem',
 			  		disable:true,
-			  		num:0
+			  		num:''
 				},
 				inputData3:{
 			  		id:3,
@@ -177,7 +158,7 @@
 			  		inputHeight:'0.54rem',
 			  		maright:'0.96rem',
 			  		disable:true,
-			  		num:0
+			  		num:''
 				},
 				inputData4:{
 			  		id:3,
@@ -188,7 +169,7 @@
 			  		inputHeight:'0.54rem',
 			  		maright:'0.96rem',
 			  		disable:true,
-			  		num:0
+			  		num:''
 				},
 				inputData5:{
 			  		id:3,
@@ -199,7 +180,7 @@
 			  		inputHeight:'0.54rem',
 			  		maright:'0.96rem',
 			  		disable:true,
-			  		num:0
+			  		num:''
 				},
 				inputData6:{
 			  		id:3,
@@ -210,7 +191,7 @@
 			  		inputHeight:'0.54rem',
 			  		maright:'0.96rem',
 			  		disable:true,
-			  		num:0
+			  		num:''
 				},
 				inputData7:{
 			  		id:3,
@@ -221,7 +202,7 @@
 			  		inputHeight:'0.54rem',
 			  		maright:'0.96rem',
 			  		disable:true,
-			  		num:0
+			  		num:''
 				},
 				inputData8:{
 			  		id:3,
@@ -232,7 +213,7 @@
 			  		inputHeight:'0.54rem',
 			  		maright:'0.96rem',
 			  		disable:true,
-			  		num:0
+			  		num:''
 				},
 				inputData9:{
 			  		id:3,
@@ -243,7 +224,7 @@
 			  		inputHeight:'0.54rem',
 			  		maright:'0.96rem',
 			  		disable:true,
-			  		num:0
+			  		num:''
 				},
 				inputData10:{
 			  		id:3,
@@ -254,7 +235,7 @@
 			  		inputHeight:'0.54rem',
 			  		maright:'0.96rem',
 			  		disable:true,
-			  		num:0
+			  		num:''
 				},
 				inputData11:{
 			  		id:3,
@@ -265,7 +246,7 @@
 			  		inputHeight:'0.54rem',
 			  		maright:'0.96rem',
 			  		disable:true,
-			  		num:0
+			  		num:''
 				},
 				inputData12:{
 			  		id:3,
@@ -276,7 +257,7 @@
 			  		inputHeight:'0.54rem',
 			  		maright:'0.96rem',
 			  		disable:true,
-			  		num:0
+			  		num:''
 				},
 				inputData13:{
 			  		id:3,
@@ -287,7 +268,7 @@
 			  		inputHeight:'0.54rem',
 			  		maright:'0.96rem',
 			  		disable:true,
-			  		num:0
+			  		num:''
 				},
 				inputData14:{
 			  		id:3,
@@ -298,7 +279,7 @@
 			  		inputHeight:'0.54rem',
 			  		maright:'0.96rem',
 			  		disable:true,
-			  		num:0
+			  		num:''
 				},
 				inputData15:{
 			  		id:3,
@@ -309,7 +290,7 @@
 			  		inputHeight:'0.54rem',
 			  		maright:'0.96rem',
 			  		disable:true,
-			  		num:0
+			  		num:''
 				},
 				inputData16:{
 			  		id:3,
@@ -320,7 +301,7 @@
 			  		inputHeight:'0.54rem',
 			  		maright:'0.96rem',
 			  		disable:true,
-			  		num:0
+			  		num:''
 				},
 				inputData17:{
 			  		id:3,
@@ -331,7 +312,7 @@
 			  		inputHeight:'0.54rem',
 			  		maright:'0.96rem',
 			  		disable:true,
-			  		num:0
+			  		num:''
 				},
 			}
 		},
@@ -340,30 +321,36 @@
 		},
 		methods:{
 			getData(params){
+				this.$store.commit('COMMIT_LOADING',true)
 				this.$axios.get(API_URL+'/mobile/mobileMgr/goldenWeekReport',{params:params}).then( r => {
-					console.log(r.data.data.list)
-					let reData = r.data.data.new
-					this.companyname = reData.userName
-					this.inputData1.num = reData.travelRecPersonSum
-					this.inputData2.num = reData.travelRecIncomeSum
-					this.inputData3.num = reData.travelRecOutIncome
-					this.inputData4.num = reData.oneDayPersonSum
-					this.inputData5.num = reData.oneDayIncomeSum
-					this.inputData6.num = reData.passNightPersonSum
-					this.inputData7.num = reData.passNightIncomeSum
-					this.inputData8.num = reData.hotelPersonSum
-					this.inputData9.num = reData.hotelInSum
-					this.inputData10.num = reData.hotelOutSum
-					this.inputData11.num = reData.hotelSum
-					this.inputData12.num = reData.hotelRecSum
-					this.inputData13.num = reData.hotelOtherSum
-					this.inputData14.num = reData.hotelOtherRecSum
-					this.inputData15.num = reData.scenicPersonSum
-					this.inputData16.num = reData.scenicInSum
-					this.inputData17.num = reData.scenicOutSum
-					this.t1 = reData.travelRecCostAvg
-					this.t2 = reData.oneDayCostAvg
-					this.t3 = reData.passNightCostAvg
+					if(!r){
+						return;
+					}
+					if(r.data.code==='200' || r.data.code===200){
+						this.$store.commit('COMMIT_LOADING',false)
+						let reData = r.data.data.new
+						this.companyname = reData.userName
+						this.inputData1.num = reData.travelRecPersonSum
+						this.inputData2.num = reData.travelRecIncomeSum
+						this.inputData3.num = reData.travelRecOutIncome
+						this.inputData4.num = reData.oneDayPersonSum
+						this.inputData5.num = reData.oneDayIncomeSum
+						this.inputData6.num = reData.passNightPersonSum
+						this.inputData7.num = reData.passNightIncomeSum
+						this.inputData8.num = reData.hotelPersonSum
+						this.inputData9.num = reData.hotelInSum
+						this.inputData10.num = reData.hotelOutSum
+						this.inputData11.num = reData.hotelSum
+						this.inputData12.num = reData.hotelRecSum
+						this.inputData13.num = reData.hotelOtherSum
+						this.inputData14.num = reData.hotelOtherRecSum
+						this.inputData15.num = reData.scenicPersonSum
+						this.inputData16.num = reData.scenicInSum
+						this.inputData17.num = reData.scenicOutSum
+						this.t1 = reData.travelRecCostAvg
+						this.t2 = reData.oneDayCostAvg
+						this.t3 = reData.passNightCostAvg
+					}
 				})
 			}
 		},
@@ -384,7 +371,6 @@
 		},
 		computed:{
 				computedTitle(){
-				
 				return {
 			  			title:this.companyname,
 			  			bgcolor:'#4E76AC',
