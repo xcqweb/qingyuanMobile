@@ -30,6 +30,7 @@
 				let _self = this
 				this.mySelect = new MobileSelect({
 			    trigger: '#typeBox', 
+			    title:'选择类型',
 			    wheels: [
 			                {data:this.goldData.list},
 			            ],

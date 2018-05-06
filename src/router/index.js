@@ -24,19 +24,18 @@ const router = new Router({
       	{
 		      path:'login',
 		      component:Login,
-		      name:'login'
+		      name:'login',
+		      meta:{keepAlive:true}
 		    },
 		    {
 		      path:'',
 		      component:Goldenweek,
 		      name:'index',
-		      meta:{requireAuth:true}
 		    },
 		    {
 		      path:'golden',
 		      component:Goldenweek,
 		      name:'golden',
-		      meta:{requireAuth:true},
 		    },
 		    {
 		      path:'tourist',
@@ -69,7 +68,7 @@ const router = new Router({
 		    {
 	      		path:'touristDetial',
 	      		name:'touristDetial',
-	      		component:TouristDetial
+	      		component:TouristDetial,
 		    },
 		    {
 	      		path:'commdationDetial',

@@ -20,6 +20,7 @@
 					@dates='getDates'
 					v-show="isCity"
 				></date-select>
+				<div class="brr" v-show="downLoading"><img src="../../assets/images/loading/loading.gif"/><span>loading...</span></div>
 				<div :class="{hide:!isShow}" class="rr" v-show="isCity" id="reloadCon" :style="{transform:comTranslate}">
 					<reports 
 						:dataList='reportOne'
@@ -152,6 +153,7 @@
 				isShow:false,
 				left:'0%',
 				flag:true,
+				downLoading:false,
 				comTranslate:'translate3d(0,-20px,0)'
 			  	
 			}
@@ -192,13 +194,26 @@
 			
 			},
 			getTask(params){
-				this.$store.commit('COMMIT_LOADING',true)
+				if(!this.downLoading){
+					this.$store.commit('COMMIT_LOADING',true)
+				}
+				
 				this.$axios.get(API_URL+'/mobile/mobileView/mytask',{params:params}).then( r => {
 					if(!r){
+						this.downLoading = false
+						this.$store.commit('COMMIT_LOADING',false)
+						this.$store.commit('COMMIT_TIPTXT',{status:true,txt:'加载失败!',err:true})
+						if(timer){
+							clearTimeout(timer)
+						}
+						var timer = setTimeout ( () => {
+							this.$store.commit('COMMIT_TIPTXT',{status:false,txt:'加载失败!',err:true})
+						},3000)
 						return;
 					}
 					if(r.data.code==='200' || r.data.code===200){
 						window.setTimeout( () => {
+							this.downLoading = false
 							this.dragDown(-20)
 						},600)
 						this.$store.commit('COMMIT_LOADING',false)
@@ -286,7 +301,7 @@
 			
 			dragDown(step){
 				function down(){
-					if(step<20){
+					if(step<40){
 						window.requestAnimationFrame(down)
 					}else{
 						return
@@ -377,8 +392,11 @@
 						return
 					}
 					eY = e.changedTouches[0].pageY
-					let dis = eY-sY>=20?eY-sY:20
-					this.dragDown(dis)
+					let dis = eY-sY>=50?eY-sY:50
+					if(dis>50){
+						this.downLoading = true
+					}
+					this.dragDown(dis/4)
 				},false)
 				
 				reloadCon.addEventListener('touchend',(e) => {
@@ -389,11 +407,13 @@
 					if(dis<0){
 						return
 					}else{
-						dis>=20?eY-sY:20;
+						dis>=50?eY-sY:50;
 					}
-					if(dis>=20){
+					if(dis>=50){
+						 sY=0;
+						 eY=0;
 						this.initData()
-						this.dragDown(0)
+						this.dragDown(26)
 					}
 				},false)
 			})
@@ -429,7 +449,7 @@
 
 .goldweek{
 	width: 100%;
-	max-height: 100vh;
+	height: 100vh;
 	position: fixed;
 	left: 0;
 	-webkit-transform: translate3d(0,0,0);
@@ -473,6 +493,23 @@
 		margin-top: 2rem;
 		max-height: 66vh;
 		overflow: scroll;
+		position: relative;
+	}
+	
+	.brr{
+		position: absolute;
+		margin-top: 2.66rem;
+		padding-top: 0rem;
+		font-size: 0.24rem;
+		top: 0;
+		width: 100vw;
+		text-align: center;float: left;
+		span{
+			position: absolute;
+			top: 0.4rem;
+			left: 42vw;
+			padding: 0.2rem;
+		}
 	}
 	.hide{
 		visibility: hidden;

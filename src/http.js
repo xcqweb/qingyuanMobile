@@ -2,7 +2,7 @@ import axios from 'axios'
 import router from '@/router'
 
 //axios 配置
-axios.defaults.timeout = 50000;
+axios.defaults.timeout = 10000;
 //axios.defaults.baseURL = window.API_URL+'/qy/api/';
 
 window.isLoading = false
@@ -30,13 +30,6 @@ axios.interceptors.request.use = instance.interceptors.request.use;
  //http response 拦截器
  instance.interceptors.response.use(
     response =>{
-//  	axios.get(API_URL+'/mobile/checkLogin').then( re => {
-//  			
-//  			if(re.data.code==='-1' || re.data.code===-1){
-//  				router.push('/login')
-//  				console.log(router)
-//  			}
-//  		})
     	if(response.data.code===200 || response.data.code==='200'){
     		return response
     	}else if(response.data.code==='-1' || response.data.code===-1){
@@ -45,7 +38,7 @@ axios.interceptors.request.use = instance.interceptors.request.use;
     	}
     },
         err => {
-        	
+        	return false
         });
 
  export default instance;

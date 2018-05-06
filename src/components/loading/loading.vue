@@ -10,6 +10,7 @@
 		computed:{
 			isLoading(){
 				return this.$store.state.isLoading
+				return true
 			}
 		}
 	}
@@ -18,7 +19,7 @@
 <style scoped="scoped" lang="less">
 	.loadingBox{
     	width: 100%;
-    	height: 100%;
+    	height: 100vh;
     	position: fixed;
     	top: 0;
     	bottom: 0;
@@ -26,12 +27,13 @@
     	right: 0;
     	margin: auto;
     	font-size: 0.2rem;
-    	/*box-shadow: 2px 2px rgba(200,200,200,0.8);*/
-    	/*background-color: rgba(200,200,200,0.16);*/
     	transform: scale(1.2);
     	border-radius: 0.1rem;
     	display: flex;
     	justify-content: center;
     	align-items: center;
+    	img{
+    		display: block;
+    	}
     }
 </style>

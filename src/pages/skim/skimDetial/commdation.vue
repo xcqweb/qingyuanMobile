@@ -1,5 +1,5 @@
 <template>
-	<div class="box12">
+	<div class="box12" v-show="!$store.state.isLoading">
 		<comtitle
 			:titleData='computedTitle'
 		></comtitle>

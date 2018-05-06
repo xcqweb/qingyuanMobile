@@ -5,12 +5,16 @@
 			<li>单位名称</li>
 			<li>操作</li>
 		</ul>
-		<ul class="con" id="con" :style="{transform:comTranslate}">
+		<div class="tip" v-show="!status">没有搜到匹配的记录</div>
+		<ul class="con" id="con" :style="{transform:comTranslate}" v-show="status">
 			<li v-for="item in dataList">
 				<span>{{item.user_code}}</span>
 				<span>{{item.user_name}}</span>
 				<span v-if="item.col>0"><span class="btn1" @click="skim(item.user_code)">查看</span></span>
 				<span v-else><span class="btn2">催报</span></span>
+			</li>
+			<li class="loadmore" v-show="loadMore">
+				<img src="../../../assets/images/loading/loading.gif"/>
 			</li>
 		</ul>
 	</div>
@@ -23,7 +27,9 @@
 			return{
 				dataList:[],
 				page:1,
-				comTranslate:'translate3d(0,0,0)'
+				status:true,
+				comTranslate:'translate3d(0,0,0)',
+				loadMore:false
 			}
 		},
 		props:['choseData'],
@@ -37,23 +43,55 @@
 					key:this.choseData.key,
 					isImportant:0,
 					offset:page,
-					limit:10
+					limit:20
 				}
 			this.getData(parmas)
 			},
 			getData(params){
-				this.$store.commit('COMMIT_LOADING',true)
+				if(!this.loadMore){
+					this.$store.commit('COMMIT_LOADING',true)
+				}
+				
 				this.$axios.get(API_URL+'/mobile/mobileMgr/list',{params:params}).then( (r) => {
 					if(!r){
+						this.loadMore = false
+						this.page--
+						this.$store.commit('COMMIT_LOADING',false)
+						this.$store.commit('COMMIT_TIPTXT',{status:true,txt:'加载失败!',err:true})
+						if(timer){
+							clearTimeout(timer)
+						}
+						var timer = setTimeout ( () => {
+							this.$store.commit('COMMIT_TIPTXT',{status:false,txt:'加载失败!',err:true})
+						},1000)
 						return;
 					}
 					if(r.data.code==='200' || r.data.code===200){
+						this.status = true
+						window.setTimeout( () => {
+							this.loadMore = false
+						},1000)
+						if(!this.loadMore){
+							this.dragUp(0)
 						this.$store.commit('COMMIT_LOADING',false)
+						if(!r.data.data.list || !r.data.data.list.rows[0]){
+							this.status = false
+							this.$store.commit('COMMIT_TIPTXT',{status:true,txt:'无数据!',err:true})
+						if(timer){
+							clearTimeout(timer)
+						}
+						var timer = setTimeout ( () => {
+							this.$store.commit('COMMIT_TIPTXT',{status:false,txt:'无数据!',err:true})
+						},3000)
+							return
+						}
+						
+						
 						let reData = r.data.data.list.rows
 						reData.forEach( (item,index) => {
 							this.dataList.push(item)
 						})
-						
+						}
 					}else{
 						return;
 					}
@@ -110,8 +148,9 @@
 						key:val.key,
 						isImportant:0,
 						offset:1,
-						limit:10
+						limit:20
 					}
+					this.dataList=[];
 					this.getData(parmas)
 				},
 				deep:true
@@ -127,21 +166,29 @@
 				},false)
 				con.addEventListener('touchmove',(e) => {
 					eY = e.changedTouches[0].pageY;
+					let dis = sY-eY;
+					if(dis>0){
+						this.dragUp(-dis/10)
+					}
 				},false)
 				
 				con.addEventListener('touchend',(e) => {
+					eY = e.changedTouches[0].pageY;
 					let oli = con.getElementsByTagName('li');
 					let olen = oli[0].clientHeight;
-					let theight = olen*(this.page-1)*10;
-					let srolltop = con.scrollTop;
-					if(srolltop-theight>=0 || this.page===1){
+					let srollhei= con.scrollHeight;
+					let scrolltop = con.scrollTop;
+					let clientHei = con.clientHeight;
+					console.log(srollhei,con.scrollTop,con.clientHeight,olen)
+					if(srollhei===scrolltop+clientHei){
 						let dis = sY-eY;
 						if(dis<0){
 							return;
 						}
 						
-						if(dis>=50){
-							this.initData(++this.page)
+						if(dis>=20){
+							this.loadMore = true;
+							//this.initData(++this.page)
 							 sY=0;
 							 eY=0;
 						}
@@ -158,15 +205,25 @@
 <style scoped="scoped" lang="less">
 .manage{
 	width: 100%;
+	.tip{
+		width: 100vw;
+		margin-top: 0.4rem;
+		font-size: 0.28rem;
+		color: #767676;
+		text-align: center;
+	}
 	.title{
 		width: 6.86rem;
+		padding: 0.4rem 0 0.2rem 0;
 		margin: auto;
 		display: flex;
 		text-align: center;
+		background-color: #fff;
 		font-size: 0.32rem;
 		color: #767676;
 		font-weight: bold;
 		position: relative;
+		z-index: 10000;
 		&::after{
 			content: '';
 			width: 6.86rem;
@@ -174,7 +231,7 @@
 			background-color: rgba(118, 118, 118,0.12);
 			position: absolute;
 			left: 0rem;
-			bottom: -0.2rem;
+			bottom: 0;
 		}
 		li:nth-child(1){
 			text-align: left;
@@ -192,11 +249,19 @@
 	
 	.con{
 		width: 6.86rem;
-		height: 8.8rem;
+		height: 5.8rem;
 		margin: 0.2rem auto;
 		font-size: 0.24rem;
 		color: #767676;
 		overflow-y: scroll;
+		overflow-x: hidden;
+		.loadmore{
+			width: 100vw;
+			display: flex;
+			text-align: center;
+			position: relative;
+			border: none;
+		}
 		li{
 			display: flex;
 			text-align: center;

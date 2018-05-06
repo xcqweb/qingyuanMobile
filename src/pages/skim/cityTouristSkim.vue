@@ -6,9 +6,18 @@
 				<p @click="tab(false)" :class="{btmline:!status,active:!status}">报表明细</p>
 			</div>
 		</div>
-		<select-group
+		<!--<keep-alive>-->
+		<!--<select-group
 			@cData='getChooseData'
 		></select-group>
+		
+		</keep-alive>-->
+		<keep-alive>
+			<component 
+				:is='comcomponents2'
+				@cData='getChooseData'
+			></component>
+		</keep-alive>
 		<keep-alive>
 			<component 
 				:is='comcomponents'
@@ -31,6 +40,9 @@
 		computed:{
 			 comcomponents(){
 			 	return this.status ? 'manageSkim':'detialSkim'
+			 },
+			 comcomponents2(){
+			 	return 'selectGroup'
 			 }
 		},
 		methods:{
@@ -92,22 +104,25 @@
 				}
 				
 				
-				p::after{
+				p:nth-child(1)::after{
 					content: "";
 					position: absolute;
 					bottom: 0;
-					left: 1rem;
+					left: 4rem;
 					width: 1.1rem;
 					height: 0.04rem;
 					border-bottom: 2px solid #fff;
-					transition:  all 0.1s ease-out;
-					transform: scaleX(0);
+					transition:  all 0.2s ease-out;
 				}
 				.active{
 					color: #fff;
 				}
-				.btmline:after{
-					transform: scaleX(1);
+				.btmline:nth-child(1):after{
+					left:1rem;
+					width: 1.1rem;
+				}
+				.btmline~li::before{
+					left: 3rem;
 				}
 				
 				

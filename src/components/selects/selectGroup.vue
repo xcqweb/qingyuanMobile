@@ -173,6 +173,7 @@
 					let _self = this
 					this.mySelect1 = new MobileSelect({
 				    trigger: '#dateBox1', 
+				    title:'选择单位',
 				    wheels: [
 				                {data:_self.DataList1}
 				            ],
@@ -191,6 +192,7 @@
 				let _self = this
 					this.mySelect2 = new MobileSelect({
 				    trigger: '#dateBox2', 
+				    title:'选择类型',
 				    wheels: [
 				                {data:this.DataList2}
 				            ],
@@ -213,7 +215,8 @@
 			showList3(e){
 				let _self = this
 					this.mySelect3 = new MobileSelect({
-				    trigger: '#dateBox3', 
+				    trigger: '#dateBox3',
+				    title:'选择年份',
 				    wheels: [
 				                {data:yearData}
 				            ],
@@ -231,7 +234,8 @@
 			showList4(e){
 				let _self = this
 					this.mySelect4 = new MobileSelect({
-				    trigger: '#dateBox4', 
+				    trigger: '#dateBox4',
+				    title:'选择时间',
 				    wheels: [
 				                {data:_self.DataList4}
 				            ],
@@ -266,9 +270,11 @@
 	.selectGroup{
 		width: 6.86rem;
 		height: 1.38rem;
-		margin: 0.4rem auto;
+		margin: 0.4rem auto -0.02rem auto;
 		position: relative;
 		color: #767676;
+		background-color: #fff;
+		z-index: 1000;
 		.titles1{
 			position: absolute;
 			font-size: 0.28rem;

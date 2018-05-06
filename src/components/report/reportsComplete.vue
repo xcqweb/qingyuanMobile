@@ -21,7 +21,7 @@
 	height: 1.96rem;
 	border: 0.03rem solid #1CB394;
 	border-radius: 0.18rem;
-	margin-top: 0.32rem;
+	margin-top: 0rem;
 	margin-left: 0.32rem;
 	text-align: center;
 	color: #1CB394;

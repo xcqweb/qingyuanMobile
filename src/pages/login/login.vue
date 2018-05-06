@@ -69,7 +69,6 @@ export default {
   		loginInfo:{
   			username:'',
   			password:'',
-  			memory:false
   		},
   		titleData:{
   			title:'清远旅游统计报送分析系统',
@@ -128,11 +127,23 @@ export default {
   		params.append('password',this.loginInfo.password)
   		this.$axios.post(API_URL+'/mobile/interface/login',params).then( r => {
   			if(!r){
+						this.$store.commit('COMMIT_LOADING',false)
+						this.$store.commit('COMMIT_TIPTXT',{status:true,txt:'登录失败!',err:true})
+						if(timer){
+							clearTimeout(timer)
+						}
+						var timer = setTimeout ( () => {
+							this.$store.commit('COMMIT_TIPTXT',{status:false,txt:'登录失败!',err:true})
+						},3000)
   				return
   			}
   			
   			let reData = r.data.data;
   			if(reData.e_no==="0" || reData.e_no===0){
+  				this.loginInfo = {
+		  			username:'',
+		  			password:'',
+		  		}
   				this.$store.commit('COMMIT_LOADING',false)
 					this.$store.commit('COMMIT_USERINFO',{companyname:reData.companyName,usertype:reData.userType})				
 		   window.sessionStorage.setItem('users',JSON.stringify({'username':reData.userName,'usertype':reData.userType,'companyname':reData.companyName}))

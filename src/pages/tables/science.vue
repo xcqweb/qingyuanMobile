@@ -152,6 +152,20 @@
 			sendData(params){
 				this.$store.commit('COMMIT_LOADING',true)
 				this.$axios.post(API_URL+'/mobile/science/add',params).then( r => {
+					if(!r){
+						this.$store.commit('COMMIT_LOADING',false)
+						this.$store.commit('COMMIT_TIPTXT',{status:true,txt:'上报失败!',err:true})
+						if(timer){
+							clearTimeout(timer)
+						}
+						var timer = setTimeout ( () => {
+							this.$store.commit('COMMIT_TIPTXT',{status:false,txt:'上报失败!',err:true})
+						},1000)
+						window.setTimeout(() => {
+							router.push('/')
+						},1500)
+						return;
+					}
 					if(r.data.code==='200' || r.data.code===200){
 						this.$store.commit('COMMIT_LOADING',false)
 						this.$store.commit('COMMIT_TIPTXT',{status:true,txt:'上报成功!',err:false})

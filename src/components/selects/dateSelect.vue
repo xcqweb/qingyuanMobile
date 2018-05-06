@@ -26,13 +26,11 @@
 				let _self = this
 				this.mySelect = new MobileSelect({
 			    trigger: '#dateBox', 
+			    title:'选择时间',
 			    wheels: [
 			                {data:this.dateData.list},
 			            ],
 			    position:[this.dIndex], //初始化定位 两个轮子都选中在索引1的选项
-//			    callbacks:function(r){
-//			    	alert(r)
-//			    },
 			    callback:function(indexArr, data){
 			    	_self.$store.commit('COMMIT_ISSCROLL',false)
 			    	if(!data){
