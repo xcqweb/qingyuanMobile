@@ -79,11 +79,6 @@
 		},
 		mounted(){
 			
-			if(!window.sessionStorage.getItem('users')){
-				router.replace('login')
-			}
-			
-			
 			Bus.$on('hideUser',() => {
 				this.move()
 			})

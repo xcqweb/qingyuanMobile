@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+
+
 let Login = () => import ('@/pages/login/login')
 let Goldenweek = () => import ('@/pages/reports/golgenWeek')
 let App = () => import ('@/App')
@@ -31,11 +33,13 @@ const router = new Router({
 		      path:'',
 		      component:Goldenweek,
 		      name:'index',
+		      meta:{requireAuth:true}
 		    },
 		    {
 		      path:'golden',
 		      component:Goldenweek,
 		      name:'golden',
+		      meta:{requireAuth:true}
 		    },
 		    {
 		      path:'tourist',
@@ -63,22 +67,26 @@ const router = new Router({
 		    {
 	      		path:'areaDetial',
 	      		name:'areaDetial',
-	      		component:AreasDetial
+	      		component:AreasDetial,
+	      		meta:{requireAuth:true}
 		    },
 		    {
 	      		path:'touristDetial',
 	      		name:'touristDetial',
 	      		component:TouristDetial,
+	      		meta:{requireAuth:true}
 		    },
 		    {
 	      		path:'commdationDetial',
 	      		name:'commdationDetial',
-	      		component:CommdationDetial
+	      		component:CommdationDetial,
+	      		meta:{requireAuth:true}
 		    },
 		    {
 	      		path:'scienceDetial',
 	      		name:'scienceDetial',
-	      		component:ScienceDetial
+	      		component:ScienceDetial,
+	      		meta:{requireAuth:true}
 		    }
       ]
     },
@@ -89,17 +97,16 @@ const router = new Router({
 
 		//注册全局钩子用来拦截导航
    router.beforeEach((to, from, next) => {
-		//获取store里面的token
-     let token = window.localStorage.getItem('token');
+		//获取sessionStorage里面的users
+     let users = window.sessionStorage.getItem('users');
 			//判断要去的路由有没有requiresAuth
-     if(to.meta.requiresAuth){
-     	
-       if(token){
+     if(to.meta.requireAuth){
+       if(users){
          next();
        }else{
          next({
-           path: '/login',
-            query: {redirect: to.fullPath}   //将跳转的路由path作为参数，登录成功后跳转到该路由
+          path: 'login',
+          query: {redirect: to.fullPath}   //将跳转的路由path作为参数，登录成功后跳转到该路由
          });
        }
      }else{

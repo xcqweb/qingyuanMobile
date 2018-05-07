@@ -20,11 +20,6 @@
 		},
 		methods:{
 			report(data,e){
-				if(!window.sessionStorage.getItem('users')){
-						window.location.href = API_URLS
-						return;
-					}
-				//this.$axios.get(API_URL+'/mobile/checkLogin').then( re => {})
 				this.$store.commit('COMMIT_DATE',data.reportUrl.split("/")[4])
 				this.$store.commit('COMMIT_DAY',data.name)
 				switch(this.type){
@@ -44,9 +39,6 @@
 			if(window.sessionStorage.getItem('users')){
 				let users = JSON.parse(window.sessionStorage.getItem('users'))
 				this.type = users.usertype
-			}else{
-				window.location.href = API_URLS
-				return;
 			}
 		},
 		computed:{}

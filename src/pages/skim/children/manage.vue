@@ -82,7 +82,7 @@
 						}
 						var timer = setTimeout ( () => {
 							this.$store.commit('COMMIT_TIPTXT',{status:false,txt:'无数据!',err:true})
-						},3000)
+						},2000)
 							return
 						}
 						
@@ -168,7 +168,7 @@
 					eY = e.changedTouches[0].pageY;
 					let dis = sY-eY;
 					if(dis>0){
-						this.dragUp(-dis/10)
+						this.dragUp(-dis/5)
 					}
 				},false)
 				
@@ -180,7 +180,7 @@
 					let scrolltop = con.scrollTop;
 					let clientHei = con.clientHeight;
 					console.log(srollhei,con.scrollTop,con.clientHeight,olen)
-					if(srollhei===scrolltop+clientHei){
+					if((srollhei-scrolltop-clientHei)<=10){
 						let dis = sY-eY;
 						if(dis<0){
 							return;
@@ -188,7 +188,7 @@
 						
 						if(dis>=20){
 							this.loadMore = true;
-							//this.initData(++this.page)
+							this.initData(++this.page)
 							 sY=0;
 							 eY=0;
 						}

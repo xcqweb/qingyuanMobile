@@ -334,7 +334,7 @@
 	.topTitle{
 		margin: 0.4rem 0 0 0;
 		left: 0.32rem;
-		width: 100vw;
+		width: 80vw;
 		position: absolute;
 		p{
 			font-size: 0.28rem;
@@ -401,7 +401,7 @@
 	
 	.topTitle2{
 		margin: 3.1rem 0 0 0;
-		width: 100vw;
+		width: 80vw;
 		left: 0.32rem;
 		position: absolute;
 		p{
@@ -494,7 +494,7 @@
 	.bottomTitle2{
 		top: 9.26rem;
 		left: 0.32rem;
-		width: 100vw;
+		width: 80vw;
 		position: absolute;
 		p{
 			font-size: 0.28rem;

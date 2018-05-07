@@ -165,10 +165,6 @@
 				if(window.sessionStorage.getItem('users')){
 				let users = JSON.parse(window.sessionStorage.getItem('users'))
 				this.users = users
-			}else{
-				//router.replace('login')
-				window.location.href = API_URLS
-				return;
 			}
 			let params = {}
 			if(this.$store.state.type===1){

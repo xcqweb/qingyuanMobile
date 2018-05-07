@@ -270,7 +270,7 @@
 	.selectGroup{
 		width: 6.86rem;
 		height: 1.38rem;
-		margin: 0.4rem auto -0.02rem auto;
+		margin: 0.4rem auto -0.01rem auto;
 		position: relative;
 		color: #767676;
 		background-color: #fff;

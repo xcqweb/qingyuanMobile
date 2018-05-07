@@ -140,16 +140,12 @@ export default {
   			
   			let reData = r.data.data;
   			if(reData.e_no==="0" || reData.e_no===0){
-  				this.loginInfo = {
-		  			username:'',
-		  			password:'',
-		  		}
+  				
   				this.$store.commit('COMMIT_LOADING',false)
 					this.$store.commit('COMMIT_USERINFO',{companyname:reData.companyName,usertype:reData.userType})				
 		   window.sessionStorage.setItem('users',JSON.stringify({'username':reData.userName,'usertype':reData.userType,'companyname':reData.companyName}))
-		  	
-				  	router.replace({path:'/'})
-		  				
+		   	router.replace({path:'/'})
+		   	
   			}else{
   				this.isError = true
   				this.$store.commit('COMMIT_TIPS',{tips:'账号或密码错误!',status:false})
