@@ -11,7 +11,7 @@
 				<span>{{item.user_code}}</span>
 				<span>{{item.user_name}}</span>
 				<span v-if="item.col>0"><span class="btn1" @click="skim(item.user_code)">查看</span></span>
-				<span v-else><span class="btn2">催报</span></span>
+				<span v-else><span class="btn2" @click="sendReport(item.email)">催报</span></span>
 			</li>
 			<li class="loadmore" v-show="loadMore">
 				<img src="../../../assets/images/loading/loading.gif"/>
@@ -34,6 +34,38 @@
 		},
 		props:['choseData'],
 		methods:{
+			sendReport(val){
+				if(!/^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/.test(val)){
+					this.$store.commit('COMMIT_TIPTXT',{status:true,txt:'邮箱不正确!',err:true})
+						if(timer){
+							clearTimeout(timer)
+						}
+						var timer = setTimeout ( () => {
+							this.$store.commit('COMMIT_TIPTXT',{status:false,txt:'邮箱不正确!',err:true})
+						},1000)
+						return;
+				}else{
+					let params = {
+						email:val,
+						dataYear:this.choseData.year,
+						selDate:this.choseData.mDay,
+					}
+					this.$axios.get(API_URL+'/mobile/sendEmail/golden',{params:params}).then( (r) => {
+						if(r.data.code==='200' || r.data.code===200){
+							this.$store.commit('COMMIT_TIPTXT',{status:true,txt:'催报成功!',err:false})
+							if(timer){
+								clearTimeout(timer)
+							}
+							var timer = setTimeout ( () => {
+								this.$store.commit('COMMIT_TIPTXT',{status:false,txt:'催报成功!',err:false})
+							},1000)
+							this.initData(1)
+							return;
+						}
+					})
+				}
+				console.log(val,/^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/.test(val))
+			},
 			initData(page){
 				let parmas = {
 					userType:this.choseData.usertype,
@@ -43,7 +75,7 @@
 					key:this.choseData.key,
 					isImportant:0,
 					offset:page,
-					limit:20
+					limit:1000
 				}
 			this.getData(parmas)
 			},
@@ -148,7 +180,7 @@
 						key:val.key,
 						isImportant:0,
 						offset:1,
-						limit:20
+						limit:1000
 					}
 					this.dataList=[];
 					this.getData(parmas)
@@ -254,6 +286,7 @@
 		font-size: 0.24rem;
 		color: #767676;
 		overflow-y: scroll;
+		-webkit-overflow-scrolling: touch;
 		overflow-x: hidden;
 		.loadmore{
 			width: 100vw;

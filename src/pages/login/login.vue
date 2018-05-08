@@ -365,6 +365,7 @@ export default {
 			width: 100%;
 			overflow-x: scroll;
 			overflow-y: hidden;
+			-webkit-overflow-scrolling: touch;
 			margin-top: 0.7rem;
 			.scrollBar{
 				height: 100%;

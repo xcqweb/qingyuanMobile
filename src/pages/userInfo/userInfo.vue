@@ -151,7 +151,7 @@
 		}
 		.exit{
 			position: absolute;
-			top: 4.88rem;
+			top: 5.2rem;
 			left: 0.42rem;
 			width: 2.6rem;
 			.icon{

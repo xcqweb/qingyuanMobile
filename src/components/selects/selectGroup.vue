@@ -521,13 +521,13 @@
 			}
 			.search{
 					position: absolute;
-					right: 0.1rem;
-					bottom: 0.1rem;
-					width: 0.26rem;
-					height: 0.28rem ;
+					right: 0rem;
+					top: 0.06rem;
+					width: 0.5rem;
+					height: 0.46rem ;
 					display: block;
 					background: url(../../assets/images/search/search.png) no-repeat;
-					background-size: contain;
+					background-size: 70%;
 					opacity:0.6881;
 					z-index: 1;
 				}

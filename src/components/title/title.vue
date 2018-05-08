@@ -109,41 +109,41 @@
 		}
 		.back1{
 			display: block;
-			width: 0.34rem;
-			height: 0.34rem;
+			width: 0.5rem;
+			height: 0.5rem;
 			position: absolute;
 			padding: 0.02rem;
 			top: 0.66rem;
 			left: 0.32rem;
 			bottom: 0.24rem;
 			background: url(../../assets/images/title/back1.png) no-repeat 0.02rem;
-			background-size: 80%;
+			background-size: 60%;
 		}
 		
 		.back2{
 			display: block;
-			width: 0.34rem;
-			height: 0.34rem;
+			width: 0.5rem;
+			height: 0.5rem;
 			position: absolute;
 			padding: 0.02rem;
-			top: 0.26rem;
+			top: 0.22rem;
 			left: 0.32rem;
 			bottom: 0.24rem;
 			background: url(../../assets/images/title/back1.png) no-repeat 0.02rem;
-			background-size: 80%;
+			background-size: 60%;
 		}
 		
 		.user{
 			display: block;
-			width: 0.34rem;
-			height: 0.34rem;
+			width: 0.5rem;
+			height: 0.5rem;
 			position: absolute;
 			padding: 0.02rem;
-			top: 0.26rem;
+			top: 0.22rem;
 			left: 0.32rem;
 			bottom: 0.24rem;
 			background: url(../../assets/images/title/man.png) no-repeat 0.02rem;
-			background-size: 80%;
+			background-size: 50%;
 		}
 		.exact{
 			display: block;

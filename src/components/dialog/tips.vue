@@ -51,6 +51,7 @@
 	font-size: 0.24rem;
 	opacity: 0;
 	z-index: 100000;
+	display: none;
 }
 
 
