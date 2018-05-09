@@ -36,6 +36,7 @@
 			            ],
 			    position:[this.tIndex], //初始化定位 两个轮子都选中在索引1的选项
 			    callback:function(indexArr, data){
+			    	
 			    	_self.$store.commit('COMMIT_ISSCROLL',false)
 			    	if(!data){
 			    		return
@@ -61,8 +62,10 @@
 			
 			if(this.$store.state.type===1){
 				this.typeName = '国庆'
+				this.tIndex = 0
 			}else{
 				this.typeName = '春节'
+				this.tIndex = 1
 			}
 		}
 	}

@@ -27,7 +27,7 @@ const router = new Router({
 		      path:'login',
 		      component:Login,
 		      name:'login',
-		      meta:{keepAlive:true}
+		      meta:{keepAlive:false}
 		    },
 		    {
 		      path:'',
@@ -99,7 +99,8 @@ const router = new Router({
    router.beforeEach((to, from, next) => {
 		//获取sessionStorage里面的users
      let users = window.sessionStorage.getItem('users');
-			//判断要去的路由有没有requiresAuth
+     
+		//判断要去的路由有没有requiresAuth
      if(to.meta.requireAuth){
        if(users){
          next();

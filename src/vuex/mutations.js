@@ -1,3 +1,50 @@
+let year = new Date().getFullYear()
+
+export const state={
+  	commitDate:'', //上报日期
+  	type:1, //上报黄金周类型
+  	chooseYear:year, //上报年份
+  	days:'', //黄金周第几天
+  	alert:{
+  		tips:'',
+  		status:false
+  	}, //警告框提示
+  	showalert:false, //是否显示警告框
+  	confirm:false, //点击确认按钮
+  	isBack:false, //是否点击返回按钮
+  	save:false,//提交表单
+  	exit:false, //安全退出
+  	isShowInfo:false,//是否显示用户信息
+  	isscroll:false,
+  	userInfo:{
+  		companyname:'',
+  		usertype:''
+  	},
+  	tipTxt:{
+  		status:false,
+  		txt:'上报成功!',
+  		err:true
+  	},
+  	tipInfo:{//提示框信息
+  		tipsShow:true,
+  		title:'',
+  		type:''
+  	}, 
+  	str:'',//春节日期
+  	
+  	//查看功能
+  	skimData:{
+  		usertype:'',
+  		usercode:'',
+  		date:'',
+  		dataYear:'',
+  		selDate:'',
+  		dateIndex:0
+  	},
+  	isLoading:false,//加载动画
+  	
+  	
+}
 
 
 const COMMIT_DATE = 'COMMIT_DATE';
@@ -19,6 +66,10 @@ const COMMIT_ARR= 'COMMIT_ARR';
 
 const COMMIT_LOADING= 'COMMIT_LOADING';
 
+
+
+//重置vuex状态
+const COMMIT_RESET= 'COMMIT_RESET';
 
 //查明功能
 const SKIM_DETIAL= 'SKIM_DETIAL';
@@ -81,6 +132,11 @@ const mutations={
 	//查看功能
 	[SKIM_DETIAL](state,val){
 		this.state.skimData = val
+	},
+	
+	//重置vuex状态
+	[COMMIT_RESET](state,val){
+		this.state = state
 	}
 }
 

@@ -50,6 +50,11 @@
 			}
 		},
 		mounted(){
+			if(year===this.$store.state.chooseYear){
+				this.dIndex = 0
+			}else{
+				this.dIndex = year-this.$store.state.chooseYear
+			}
 			this.currentYear = this.$store.state.chooseYear
 		}
 	}

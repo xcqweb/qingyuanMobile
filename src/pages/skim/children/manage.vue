@@ -6,15 +6,12 @@
 			<li>操作</li>
 		</ul>
 		<div class="tip" v-show="!status">没有搜到匹配的记录</div>
-		<ul class="con" id="con" :style="{transform:comTranslate}" v-show="status">
+		<ul class="con" id="con" v-show="status">
 			<li v-for="item in dataList">
 				<span>{{item.user_code}}</span>
 				<span>{{item.user_name}}</span>
 				<span v-if="item.col>0"><span class="btn1" @click="skim(item.user_code)">查看</span></span>
 				<span v-else><span class="btn2" @click="sendReport(item.email)">催报</span></span>
-			</li>
-			<li class="loadmore" v-show="loadMore">
-				<img src="../../../assets/images/loading/loading.gif"/>
 			</li>
 		</ul>
 	</div>
@@ -28,8 +25,6 @@
 				dataList:[],
 				page:1,
 				status:true,
-				comTranslate:'translate3d(0,0,0)',
-				loadMore:false
 			}
 		},
 		props:['choseData'],
@@ -70,24 +65,19 @@
 				let parmas = {
 					userType:this.choseData.usertype,
 					type:this.choseData.type,
-					year:this.choseData.year,
-					monthDay:this.choseData.mDay,
+					dataYear:this.choseData.year,
+					selDate:this.choseData.mDay,
 					key:this.choseData.key,
 					isImportant:0,
 					offset:page,
-					limit:1000
+					limit:300
 				}
 			this.getData(parmas)
 			},
 			getData(params){
-				if(!this.loadMore){
 					this.$store.commit('COMMIT_LOADING',true)
-				}
-				
 				this.$axios.get(API_URL+'/mobile/mobileMgr/list',{params:params}).then( (r) => {
 					if(!r){
-						this.loadMore = false
-						this.page--
 						this.$store.commit('COMMIT_LOADING',false)
 						this.$store.commit('COMMIT_TIPTXT',{status:true,txt:'加载失败!',err:true})
 						if(timer){
@@ -100,11 +90,6 @@
 					}
 					if(r.data.code==='200' || r.data.code===200){
 						this.status = true
-						window.setTimeout( () => {
-							this.loadMore = false
-						},1000)
-						if(!this.loadMore){
-							this.dragUp(0)
 						this.$store.commit('COMMIT_LOADING',false)
 						if(!r.data.data.list || !r.data.data.list.rows[0]){
 							this.status = false
@@ -123,9 +108,6 @@
 						reData.forEach( (item,index) => {
 							this.dataList.push(item)
 						})
-						}
-					}else{
-						return;
 					}
 				})
 			},
@@ -155,19 +137,6 @@
 				}
 			},
 			
-			dragUp(step){
-				function down(){
-					let num=0
-					if(num<20){
-						num+=step
-						window.requestAnimationFrame(down)
-					}else{
-						return
-					}
-				}
-				this.comTranslate = `translate3d(0,${step}px,0)`
-				window.requestAnimationFrame(down)
-			}
 		},
 		watch:{
 			choseData:{
@@ -175,8 +144,8 @@
 					let parmas = {
 						userType:val.usertype,
 						type:val.type,
-						year:val.year,
-						monthDay:val.mDay,
+						dataYear:val.year,
+						selDate:val.mDay,
 						key:val.key,
 						isImportant:0,
 						offset:1,
@@ -189,44 +158,6 @@
 			}
 		},
 		mounted(){
-			this.$nextTick( () => {
-				let con = document.getElementById('con');
-				let sY=0;
-				let eY=0;
-				con.addEventListener('touchstart',(e) => {
-					sY = e.changedTouches[0].pageY
-				},false)
-				con.addEventListener('touchmove',(e) => {
-					eY = e.changedTouches[0].pageY;
-					let dis = sY-eY;
-					if(dis>0){
-						this.dragUp(-dis/5)
-					}
-				},false)
-				
-				con.addEventListener('touchend',(e) => {
-					eY = e.changedTouches[0].pageY;
-					let oli = con.getElementsByTagName('li');
-					let olen = oli[0].clientHeight;
-					let srollhei= con.scrollHeight;
-					let scrolltop = con.scrollTop;
-					let clientHei = con.clientHeight;
-					console.log(srollhei,con.scrollTop,con.clientHeight,olen)
-					if((srollhei-scrolltop-clientHei)<=10){
-						let dis = sY-eY;
-						if(dis<0){
-							return;
-						}
-						
-						if(dis>=20){
-							this.loadMore = true;
-							this.initData(++this.page)
-							 sY=0;
-							 eY=0;
-						}
-					}
-				},false)
-			})
 		},
 		created(){
 			this.initData(this.page)
@@ -281,20 +212,13 @@
 	
 	.con{
 		width: 6.86rem;
-		height: 5.8rem;
+		height: 6rem;
 		margin: 0.2rem auto;
 		font-size: 0.24rem;
 		color: #767676;
 		overflow-y: scroll;
 		-webkit-overflow-scrolling: touch;
 		overflow-x: hidden;
-		.loadmore{
-			width: 100vw;
-			display: flex;
-			text-align: center;
-			position: relative;
-			border: none;
-		}
 		li{
 			display: flex;
 			text-align: center;

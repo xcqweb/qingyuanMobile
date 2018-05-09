@@ -140,10 +140,16 @@
 					<td>{{item.areaName}}</td>
 				</tr>
 			</table>
-			<div class="topTitle">旅游接待总人数和总收入</div>
 			<div class="r">
 				
 				<table class="title" border="0" cellspacing="0" cellpadding="0">
+					<tr>
+						<td colspan="12">旅游接待总人数和总收入</td>
+						<td colspan="9">旅游接待总人数和总收入</td>
+						<td colspan="9">旅游接待总人数和总收入</td>
+						<td colspan="27">旅游接待总人数和总收入</td>
+						<td colspan="9">旅游接待总人数和总收入</td>
+					</tr>
 					<tr>
 						<td colspan="3">总人数</td>
 						<td colspan="3">总收入</td>
@@ -170,91 +176,91 @@
 					</tr>
 					<tr class="subt">
 						<td>{{oldYear}}前{{comDay}}天</td>
-						<td>{{newYear}}前一天</td>
+						<td>{{newYear}}前{{comDay}}天</td>
 						<td>同比%</td>
 						
-						<td>2017前一天</td>
-						<td>2018前一天</td>
+						<td>{{oldYear}}前{{comDay}}天</td>
+						<td>{{newYear}}前{{comDay}}天</td>
 						<td>同比%</td>
 						
-						<td>2017前一天</td>
-						<td>2018前一天</td>
+						<td>{{oldYear}}前{{comDay}}天</td>
+						<td>{{newYear}}前{{comDay}}天</td>
 						<td>同比%</td>
 						
-						<td>2017前一天</td>
-						<td>2018前一天</td>
+						<td>{{oldYear}}前{{comDay}}天</td>
+						<td>{{newYear}}前{{comDay}}天</td>
 						<td>同比%</td>
 						
-						<td>2017前一天</td>
-						<td>2018前一天</td>
+						<td>{{oldYear}}前{{comDay}}天</td>
+						<td>{{newYear}}前{{comDay}}天</td>
 						<td>同比%</td>
 						
-						<td>2017前一天</td>
-						<td>2018前一天</td>
+						<td>{{oldYear}}前{{comDay}}天</td>
+						<td>{{newYear}}前{{comDay}}天</td>
 						<td>同比%</td>
 						
-						<td>2017前一天</td>
-						<td>2018前一天</td>
+						<td>{{oldYear}}前{{comDay}}天</td>
+						<td>{{newYear}}前{{comDay}}天</td>
 						<td>同比%</td>
 						
-						<td>2017前一天</td>
-						<td>2018前一天</td>
+						<td>{{oldYear}}前{{comDay}}天</td>
+						<td>{{newYear}}前{{comDay}}天</td>
 						<td>同比%</td>
 						
-						<td>2017前一天</td>
-						<td>2018前一天</td>
+						<td>{{oldYear}}前{{comDay}}天</td>
+						<td>{{newYear}}前{{comDay}}天</td>
 						<td>同比%</td>
 						
-						<td>2017前一天</td>
-						<td>2018前一天</td>
+						<td>{{oldYear}}前{{comDay}}天</td>
+						<td>{{newYear}}前{{comDay}}天</td>
 						<td>同比%</td>
 						
-						<td>2017前一天</td>
-						<td>2018前一天</td>
+						<td>{{oldYear}}前{{comDay}}天</td>
+						<td>{{newYear}}前{{comDay}}天</td>
 						<td>同比%</td>
 						
-						<td>2017前一天</td>
-						<td>2018前一天</td>
+						<td>{{oldYear}}前{{comDay}}天</td>
+						<td>{{newYear}}前{{comDay}}天</td>
 						<td>同比%</td>
 						
-						<td>2017前一天</td>
-						<td>2018前一天</td>
+						<td>{{oldYear}}前{{comDay}}天</td>
+						<td>{{newYear}}前{{comDay}}天</td>
 						<td>同比%</td>
 						
-						<td>2017前一天</td>
-						<td>2018前一天</td>
+						<td>{{oldYear}}前{{comDay}}天</td>
+						<td>{{newYear}}前{{comDay}}天</td>
 						<td>同比%</td>
 						
-						<td>2017前一天</td>
-						<td>2018前一天</td>
+						<td>{{oldYear}}前{{comDay}}天</td>
+						<td>{{newYear}}前{{comDay}}天</td>
 						<td>同比%</td>
 						
-						<td>2017前一天</td>
-						<td>2018前一天</td>
+						<td>{{oldYear}}前{{comDay}}天</td>
+						<td>{{newYear}}前{{comDay}}天</td>
 						<td>同比%</td>
 						
-						<td>2017前一天</td>
-						<td>2018前一天</td>
+						<td>{{oldYear}}前{{comDay}}天</td>
+						<td>{{newYear}}前{{comDay}}天</td>
 						<td>同比%</td>
 						
-						<td>2017前一天</td>
-						<td>2018前一天</td>
+						<td>{{oldYear}}前{{comDay}}天</td>
+						<td>{{newYear}}前{{comDay}}天</td>
 						<td>同比%</td>
 						
-						<td>2017前一天</td>
-						<td>2018前一天</td>
+						<td>{{oldYear}}前{{comDay}}天</td>
+						<td>{{newYear}}前{{comDay}}天</td>
 						<td>同比%</td>
 						
-						<td>2017前一天</td>
-						<td>2018前一天</td>
+						<td>{{oldYear}}前{{comDay}}天</td>
+						<td>{{newYear}}前{{comDay}}天</td>
 						<td>同比%</td>
 						
-						<td>2017前一天</td>
-						<td>2018前一天</td>
+						<td>{{oldYear}}前{{comDay}}天</td>
+						<td>{{newYear}}前{{comDay}}天</td>
 						<td>同比%</td>
 						
-						<td>2017前一天</td>
-						<td>2018前一天</td>
+						<td>{{oldYear}}前{{comDay}}天</td>
+						<td>{{newYear}}前{{comDay}}天</td>
 						<td>同比%</td>
 					</tr>
 					
@@ -326,9 +332,9 @@
 							return
 						}
 						this.dataList = r.data.data.list.rows || r.data.data.list
-						if(this.dataList[0].new){
+						if(this.dataList[0].new || this.dataList[0].old){
 							this.newYear = this.dataList[0].new.dataYear;
-							this.oldYear = this.dataList[0].old.dataYear;
+							this.oldYear = this.newYear-1;
 							this.day = this.dataList[0].new.day;
 						
 						
@@ -424,12 +430,13 @@
 								(item.new.scenicOutSum/item.old.scenicOutSum?item.old.scenicOutSum:1).toFixed(2),
 							]
 						})
-						
 							Object.values(this.areaData).forEach( (item,index) => {
 								item.forEach( (v,i) => {
+									console.log(v)
 									this.totals[i].push(v)
 								})
 							})
+							
 							
 						this.totals.forEach( (item,index) => {
 							let sum=0;
@@ -444,6 +451,13 @@
 							this.dataTotal[index] = sum
 						})
 						//console.log(this.dataTotal)
+						}else{ //new old 数据不存在时
+//							this.dataList.forEach( (item,index) => {
+//								
+//								this.areaData[item.areaName] = ['','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','']
+//								this.totals = this.areaData[item.areaName]
+//							})
+							
 						}
 					}
 				})
@@ -452,16 +466,16 @@
 		watch:{
 			choseData:{
 				handler:function(val){
-					//console.log(val)
+					console.log(val)
 					let parmas = {
 						userType:val.usertype,
 						type:val.type,
-						year:val.year,
-						monthDay:val.mDay,
+						dataYear:val.year,
+						selDate:val.mDay,
 						key:val.key,
 						isImportant:0,
 						offset:1,
-						limit:8
+						limit:1000
 					}
 					this.getData(parmas)
 				},
@@ -500,12 +514,12 @@
 			let parmas = {
 				userType:this.choseData.usertype,
 				type:this.choseData.type,
-				year:this.choseData.year,
-				monthDay:this.choseData.mDay,
+				dataYear:this.choseData.year,
+				selDate:this.choseData.mDay,
 				key:this.choseData.key,
 				isImportant:0,
 				offset:1,
-				limit:8
+				limit:1000
 			}
 			this.getData(parmas)
 		}
@@ -555,7 +569,7 @@
 			}
 		}
 		.con{
-			height: 5.8rem;
+			height: auto;
 			margin: 0.2rem auto;
 			font-size: 0.24rem;
 			color: #767676;
@@ -616,7 +630,7 @@
 		
 		.con{
 			min-width: 39rem;
-			height: 5.8rem;
+			height: auto;
 			margin: 0.2rem auto;
 			font-size: 0.24rem;
 			color: #767676;
@@ -680,7 +694,7 @@
 			}
 		}
 		.con{
-			height: 5.8rem;
+			height: auto;
 			margin: 0.2rem auto;
 			font-size: 0.24rem;
 			color: #767676;
@@ -741,7 +755,7 @@
 		
 		.con{
 			min-width: 18rem;
-			height: 5.8rem;
+			height: auto;
 			margin: 0.2rem auto;
 			font-size: 0.24rem;
 			color: #767676;
@@ -783,22 +797,22 @@
 	}
 	.l{
 		float: left;
-		margin: 0.52rem 0 0 0.32rem;
+		margin: 0.54rem 0 0 0.32rem;
 		width:20vw;
 		
 		border-collapse: collapse;
 		tr{
 			text-align: center;
-			line-height: 0.805rem;
+			line-height: 0.8rem;
 			td{
-				height: 0.805rem;
+				height: 0.8rem;
 				
 			}
 		}
 		th{
-			height: 2.08rem;
+			height: 2.4rem;
 			text-align: center;
-			line-height: 2rem;
+			line-height: 2.08rem;
 			td{
 				width: 20vw;
 			}
@@ -807,39 +821,44 @@
 	.topTitle{
 			text-align: center;
 			position: absolute;
-			right: 0;
+			left: 86px;
 			top: 0.52rem;
-			width: 76.1vw;
-			overflow: hidden;
+			width: 100rem;
 			height: 0.5rem;
 			line-height: 0.5rem;
+			margin-right: -1px;
 			border: 1px solid #ccc;
 			font-size: 0.24rem;
 			border-right: none;
 			border-left: none;
+			li{
+				text-align: center;
+				width: 18rem;
+				float: left;
+			}
 		}
 	.r{
-		margin-top: 1.02rem;
+		margin-top: 0.52rem;
 		margin-left: -1px;
 		width: 76vw;
 		float: left;
 		overflow-x: scroll;
 		overflow-y: hidden;
 		.title{
-			width: 100rem;
-			height: 1.6rem;
+			width: 100.02rem;
+			margin-left: -1px;
 			margin-top: 1px;
-			padding-bottom: 2px;
-			border-top: none;
-			border-left: none;
+			tr:nth-child(1){
+				td{
+					height: 0.84rem;
+				}
+			}
 			tr{
-				border-left: none;
 				border-top: none;
 				td{
-					height: 0.75rem;
-					line-height: 0.75rem;
+					height: 0.78rem;
+					line-height: 0.78rem;
 					width: 1.5rem !important;
-					border-left: none;
 					border-top: none;
 					text-align: center;
 				}
@@ -850,12 +869,11 @@
 			border-top-width: 1px;
 			width: 100rem;
 			margin-top: -0.5px;
-			border-left: none;
-			margin-left: 0px;
+			border: 1px solid #000;
+			margin-left: -1px;
 			tr,td{
 				border-top-color: transparent;
 				text-align: center;
-				border-left: none;
 			}
 			td{
 				word-break: break-word;
@@ -869,79 +887,7 @@
 	}
 }
 
-@media all screen and (min-width: 360px) {
-	.manage3{
-				.r{
-					.con{
-						margin-top: -0.5px;
-						td{
-							word-break: break-word;
-							word-wrap: break-word;
-							width: 1.5rem;
-							height: 0.8045rem;
-							margin-top: -1px;
-							line-height: 0.8045rem;
-						}
-					}
-				}
-			}
-}
-@media all screen and (max-width: 360px) {
-				.manage3{
-					height: 66vh;
-					.l{
-						tr{
-							line-height: 0.8rem;
-							td{
-								height: 0.82rem !important;
-								
-							}
-						}
-						th{
-							height: 2.05rem;
-							text-align: center;
-							line-height: 2rem;
-							
-						}
-					}
-					.title{
-						margin-top: 0px;
-						padding-top: -1px;
-						.subt{
-							td{
-								height: 37px;
-							}
-							
-						}
-					}
-					.r{
-						.con{
-							margin-top: 0px;
-							margin-bottom: 0.2rem;
-							tr:nth-child(1){
-								td{
-									height: 0.8rem !important;
-								}
-							}
-							tr{
-								td{
-									height: 0.82rem;
-								}
-							}
-						}
-					}
-				}
-				.subt{
-					border-left: none;
-					td:nth-child(1){
-						height: 0.75rem;
-						line-height: 0.75rem;
-						width: 1.52rem !important;
-						border-left: none;
-						text-align: center;
-					}
-				}
-			}
+
 
 			.manage::-webkit-scrollbar{
 			    width: 0px;

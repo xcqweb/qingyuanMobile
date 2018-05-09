@@ -163,7 +163,7 @@
 						},1000)
 						window.setTimeout(() => {
 							router.push('/')
-						},1500)
+						},2000)
 						return;
 					}
 					if(r.data.code==='200' || r.data.code===200){
@@ -177,7 +177,7 @@
 						},1000)
 						window.setTimeout(() => {
 							router.push('/')
-						},1500)
+						},2000)
 					}
 				})
 				

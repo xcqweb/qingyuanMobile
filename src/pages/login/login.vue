@@ -56,6 +56,7 @@
 <script>
 	import router from '@/router'
 	import Bus from '@/common/bus'
+	import {state} from '@/vuex/mutations'
 export default {
   name: 'login',
   data(){
@@ -180,6 +181,7 @@ export default {
   	}
   },
   created(){
+  	this.$store.replaceState(state) //重置vuex状态
   	this.getData()
   },
   mounted(){

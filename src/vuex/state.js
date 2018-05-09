@@ -1,8 +1,9 @@
 
+let year = new Date().getFullYear()
   const state={
   	commitDate:'', //上报日期
   	type:1, //上报黄金周类型
-  	chooseYear:2018, //上报年份
+  	chooseYear:year, //上报年份
   	days:'', //黄金周第几天
   	alert:{
   		tips:'',

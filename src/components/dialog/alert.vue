@@ -54,8 +54,7 @@
 					window.sessionStorage.removeItem('users')
 					this.$store.commit('COMMIT_ShOWINFO',false)
 					Bus.$emit('hideUser')
-					//router.replace('login')
-					window.location.href = API_URLS
+					router.replace('login')
 
 				}
 				e.preventDefault()

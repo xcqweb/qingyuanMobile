@@ -20,8 +20,7 @@
 					@dates='getDates'
 					v-show="isCity"
 				></date-select>
-				<div class="brr" v-show="downLoading"><img src="../../assets/images/loading/loading.gif"/><span>loading...</span></div>
-				<div :class="{hide:!isShow}" class="rr" v-show="isCity" id="reloadCon" :style="{transform:comTranslate}">
+				<div :class="{hide:!isShow}" class="rr" v-show="isCity">
 					<reports 
 						:dataList='reportOne'
 					></reports>
@@ -147,14 +146,12 @@
 					title:'全部任务已完成'
 				},
 				isCity:true,
-				type:1,
-				dateyear:2018,
+				type:this.$store.state.type,
+				dateyear:this.$store.state.chooseYear,
 				str:'',
 				isShow:false,
 				left:'0%',
 				flag:true,
-				downLoading:false,
-				comTranslate:'translate3d(0,-20px,0)'
 			  	
 			}
 			
@@ -196,7 +193,6 @@
 				
 				this.$axios.get(API_URL+'/mobile/mobileView/mytask',{params:params}).then( r => {
 					if(!r){
-						this.downLoading = false
 						this.$store.commit('COMMIT_LOADING',false)
 						this.$store.commit('COMMIT_TIPTXT',{status:true,txt:'加载失败!',err:true})
 						if(timer){
@@ -208,10 +204,6 @@
 						return;
 					}
 					if(r.data.code==='200' || r.data.code===200){
-						window.setTimeout( () => {
-							this.downLoading = false
-							this.dragDown(-20)
-						},600)
 						this.$store.commit('COMMIT_LOADING',false)
 						this.isShow = true
 						let reData = r.data.data.list
@@ -295,17 +287,6 @@
 				}
 			},
 			
-			dragDown(step){
-				function down(){
-					if(step<40){
-						window.requestAnimationFrame(down)
-					}else{
-						return
-					}
-				}
-				this.comTranslate = `translate3d(0,${step}px,0)`
-				window.requestAnimationFrame(down)
-			}
 		},
 			beforeDestory(){
 				
@@ -314,10 +295,15 @@
 			type:function(val){
 				let params = {}
 				if(val===2){
-					for(let i=1; i<11; i++){
+					this.str = ''
+					for(let i=0; i<10; i++){
 						//阳历转农历
-						if(i===1){
+						if(i===0){
 							let infos = calendarTransform.lunar2solar(this.dateyear-1,12,30,false)
+							if(infos===-1 || infos==='-1'){
+								infos = calendarTransform.lunar2solar(this.dateyear-1,12,29,false)
+							}
+							
 							this.str+=`${infos.cMonth}-${infos.cDay},`
 						}else{
 							let info = calendarTransform.lunar2solar(this.dateyear,1,i,false)
@@ -329,7 +315,7 @@
 						type:val,
 						username:this.users.username,
 						usertype:this.users.usertype,
-						dataYear:this.dateyear,
+						dataYear:this.$store.state.chooseYear,
 						arr:this.str
 					}
 				}else{
@@ -337,7 +323,7 @@
 						type:val,
 						username:this.users.username,
 						usertype:this.users.usertype,
-						dataYear:this.dateyear
+						dataYear:this.$store.state.chooseYear
 					}
 				}
 				
@@ -346,11 +332,27 @@
 			dateyear:function(val){
 				let params={}
 				if(this.type===2){
+					this.str = ''
+						for(let i=0; i<10; i++){
+						//阳历转农历
+						if(i===0){
+							let infos = calendarTransform.lunar2solar(val-1,12,30,false)
+							if(infos===-1 || infos==='-1'){
+								infos = calendarTransform.lunar2solar(val-1,12,29,false)
+							}
+							this.str+=`${infos.cMonth}-${infos.cDay},`
+						}else{
+							let info = calendarTransform.lunar2solar(val,1,i,false)
+							this.str+=`${info.cMonth}-${info.cDay},`
+						}
+						this.$store.commit('COMMIT_ARR',this.str)
+					}
+					
 					 params = {
 						type:this.type,
 						username:this.users.username,
 						usertype:this.users.usertype,
-						dataYear:val,
+						dataYear:this.$store.state.chooseYear,
 						arr:this.str
 					}
 				}else{
@@ -358,7 +360,7 @@
 						type:this.type,
 						username:this.users.username,
 						usertype:this.users.usertype,
-						dataYear:val
+						dataYear:this.$store.state.chooseYear
 					}
 				}
 				
@@ -373,50 +375,18 @@
 		mounted(){
 			
 			this.$nextTick( () => {
+				this.$store.commit('COMMIT_TIPTXT',{status:false,txt:'',err:true})
+				this.$store.commit('COMMIT_SUBMIT',false)
+				this.$store.commit('COMMIT_SAVE',false)
 				let t = document.getElementById('rrr');
 				t.addEventListener('touchmove',function(e){
 					e.preventDefault();
 				},false)
-				let reloadCon = document.getElementById('reloadCon');
-				let sY=0;
-				let eY=0;
-				reloadCon.addEventListener('touchstart',(e) => {
-					sY = e.changedTouches[0].pageY
-				},false)
-				reloadCon.addEventListener('touchmove',(e) => {
-					if(reloadCon.scrollTop>0){
-						return
-					}
-					eY = e.changedTouches[0].pageY
-					let dis = eY-sY>=50?eY-sY:50
-					if(dis>50){
-						this.downLoading = true
-					}
-					this.dragDown(dis/4)
-				},false)
 				
-				reloadCon.addEventListener('touchend',(e) => {
-					if(reloadCon.scrollTop>0){
-						return
-					}
-					let dis = eY-sY
-					if(dis<0){
-						return
-					}else{
-						dis>=50?eY-sY:50;
-					}
-					if(dis>=50){
-						 sY=0;
-						 eY=0;
-						this.initData()
-						this.dragDown(26)
-					}
-				},false)
 			})
 			
+			this.initData()
 			
-			
-			this.dataYear = this.$store.state.chooseYear
 			if(this.users.companyname==='清远市旅游局'){
 				this.isCity = false;
 			}
@@ -430,12 +400,12 @@
 			Bus.$off('sendData')
 		},
 		created(){
-			
+			this.dataYear = this.$store.state.chooseYear
+			this.type = this.$store.state.type
 			this.$store.commit('COMMIT_TIPTXT',{status:false,txt:'',err:true})
 			this.$store.commit('COMMIT_SUBMIT',false)
 			this.$store.commit('COMMIT_SAVE',false)
 			
-			this.initData()
 		},
 		
 	}
@@ -450,6 +420,9 @@
 	left: 0;
 	-webkit-transform: translate3d(0,0,0);
     transform: translate3d(0,0,0);
+    -webkit-overflow-scrolling: touch;
+    z-index: 100;
+    
 	.toast{
 		width: 100%;
 		height: 100vh;
@@ -491,7 +464,30 @@
 		overflow: scroll;
 		position: relative;
 	}
-	
+	.arrows{
+    	position: absolute;
+		margin-top: 2.66rem;
+		padding-top: 0rem;
+		font-size: 0.24rem;
+		z-index: 10;
+		top: 0;
+		width: 100vw;
+		text-align: center;float: left;
+		span{
+			display: block;
+	    	width: 0.5rem;
+	    	height: 0.5rem;
+	    	margin: auto;
+		}
+    }
+    .up{
+    	background: url(../../assets/images/loading/up.png) no-repeat;
+    	background-size: cover;
+    }
+    .down{
+    	background: url(../../assets/images/loading/down.png) no-repeat;
+    	background-size: cover;
+    }
 	.brr{
 		position: absolute;
 		margin-top: 2.66rem;

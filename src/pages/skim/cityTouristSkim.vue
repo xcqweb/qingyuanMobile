@@ -51,33 +51,41 @@
 			},
 			//获取筛选条件
 			getChooseData(data){
-				switch(data.type){
-					case 1:
-					this.choseData.usertype= data.value;
-					break;
-					case 2:
-					this.choseData.type = data.value;
-					break;
-					case 3:
-					this.choseData.year = data.value;
-					break;
-					case 4:
-					this.choseData.mDay = data.value;
-					break;
-					case 5:
-					this.choseData.key = data.value;
-					break;
-				}
-				if(this.choseData.type===2 && this.choseData.mDay==='10-01'){
-			 		let infos = calendarTransform.lunar2solar(year-1,12,30,false)
-					let str =  `${infos.cMonth}-${infos.cDay},`;
-			 		this.choseData.mDay = str
-			 	}
-				if(this.choseData.type===1 && this.choseData.mDay==='10-01'){
-					this.choseData.mDay = '10-01'
-				}
-				
-				//console.log(this.choseData)
+				//console.log(data)
+//				switch(data.type){
+//					case 1:
+//					this.choseData.usertype= data.value;
+//					break;
+//					
+//					case 2:
+//					this.choseData.type = data.value;
+//					break;
+//					
+//					case 3:
+//					this.choseData.year = data.value;
+//					break;
+//					
+//					case 4:
+//					this.choseData.mDay = data.value;
+//					break;
+//					
+//					case 5:
+//					this.choseData.key = data.value;
+//					break;
+//				}
+//				if(this.choseData.type===2 && this.choseData.mDay==='10-01'){
+//			 		let infos = calendarTransform.lunar2solar(year-1,12,30,false)
+//			 		if(infos===-1 || infos==='-1'){
+//						infos = calendarTransform.lunar2solar(this.dateyear-1,12,29,false)
+//					}
+//					let str =  `${infos.cMonth}-${infos.cDay},`;
+//			 		this.choseData.mDay = str
+//			 	}
+//				if(this.choseData.type===1){
+//					this.choseData.mDay = '10-01'
+//				}
+				this.choseData = data
+				console.log(this.choseData)
 			}
 		}
 	}

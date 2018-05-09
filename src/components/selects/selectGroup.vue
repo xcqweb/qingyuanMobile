@@ -74,52 +74,55 @@
 				switch(val){
 					case '前一天':
 					let infos1 = calendarTransform.lunar2solar(this.choose3-1,12,30,false)
-					str =  `${infos1.cMonth}-${infos1.cDay},`;
+					if(infos1===-1 || infos1==='-1'){
+						infos1 = calendarTransform.lunar2solar(this.choose3-1,12,29,false)
+					}
+					str =  `${infos1.cMonth}-${infos1.cDay}`;
 					break;
 					
 					case '前二天':
 					let infos2 = calendarTransform.lunar2solar(this.choose3,1,1,false)
-					str =  `${infos2.cMonth}-${infos2.cDay},`;
+					str =  `${infos2.cMonth}-${infos2.cDay}`;
 					break;
 					
 					case '前三天':
 					let infos3 = calendarTransform.lunar2solar(this.choose3,1,2,false)
-					str =  `${infos3.cMonth}-${infos3.cDay},`;
+					str =  `${infos3.cMonth}-${infos3.cDay}`;
 					break;
 					
 					case '前四天':
 					let infos4 = calendarTransform.lunar2solar(this.choose3,1,3,false)
-					str =  `${infos4.cMonth}-${infos4.cDay},`;
+					str =  `${infos4.cMonth}-${infos4.cDay}`;
 					break;
 					
 					case '前五天':
 					let infos5 = calendarTransform.lunar2solar(this.choose3,1,4,false)
-					str =  `${infos5.cMonth}-${infos5.cDay},`;
+					str =  `${infos5.cMonth}-${infos5.cDay}`;
 					break;
 					
 					case '前六天':
 					let infos6 = calendarTransform.lunar2solar(this.choose3,1,5,false)
-					str =  `${infos6.cMonth}-${infos6.cDay},`;
+					str =  `${infos6.cMonth}-${infos6.cDay}`;
 					break;
 					
 					case '前七天':
 					let infos7 = calendarTransform.lunar2solar(this.choose3,1,6,false)
-					str =  `${infos7.cMonth}-${infos7.cDay},`;
+					str =  `${infos7.cMonth}-${infos7.cDay}`;
 					break;
 					
 					case '前八天':
 					let infos8 = calendarTransform.lunar2solar(this.choose3,1,7,false)
-					str =  `${infos8.cMonth}-${infos8.cDay},`;
+					str =  `${infos8.cMonth}-${infos8.cDay}`;
 					break;
 					
 					case '前九天':
 					let infos9 = calendarTransform.lunar2solar(this.choose3,1,8,false)
-					str =  `${infos10.cMonth}-${infos9.cDay},`;
+					str =  `${infos10.cMonth}-${infos9.cDay}`;
 					break;
 					
 					case '前十天':
 					let infos10 = calendarTransform.lunar2solar(this.choose3,1,9,false)
-					str =  `${infos10.cMonth}-${infos10.cDay},`;
+					str =  `${infos10.cMonth}-${infos10.cDay}`;
 					break;
 				}
 				return str
@@ -182,9 +185,14 @@
 					    	if(!data){
 					    		return
 					    	}
-					    	_self.$emit('cData',{type:1,value:data[0]})
 					    	_self.choose1 = data[0]
 				    		_self.dIndex1 = indexArr[0]-1
+				    		if(_self.choose2==='国庆'){
+				    			_self.$emit('cData',{usertype:data[0],type:1,year:_self.choose3,mDay:_self.switchconutry(_self.choose4),key:_self.choose5})
+				    		}else{
+				    			_self.$emit('cData',{usertype:data[0],type:2,year:_self.choose3,mDay:_self.switchDate(_self.choose4),key:_self.choose5})
+				    		}
+					    	
 				      } 
 				})
 			},
@@ -201,14 +209,13 @@
 					    	if(!data){
 					    		return
 					    	}
-					    	if(data[0]==='国庆'){
-					    		_self.$emit('cData',{type:2,value:1})
-					    	}else{
-					    		_self.$emit('cData',{type:2,value:2})
-					    	}
-					    	
 					    	_self.choose2 = data[0]
 				    		_self.dIndex2 = indexArr[0]-1
+					    	if(data[0]==='国庆'){
+				    			_self.$emit('cData',{usertype:_self.choose1,type:1,year:_self.choose3,mDay:_self.switchconutry(_self.choose4),key:_self.choose5})
+				    		}else{
+				    			_self.$emit('cData',{usertype:_self.choose1,type:2,year:_self.choose3,mDay:_self.switchDate(_self.choose4),key:_self.choose5})
+				    		}
 				      } 
 				})
 			},
@@ -225,9 +232,15 @@
 					    	if(!data){
 					    		return
 					    	}
-					    	_self.$emit('cData',{type:3,value:data[0]})
 					    	_self.choose3 = data[0]
 				    		_self.dIndex3 = indexArr[0]-1
+				    		console.log(_self.choose3 ,_self.choose4,_self.choose2)
+					    	if(_self.choose2==='国庆'){
+				    			_self.$emit('cData',{usertype:_self.choose1,type:1,year:data[0],mDay:_self.switchconutry(_self.choose4),key:_self.choose5})
+				    		}else{
+				    			_self.$emit('cData',{usertype:_self.choose1,type:2,year:data[0],mDay:_self.switchDate(_self.choose4),key:_self.choose5})
+				    		}
+					    	
 				      } 
 				})
 			},
@@ -245,19 +258,23 @@
 					    	if(!data){
 					    		return
 					    	}
-					    	if(_self.choose2==='春节'){
-					    		
-					    		_self.$emit('cData',{type:4,value:_self.switchDate(data[0])})
-					    	}else{
-					    		_self.$emit('cData',{type:4,value:_self.switchconutry(data[0])})
-					    	}
 					    	_self.choose4 = data[0]
 				    		_self.dIndex4 = indexArr[0]-1
+					    	if(_self.choose2==='国庆'){
+				    			_self.$emit('cData',{usertype:_self.choose1,type:1,year:_self.choose3,mDay:_self.switchconutry(data[0]),key:_self.choose5})
+				    		}else{
+				    			_self.$emit('cData',{usertype:_self.choose1,type:2,year:_self.choose3,mDay:_self.switchDate(data[0]),key:_self.choose5})
+				    		}
+					    	
 				      } 
 				})
 			},
 			showList5(e){
-				this.$emit('cData',{type:5,value:this.choose5})
+				if(this.choose2==='国庆'){
+					this.$emit('cData',{usertype:this.choose1,type:1,year:this.choose3,mDay:this.switchconutry(this.choose4),key:this.choose5})
+				}else{
+					this.$emit('cData',{usertype:this.choose1,type:2,year:this.choose3,mDay:this.switchDate(this.choose4),key:this.choose5})
+				}
 			}
 		},
 		
