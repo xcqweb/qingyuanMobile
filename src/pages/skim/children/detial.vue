@@ -2,6 +2,7 @@
 	<div>
 		<div class="tip" v-show="!status">没有搜到匹配的记录</div>
 		<div class="manage1" v-if='choseData.usertype==="旅行社"&&status'>
+			<div class="scrollBox">
 			<div class="l">
 				<ul class="title">
 					<li>单位代码</li>
@@ -55,9 +56,12 @@
 					</li>
 				</ul>
 			</div>
+			</div>
+			<div style="clear: both;"></div>
 		</div>
 		
 		<div class="manage2" v-if='choseData.usertype==="宾馆酒店"&&status'>
+			<div class="scrollBox">
 			<div class="l">
 				<ul class="title">
 					<li>单位代码</li>
@@ -90,9 +94,12 @@
 					</li>
 				</ul>
 			</div>
+			<div style="clear: both;"></div>
+			</div>
 		</div>
 		
 		<div class="manage2" v-if='(choseData.usertype==="景点" || choseData.usertype==="重点景区")&&status'>
+			<div class="scrollBox">
 			<div class="l">
 				<ul class="title">
 					<li>单位代码</li>
@@ -125,8 +132,11 @@
 						<span>{{item.description}}</span>
 					</li>
 				</ul>
-			</div>	
-		</div>
+			</div>
+			<div style="clear: both;"></div>
+			</div>
+			</div>
+		<!--</div>-->
 		
 		<div class="manage3" v-if='choseData.usertype==="各区旅游局"&&status'>
 			<table class="l" width="50" cellpadding="0" cellspacing="0" border="0">
@@ -538,6 +548,9 @@
 	width: 100vw;
 	overflow: scroll;
 	position: absolute;
+	.scrollBox{
+		height: 55vh;
+		overflow: scroll;
 	.l{
 		width: 36vw;
 		margin-left: 2vw;
@@ -656,21 +669,24 @@
 			}
 		}
 	}
-	
+	}
 }
 
 .manage2{
 	width: 100vw;
 	overflow: scroll;
 	position: absolute;
-	.l{
+	.scrollBox{
+		height: 55vh;
+		overflow: scroll;
+		.l{
 		width: 36vw;
 		margin-left: 2vw;
 		float: left;
 		.title{
 			display: flex;
 			margin: 0.48rem auto 0 0 ;
-			overflow: scroll;
+			/*overflow: scroll;*/
 			text-align: center;
 			font-size: 0.28rem;
 			color: #767676;
@@ -698,7 +714,7 @@
 			margin: 0.2rem auto;
 			font-size: 0.24rem;
 			color: #767676;
-			overflow-y: scroll;
+			/*overflow-y: scroll;*/
 			li{
 				width: 100%;
 				display: flex;
@@ -781,7 +797,7 @@
 			}
 		}
 	}
-	
+	}
 }
 
 .manage3{
@@ -848,9 +864,10 @@
 			width: 100.02rem;
 			margin-left: -1px;
 			margin-top: 1px;
+			border-left: 1px solid #ccc;
 			tr:nth-child(1){
 				td{
-					height: 0.84rem;
+					height: 0.8rem;
 				}
 			}
 			tr{
@@ -860,6 +877,7 @@
 					line-height: 0.78rem;
 					width: 1.5rem !important;
 					border-top: none;
+					border-left: 1px solid #ccc;
 					text-align: center;
 				}
 			}
@@ -867,10 +885,11 @@
 		}
 		.con{
 			border-top-width: 1px;
-			width: 100rem;
+			width: 100.02rem;
 			margin-top: -0.5px;
 			border: 1px solid #000;
 			margin-left: -1px;
+			border-left: 1px solid #ccc;
 			tr,td{
 				border-top-color: transparent;
 				text-align: center;
@@ -879,9 +898,10 @@
 				word-break: break-word;
 				word-wrap: break-word;
 				width: 1.5rem;
-				height: 0.805rem;
+				border-left: 1px solid #ccc;
+				height: 0.8rem;
 				margin-top: -1px;
-				line-height: 0.805rem;
+				line-height: 0.8rem;
 			}
 		}
 	}
