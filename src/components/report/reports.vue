@@ -3,7 +3,7 @@
 	<div class="box6" v-if='!dataList.count'>
 		<p class="title">{{dataList.name}}</p>
 		<p class="type">黄金周{{type}}日报</p>
-		<p  tag='p' class="report"><span @click='report(dataList,$event)'>点此上报</span></p>
+		<p class="report"><span @click.prevent='report(dataList,$event)'>点此上报</span></p>
 	</div>
 </template>
 

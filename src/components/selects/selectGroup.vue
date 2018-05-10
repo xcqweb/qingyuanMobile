@@ -33,6 +33,7 @@
 			<input class="title" id="dateBox5" v-model="choose5"/>
 			<span class="search" @click='showList5($event)'></span>
 		</div>
+		<div class="toast"></div>
 	</div>
 </template>
 
@@ -67,6 +68,15 @@
 				mySelect3:null,
 				mySelect4:null,
 			}
+		},
+		created(){
+			this.$nextTick( () => {
+				//this.showList1()
+				//this.showList2()
+				//this.showList3()
+				//this.showList4()
+			})
+			
 		},
 		methods:{
 			switchDate(val){
@@ -172,6 +182,76 @@
 				}
 				return str
 			},
+			switchIndex(val){
+				let str =0;
+				switch(val){
+					case '前一天':
+					str =  0;
+					break;
+					
+					case '前二天':
+					str =  1;
+					break;
+					
+					case '前三天':
+					str =  2;
+					break;
+					
+					case '前四天':
+					str =  3;
+					break;
+					
+					case '前五天':
+					str =  4;
+					break;
+					
+					case '前六天':
+					str =  5;
+					break;
+					
+					case '前七天':
+					str =  6;
+					break;
+					
+					case '前八天':
+					str =  7;
+					break;
+					
+					case '前九天':
+					str =  8;
+					break;
+					
+					case '前十天':
+					str =  9;
+					break;
+				}
+				return str
+			},
+			switchType(val){
+				let str =0;
+				switch(val){
+					case '旅行社':
+					str =  0;
+					break;
+					
+					case '宾馆酒店':
+					str =  1;
+					break;
+					
+					case '景点':
+					str =  2;
+					break;
+					
+					case '重点景点':
+					str =  3;
+					break;
+					
+					case '各区旅游局':
+					str =  4;
+					break;
+				}
+				return str
+			},
 			showList1(e){
 					let _self = this
 					this.mySelect1 = new MobileSelect({
@@ -185,9 +265,11 @@
 					    	if(!data){
 					    		return
 					    	}
+					    	_self.$store.commit('COMMIT_COMPANYNAME',data[0])
 					    	_self.choose1 = data[0]
 				    		_self.dIndex1 = indexArr[0]-1
 				    		if(_self.choose2==='国庆'){
+				    			
 				    			_self.$emit('cData',{usertype:data[0],type:1,year:_self.choose3,mDay:_self.switchconutry(_self.choose4),key:_self.choose5})
 				    		}else{
 				    			_self.$emit('cData',{usertype:data[0],type:2,year:_self.choose3,mDay:_self.switchDate(_self.choose4),key:_self.choose5})
@@ -212,8 +294,10 @@
 					    	_self.choose2 = data[0]
 				    		_self.dIndex2 = indexArr[0]-1
 					    	if(data[0]==='国庆'){
+					    		_self.$store.commit('COMMIT_TYPE',1)
 				    			_self.$emit('cData',{usertype:_self.choose1,type:1,year:_self.choose3,mDay:_self.switchconutry(_self.choose4),key:_self.choose5})
 				    		}else{
+				    			_self.$store.commit('COMMIT_TYPE',2)
 				    			_self.$emit('cData',{usertype:_self.choose1,type:2,year:_self.choose3,mDay:_self.switchDate(_self.choose4),key:_self.choose5})
 				    		}
 				      } 
@@ -232,9 +316,10 @@
 					    	if(!data){
 					    		return
 					    	}
+					    	_self.$store.commit('COMMIT_YEAR',data[0])
 					    	_self.choose3 = data[0]
 				    		_self.dIndex3 = indexArr[0]-1
-				    		console.log(_self.choose3 ,_self.choose4,_self.choose2)
+				    		//console.log(_self.choose3 ,_self.choose4,_self.choose2)
 					    	if(_self.choose2==='国庆'){
 				    			_self.$emit('cData',{usertype:_self.choose1,type:1,year:data[0],mDay:_self.switchconutry(_self.choose4),key:_self.choose5})
 				    		}else{
@@ -258,11 +343,14 @@
 					    	if(!data){
 					    		return
 					    	}
+					    	
 					    	_self.choose4 = data[0]
 				    		_self.dIndex4 = indexArr[0]-1
 					    	if(_self.choose2==='国庆'){
+					    		_self.$store.commit('COMMIT_DAY',{num:_self.switchconutry(data[0]),txt:data[0]})
 				    			_self.$emit('cData',{usertype:_self.choose1,type:1,year:_self.choose3,mDay:_self.switchconutry(data[0]),key:_self.choose5})
 				    		}else{
+				    			_self.$store.commit('COMMIT_DAY',{num:_self.switchDate(data[0]),txt:data[0]})
 				    			_self.$emit('cData',{usertype:_self.choose1,type:2,year:_self.choose3,mDay:_self.switchDate(data[0]),key:_self.choose5})
 				    		}
 					    	
@@ -270,6 +358,7 @@
 				})
 			},
 			showList5(e){
+				this.$store.commit('COMMIT_KEYS',this.choose5)
 				if(this.choose2==='国庆'){
 					this.$emit('cData',{usertype:this.choose1,type:1,year:this.choose3,mDay:this.switchconutry(this.choose4),key:this.choose5})
 				}else{
@@ -279,6 +368,17 @@
 		},
 		
 		mounted(){
+			//获取之前的选择条件
+			this.choose1 = this.$store.state.companyname;
+			this.choose2 = this.$store.state.type===1?'国庆':'春节';
+			this.choose3 = this.$store.state.chooseYear;
+			this.choose4 = this.$store.state.days.txt;
+			this.choose5 = this.$store.state.keys;
+			
+			this.dIndex1= this.switchType(this.$store.state.companyname);
+			this.dIndex2= this.$store.state.type===1?0:1;
+			this.dIndex3 = this.choose3-year;
+			this.dIndex4 = this.switchIndex(this.$store.state.days.txt)
 		}
 	}
 </script>
@@ -286,12 +386,21 @@
 <style scoped="scoped" lang="less">
 	.selectGroup{
 		width: 6.86rem;
-		height: 1.38rem;
+		height: 1.6rem;
 		margin: 0.4rem auto -0.01rem auto;
 		position: relative;
 		color: #767676;
 		background-color: #fff;
 		z-index: 1000;
+		.toast{
+			position: absolute;
+			z-index: -1;
+			left: -0.32rem;
+			top: -0.4rem;
+			width: 100vw;
+			background-color: #fff;
+			height: 1.8rem;
+		}
 		.titles1{
 			position: absolute;
 			font-size: 0.28rem;

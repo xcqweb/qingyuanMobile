@@ -368,19 +368,30 @@
 					n.setCurDistance(n.initPosition), n.addListenerAll(), n.closeBtn.addEventListener("click", function() {
 						n.callback = e.callback ? e.callback : function() {}
 						n.mobileSelect.classList.remove("mobileSelect-show")
+						n.mobileSelect.classList.remove("mobileSelect-show")
+						n.mobileSelect.classList.remove("mobileSelect-show")
 					}), n.ensureBtn.addEventListener("click", function() {
+						n.mobileSelect.classList.remove("mobileSelect-show");
+						n.mobileSelect.classList.remove("mobileSelect-show");
 						n.mobileSelect.classList.remove("mobileSelect-show");
 						for(var t = "", e = 0; e < n.wheel.length; e++) e == n.wheel.length - 1 ? t += n.getValue(e) : t += n.getValue(e) + " ";
 						n.trigger && (n.trigger.innerHTML = t), n.callback(n.getIndexArr(), n.getJson())
 					}), n.trigger && n.trigger.addEventListener("click", function(e) {
 						e.preventDefault();
+						e.preventDefault();
+						e.preventDefault();
 						e.stopPropagation();
+						n.mobileSelect.classList.add("mobileSelect-show")
+						n.mobileSelect.classList.add("mobileSelect-show")
 						n.mobileSelect.classList.add("mobileSelect-show")
 					}), n.grayLayer.addEventListener("click", function(e) {
 						e.preventDefault();
 						e.stopPropagation();
 						n.mobileSelect.classList.remove("mobileSelect-show")
-					}), n.popUp.addEventListener("click", function() {
+					}), n.grayLayer.addEventListener("touchmove", function(e) {
+						e.preventDefault();
+						e.stopPropagation();
+					}) ,n.popUp.addEventListener("click", function() {
 						event.stopPropagation()
 					}), n.fixRowStyle()
 				},

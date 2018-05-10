@@ -4,7 +4,10 @@ let year = new Date().getFullYear()
   	commitDate:'', //上报日期
   	type:1, //上报黄金周类型
   	chooseYear:year, //上报年份
-  	days:'', //黄金周第几天
+  	days:{
+  		num:'10-01',
+  		txt:'前一天'
+  	}, //黄金周第几天
   	alert:{
   		tips:'',
   		status:false
@@ -41,6 +44,9 @@ let year = new Date().getFullYear()
   		selDate:'',
   		dateIndex:0
   	},
+  	//查看功能筛选条件
+  	companyname:'旅行社',//单位类型
+  	keys:'',//关键字
   	isLoading:false,//加载动画
   	
   	

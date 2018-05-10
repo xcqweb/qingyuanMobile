@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="detial">
 		<div class="tip" v-show="!status">没有搜到匹配的记录</div>
 		<div class="manage1" v-if='choseData.usertype==="旅行社"&&status'>
 			<div class="scrollBox">
@@ -76,7 +76,7 @@
 				<ul class="title">
 					<li>总接待人数</li>
 					<li>国内(人)</li>
-					<li>国外(人)</li>
+					<li>国际(人)</li>
 					<li>营业收入(万元)</li>
 					<li>平均房价(元)</li>
 					<li>开房率(%)</li>
@@ -118,7 +118,7 @@
 					<li>营业收入</li>
 					<li>去年同期(营业收入)</li>
 					<li>收入同比</li>
-					<li>当日旅游情况综述</li>
+					<!--<li>当日旅游情况综述</li>-->
 				</ul>
 				
 				<ul class="con">
@@ -129,7 +129,7 @@
 						<span>{{item.income}}</span>
 						<span>{{item.lastYearIncome}}</span>
 						<span>{{item.incomePercent}}</span>
-						<span>{{item.description}}</span>
+						<!--<span>{{item.description}}</span>-->
 					</li>
 				</ul>
 			</div>
@@ -140,7 +140,7 @@
 		
 		<div class="manage3" v-if='choseData.usertype==="各区旅游局"&&status'>
 			<table class="l" width="50" cellpadding="0" cellspacing="0" border="0">
-				<th class="title">
+				<th class="title" :class="comStyle">
 					<td>区域</td>
 				</th>
 				<tr class="con">
@@ -152,7 +152,7 @@
 			</table>
 			<div class="r">
 				
-				<table class="title" border="0" cellspacing="0" cellpadding="0">
+				<table class="title" border="0" cellspacing="0" cellpadding="0" :class="comStyle">
 					<tr>
 						<td colspan="12">旅游接待总人数和总收入</td>
 						<td colspan="9">旅游接待总人数和总收入</td>
@@ -185,99 +185,99 @@
 						<td colspan="3">景区接待国外人数(万人)</td>
 					</tr>
 					<tr class="subt">
-						<td>{{oldYear}}前{{comDay}}天</td>
-						<td>{{newYear}}前{{comDay}}天</td>
+						<td>{{$store.state.chooseYear-1}}前{{comDay}}天</td>
+						<td>{{$store.state.chooseYear}}前{{comDay}}天</td>
 						<td>同比%</td>
 						
-						<td>{{oldYear}}前{{comDay}}天</td>
-						<td>{{newYear}}前{{comDay}}天</td>
+						<td>{{$store.state.chooseYear-1}}前{{comDay}}天</td>
+						<td>{{$store.state.chooseYear}}前{{comDay}}天</td>
 						<td>同比%</td>
 						
-						<td>{{oldYear}}前{{comDay}}天</td>
-						<td>{{newYear}}前{{comDay}}天</td>
+						<td>{{$store.state.chooseYear-1}}前{{comDay}}天</td>
+						<td>{{$store.state.chooseYear}}前{{comDay}}天</td>
 						<td>同比%</td>
 						
-						<td>{{oldYear}}前{{comDay}}天</td>
-						<td>{{newYear}}前{{comDay}}天</td>
+						<td>{{$store.state.chooseYear-1}}前{{comDay}}天</td>
+						<td>{{$store.state.chooseYear}}前{{comDay}}天</td>
 						<td>同比%</td>
 						
-						<td>{{oldYear}}前{{comDay}}天</td>
-						<td>{{newYear}}前{{comDay}}天</td>
+						<td>{{$store.state.chooseYear-1}}前{{comDay}}天</td>
+						<td>{{$store.state.chooseYear}}前{{comDay}}天</td>
 						<td>同比%</td>
 						
-						<td>{{oldYear}}前{{comDay}}天</td>
-						<td>{{newYear}}前{{comDay}}天</td>
+						<td>{{$store.state.chooseYear-1}}前{{comDay}}天</td>
+						<td>{{$store.state.chooseYear}}前{{comDay}}天</td>
 						<td>同比%</td>
 						
-						<td>{{oldYear}}前{{comDay}}天</td>
-						<td>{{newYear}}前{{comDay}}天</td>
+						<td>{{$store.state.chooseYear-1}}前{{comDay}}天</td>
+						<td>{{$store.state.chooseYear}}前{{comDay}}天</td>
 						<td>同比%</td>
 						
-						<td>{{oldYear}}前{{comDay}}天</td>
-						<td>{{newYear}}前{{comDay}}天</td>
+						<td>{{$store.state.chooseYear-1}}前{{comDay}}天</td>
+						<td>{{$store.state.chooseYear}}前{{comDay}}天</td>
 						<td>同比%</td>
 						
-						<td>{{oldYear}}前{{comDay}}天</td>
-						<td>{{newYear}}前{{comDay}}天</td>
+						<td>{{$store.state.chooseYear-1}}前{{comDay}}天</td>
+						<td>{{$store.state.chooseYear}}前{{comDay}}天</td>
 						<td>同比%</td>
 						
-						<td>{{oldYear}}前{{comDay}}天</td>
-						<td>{{newYear}}前{{comDay}}天</td>
+						<td>{{$store.state.chooseYear-1}}前{{comDay}}天</td>
+						<td>{{$store.state.chooseYear}}前{{comDay}}天</td>
 						<td>同比%</td>
 						
-						<td>{{oldYear}}前{{comDay}}天</td>
-						<td>{{newYear}}前{{comDay}}天</td>
+						<td>{{$store.state.chooseYear-1}}前{{comDay}}天</td>
+						<td>{{$store.state.chooseYear}}前{{comDay}}天</td>
 						<td>同比%</td>
 						
-						<td>{{oldYear}}前{{comDay}}天</td>
-						<td>{{newYear}}前{{comDay}}天</td>
+						<td>{{$store.state.chooseYear-1}}前{{comDay}}天</td>
+						<td>{{$store.state.chooseYear}}前{{comDay}}天</td>
 						<td>同比%</td>
 						
-						<td>{{oldYear}}前{{comDay}}天</td>
-						<td>{{newYear}}前{{comDay}}天</td>
+						<td>{{$store.state.chooseYear-1}}前{{comDay}}天</td>
+						<td>{{$store.state.chooseYear}}前{{comDay}}天</td>
 						<td>同比%</td>
 						
-						<td>{{oldYear}}前{{comDay}}天</td>
-						<td>{{newYear}}前{{comDay}}天</td>
+						<td>{{$store.state.chooseYear-1}}前{{comDay}}天</td>
+						<td>{{$store.state.chooseYear}}前{{comDay}}天</td>
 						<td>同比%</td>
 						
-						<td>{{oldYear}}前{{comDay}}天</td>
-						<td>{{newYear}}前{{comDay}}天</td>
+						<td>{{$store.state.chooseYear-1}}前{{comDay}}天</td>
+						<td>{{$store.state.chooseYear}}前{{comDay}}天</td>
 						<td>同比%</td>
 						
-						<td>{{oldYear}}前{{comDay}}天</td>
-						<td>{{newYear}}前{{comDay}}天</td>
+						<td>{{$store.state.chooseYear-1}}前{{comDay}}天</td>
+						<td>{{$store.state.chooseYear}}前{{comDay}}天</td>
 						<td>同比%</td>
 						
-						<td>{{oldYear}}前{{comDay}}天</td>
-						<td>{{newYear}}前{{comDay}}天</td>
+						<td>{{$store.state.chooseYear-1}}前{{comDay}}天</td>
+						<td>{{$store.state.chooseYear}}前{{comDay}}天</td>
 						<td>同比%</td>
 						
-						<td>{{oldYear}}前{{comDay}}天</td>
-						<td>{{newYear}}前{{comDay}}天</td>
+						<td>{{$store.state.chooseYear-1}}前{{comDay}}天</td>
+						<td>{{$store.state.chooseYear}}前{{comDay}}天</td>
 						<td>同比%</td>
 						
-						<td>{{oldYear}}前{{comDay}}天</td>
-						<td>{{newYear}}前{{comDay}}天</td>
+						<td>{{$store.state.chooseYear-1}}前{{comDay}}天</td>
+						<td>{{$store.state.chooseYear}}前{{comDay}}天</td>
 						<td>同比%</td>
 						
-						<td>{{oldYear}}前{{comDay}}天</td>
-						<td>{{newYear}}前{{comDay}}天</td>
+						<td>{{$store.state.chooseYear-1}}前{{comDay}}天</td>
+						<td>{{$store.state.chooseYear}}前{{comDay}}天</td>
 						<td>同比%</td>
 						
-						<td>{{oldYear}}前{{comDay}}天</td>
-						<td>{{newYear}}前{{comDay}}天</td>
+						<td>{{$store.state.chooseYear-1}}前{{comDay}}天</td>
+						<td>{{$store.state.chooseYear}}前{{comDay}}天</td>
 						<td>同比%</td>
 						
-						<td>{{oldYear}}前{{comDay}}天</td>
-						<td>{{newYear}}前{{comDay}}天</td>
+						<td>{{$store.state.chooseYear-1}}前{{comDay}}天</td>
+						<td>{{$store.state.chooseYear}}前{{comDay}}天</td>
 						<td>同比%</td>
 					</tr>
 					
 				</table>
-				<table class="con" border="0" cellspacing="0" cellpadding="10">
+				<table class="con" border="0" cellspacing="0" cellpadding="10" :class="comStyle">
 					<tr>
-						<td v-for="i in dataTotal">{{i.toFixed(2)}}</td>
+						<td v-for="i in dataTotal">{{i?i.toFixed(2):''}}</td>
 					</tr>
 					<tr><td v-for="item in areaData['清城']">{{item}}</td></tr>
 					<tr><td v-for="item in areaData['佛冈']">{{item}}</td></tr>
@@ -302,8 +302,6 @@
 				dataList:[],
 				status:true,
 				day:1,
-				newYear:2018,
-				oldYear:2017,
 				areaData:{},//地区数据
 				dataTotal:[],
 				totals:[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]
@@ -316,6 +314,7 @@
 				this.$store.commit('COMMIT_LOADING',true)
 				this.$axios.get(API_URL+'/mobile/mobileMgr/detailList',{params:params}).then( (r) => {
 					if(!r){
+						this.status = false
 						this.$store.commit('COMMIT_LOADING',false)
 						this.$store.commit('COMMIT_TIPTXT',{status:true,txt:'加载失败!',err:true})
 						if(timer){
@@ -332,19 +331,12 @@
 						this.$store.commit('COMMIT_LOADING',false)
 						if(!r.data.data.list){
 							this.status = false
-							this.$store.commit('COMMIT_TIPTXT',{status:true,txt:'无数据!',err:true})
-						if(timer){
-							clearTimeout(timer)
-						}
-						var timer = setTimeout ( () => {
-							this.$store.commit('COMMIT_TIPTXT',{status:false,txt:'无数据!',err:true})
-						},2000)
 							return
 						}
 						this.dataList = r.data.data.list.rows || r.data.data.list
-						if(this.dataList[0].new || this.dataList[0].old){
-							this.newYear = this.dataList[0].new.dataYear;
-							this.oldYear = this.newYear-1;
+					if(this.dataList[0].new || this.dataList[0].old||this.dataList[1].new || this.dataList[1].old||this.dataList[2].new || this.dataList[2].old||this.dataList[3].new || this.dataList[3].old||this.dataList[4].new || this.dataList[4].old || this.dataList[5].new || this.dataList[5].old||this.dataList[6].new || this.dataList[6].old||this.dataList[7].new || this.dataList[7].old){
+						//debugger
+							
 							this.day = this.dataList[0].new.day;
 						
 						
@@ -440,9 +432,9 @@
 								(item.new.scenicOutSum/item.old.scenicOutSum?item.old.scenicOutSum:1).toFixed(2),
 							]
 						})
+						
 							Object.values(this.areaData).forEach( (item,index) => {
 								item.forEach( (v,i) => {
-									console.log(v)
 									this.totals[i].push(v)
 								})
 							})
@@ -460,13 +452,18 @@
 							})
 							this.dataTotal[index] = sum
 						})
-						//console.log(this.dataTotal)
+						
+						
 						}else{ //new old 数据不存在时
-//							this.dataList.forEach( (item,index) => {
-//								
-//								this.areaData[item.areaName] = ['','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','']
-//								this.totals = this.areaData[item.areaName]
-//							})
+							this.dataList.forEach( (item,index) => {
+								
+								this.areaData[item.areaName] = ['','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','']
+								
+							})
+							this.dataTotal
+							for(var i=0, len=this.dataTotal.length; i<len ;++i){
+								this.dataTotal[i] = ''
+							}
 							
 						}
 					}
@@ -518,9 +515,21 @@
 					case 10:
 					return '十';
 				}
+			},
+			comStyle(){ //安卓 苹果样式兼容 
+				let w = document.body.clientWidth
+				switch(w){
+					case 360:
+					return 'anthorid';
+					break;
+					case 375:
+					return 'iphone';
+					break;
+				}
 			}
 		},
 		created(){
+			
 			let parmas = {
 				userType:this.choseData.usertype,
 				type:this.choseData.type,
@@ -547,10 +556,12 @@
 .manage1{
 	width: 100vw;
 	overflow: scroll;
+	-webkit-overflow-scrolling: touch;
 	position: absolute;
 	.scrollBox{
-		height: 55vh;
+		height: 56vh;
 		overflow: scroll;
+		-webkit-overflow-scrolling: touch;
 	.l{
 		width: 36vw;
 		margin-left: 2vw;
@@ -558,7 +569,9 @@
 		.title{
 			display: flex;
 			margin: 0.48rem auto 0 0 ;
-			overflow: scroll;
+			overflow-x: scroll;
+			-webkit-overflow-scrolling: touch;
+			overflow-y: hidden;
 			text-align: center;
 			font-size: 0.28rem;
 			color: #767676;
@@ -583,10 +596,11 @@
 		}
 		.con{
 			height: auto;
-			margin: 0.2rem auto;
-			font-size: 0.24rem;
+			margin: 0.2rem auto 0 auto;
+			font-size: 0.22rem;
 			color: #767676;
 			overflow-y: scroll;
+			-webkit-overflow-scrolling: touch;
 			li{
 				width: 100%;
 				display: flex;
@@ -611,18 +625,20 @@
 	.r{
 		float: left;
 		overflow-x: scroll;
+		-webkit-overflow-scrolling: touch;
 		width: 60vw;
 		box-sizing: border-box;
 		.title{
 			min-width: 39rem;
 			display: flex;
 			margin: 0.48rem auto 0 0 ;
-			overflow: scroll;
+			overflow-x: scroll;
+			overflow-y: hidden;
+			-webkit-overflow-scrolling: touch;
 			text-align: center;
 			font-size: 0.28rem;
 			color: #767676;
 			font-weight: bold;
-			position: relative;
 			&::after{
 				content: '';
 				width: 6.86rem;
@@ -644,10 +660,11 @@
 		.con{
 			min-width: 39rem;
 			height: auto;
-			margin: 0.2rem auto;
-			font-size: 0.24rem;
+			margin: 0.2rem auto 0 auto;
+			font-size: 0.22rem;
 			color: #767676;
 			overflow-y: scroll;
+			-webkit-overflow-scrolling: touch;
 			li{
 				width: 100%;
 				display: flex;
@@ -675,23 +692,23 @@
 .manage2{
 	width: 100vw;
 	overflow: scroll;
+	-webkit-overflow-scrolling: touch;
 	position: absolute;
 	.scrollBox{
-		height: 55vh;
+		height: 56vh;
 		overflow: scroll;
+		-webkit-overflow-scrolling: touch;
 		.l{
-		width: 36vw;
+		width: 42vw;
 		margin-left: 2vw;
 		float: left;
 		.title{
 			display: flex;
 			margin: 0.48rem auto 0 0 ;
-			/*overflow: scroll;*/
 			text-align: center;
 			font-size: 0.28rem;
 			color: #767676;
 			font-weight: bold;
-			position: relative;
 			&::after{
 				content: '';
 				width: 6.86rem;
@@ -711,10 +728,9 @@
 		}
 		.con{
 			height: auto;
-			margin: 0.2rem auto;
-			font-size: 0.24rem;
+			margin: 0.2rem auto 0 auto;
+			font-size: 0.22rem;
 			color: #767676;
-			/*overflow-y: scroll;*/
 			li{
 				width: 100%;
 				display: flex;
@@ -739,18 +755,19 @@
 	.r{
 		float: left;
 		overflow-x: scroll;
-		width: 60vw;
+		-webkit-overflow-scrolling: touch;
+		width: 56vw;
 		box-sizing: border-box;
 		.title{
 			min-width: 18rem;
 			display: flex;
 			margin: 0.48rem auto 0 0 ;
 			overflow: scroll;
+			-webkit-overflow-scrolling: touch;
 			text-align: center;
 			font-size: 0.28rem;
 			color: #767676;
 			font-weight: bold;
-			position: relative;
 			&::after{
 				content: '';
 				width: 6.86rem;
@@ -772,9 +789,10 @@
 		.con{
 			min-width: 18rem;
 			height: auto;
-			margin: 0.2rem auto;
-			font-size: 0.24rem;
+			margin: 0.2rem auto 0 auto;
+			font-size: 0.22rem;
 			color: #767676;
+			-webkit-overflow-scrolling: touch;
 			overflow-y: scroll;
 			li{
 				width: 100%;
@@ -802,8 +820,9 @@
 
 .manage3{
 	width: 100vw;
-	height: 55vh;
+	height: 56vh;
 	overflow: scroll;
+	-webkit-overflow-scrolling: touch;
 	position: absolute;
 	table,table tr th, table tr td { border: 1px solid #ccc; }
 	table{
@@ -826,13 +845,20 @@
 			}
 		}
 		th{
-			height: 2.4rem;
+			height: 2.38rem;
 			text-align: center;
 			line-height: 2.08rem;
 			td{
 				width: 20vw;
 			}
 		}
+		.iphone{
+			height: 2.4rem !important;
+		}
+		.anthorid{
+			height: 2.38rem !important;
+		}
+		
 	}
 	.topTitle{
 			text-align: center;
@@ -842,7 +868,7 @@
 			width: 100rem;
 			height: 0.5rem;
 			line-height: 0.5rem;
-			margin-right: -1px;
+			margin-right: 0px;
 			border: 1px solid #ccc;
 			font-size: 0.24rem;
 			border-right: none;
@@ -859,10 +885,17 @@
 		width: 76vw;
 		float: left;
 		overflow-x: scroll;
+		-webkit-overflow-scrolling: touch;
 		overflow-y: hidden;
+		.anthorid{
+			margin-left: 0px !important;
+		}
+		.iphone{
+			margin-left: -1px !important;
+		}
 		.title{
 			width: 100.02rem;
-			margin-left: -1px;
+			
 			margin-top: 1px;
 			border-left: 1px solid #ccc;
 			tr:nth-child(1){
@@ -904,7 +937,15 @@
 				line-height: 0.8rem;
 			}
 		}
+		.iphone{
+			margin-left: 0 !important;
+		}
+		.anthorid{
+			margin-left: -1px !important;
+		}
 	}
+	
+
 }
 
 

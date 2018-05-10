@@ -6,12 +6,6 @@
 				<p @click="tab(false)" :class="{btmline:!status,active:!status}">报表明细</p>
 			</div>
 		</div>
-		<!--<keep-alive>-->
-		<!--<select-group
-			@cData='getChooseData'
-		></select-group>
-		
-		</keep-alive>-->
 		<keep-alive>
 			<component 
 				:is='comcomponents2'
@@ -31,6 +25,7 @@
 	import calendarTransform from '@/plugin/calendarTransform.js'
 	let year = new Date().getFullYear()
 	export default{
+		name:'cityTouristSkim',
 		data(){
 			return{
 				status:true,
@@ -45,45 +40,15 @@
 			 	return 'selectGroup'
 			 }
 		},
+		mounted(){
+			//console.log(this.choseData)
+		},
 		methods:{
 			tab(data){
 				this.status = data
 			},
 			//获取筛选条件
 			getChooseData(data){
-				//console.log(data)
-//				switch(data.type){
-//					case 1:
-//					this.choseData.usertype= data.value;
-//					break;
-//					
-//					case 2:
-//					this.choseData.type = data.value;
-//					break;
-//					
-//					case 3:
-//					this.choseData.year = data.value;
-//					break;
-//					
-//					case 4:
-//					this.choseData.mDay = data.value;
-//					break;
-//					
-//					case 5:
-//					this.choseData.key = data.value;
-//					break;
-//				}
-//				if(this.choseData.type===2 && this.choseData.mDay==='10-01'){
-//			 		let infos = calendarTransform.lunar2solar(year-1,12,30,false)
-//			 		if(infos===-1 || infos==='-1'){
-//						infos = calendarTransform.lunar2solar(this.dateyear-1,12,29,false)
-//					}
-//					let str =  `${infos.cMonth}-${infos.cDay},`;
-//			 		this.choseData.mDay = str
-//			 	}
-//				if(this.choseData.type===1){
-//					this.choseData.mDay = '10-01'
-//				}
 				this.choseData = data
 				console.log(this.choseData)
 			}

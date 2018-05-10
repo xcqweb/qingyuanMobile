@@ -197,7 +197,7 @@
 	.conBox{
 		width: 100vw;
 		height: 90vh;
-		overflow: scroll;
+		overflow: hidden;
 	}
 	.con{
 		position: relative;

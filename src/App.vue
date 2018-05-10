@@ -1,13 +1,14 @@
 <template>
   <div id="appBox">
    		 <transition name="router-fade" mode="out-in">
-			<keep-alive>
-			    <router-view v-if="$route.meta.keepAlive"></router-view>
-			</keep-alive>
+   		 	<!--缓存路由-->
+				<keep-alive>
+				    <router-view v-if="$route.meta.keepAlive"></router-view>
+				</keep-alive>
     	</transition>
     	<transition name="router-fade" mode="out-in">
-			<router-view v-if="!$route.meta.keepAlive"></router-view>
-		</transition>
+				<router-view v-if="!$route.meta.keepAlive"></router-view>
+			</transition>
     <alert
     	:alerts='comTips'
     	v-show='isShow'
@@ -15,7 +16,6 @@
     <tips
     	 v-show="comShow"
     ></tips>
-    <!--<selected></selected>-->
      <user-info></user-info>
      <tip-info
      	:alerts='tipTxt'
@@ -42,7 +42,6 @@ export default {
 		}
   },
   mounted(){
-//	this.$axios.get(API_URL+'/mobile/checkLogin').then( re => {})
   }
 }
 </script>
@@ -50,7 +49,7 @@ export default {
 <style>
 	
 	.router-fade-enter-active, .router-fade-leave-active {
-	  	transition: opacity .2s;
+	  	transition: opacity .1s;
 	}
 	.router-fade-enter, .router-fade-leave-active {
 	  	opacity: 0;

@@ -11,16 +11,16 @@
     			</p>
     			<p class="psw"  :class="{error:isError}">
     				<label for="psw" class="icon"></label>
-    				<input class="txt" type="password" id="psw" v-model="loginInfo.password" @focus="focu"/>
+    				<input class="txt" type="password" id="psw" v-model="loginInfo.password" @focus="focu" @keyup.enter="login($event)"/>
     			</p>
     			<!--<p class="getPsw">
     				<label for="rio" class="txt">记住密码</label>
     				<input class="ratio" type="checkbox" id="rio" v-model="loginInfo.memory"/>
     			</p>-->
-    			<p class="loginBtn" @touchstart='start($event)' v-show="status">
+    			<p class="loginBtn" @click.enter='start($event)' v-show="status">
     				<button class="btn"  id="loginBtn">登 录</button>
     			</p>
-    				<p class="loginBtn" @click='login($event)' v-show="!status">
+    				<p class="loginBtn" @click.enter='login($event)' v-show="!status">
     				<button class="btn"  id="loginBtn">登 录</button>
     			</p>
     	</div>
@@ -56,7 +56,6 @@
 <script>
 	import router from '@/router'
 	import Bus from '@/common/bus'
-	import {state} from '@/vuex/mutations'
 export default {
   name: 'login',
   data(){
@@ -181,7 +180,7 @@ export default {
   	}
   },
   created(){
-  	this.$store.replaceState(state) //重置vuex状态
+  	this.$store.dispatch('commitReset')
   	this.getData()
   },
   mounted(){
@@ -197,7 +196,9 @@ export default {
   height: 13.34rem;
   background: url(../../assets/images/login/login.png) no-repeat;
   background-size: cover;
-  overflow: hidden;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
 }
 
 	
@@ -408,6 +409,7 @@ export default {
 						}
 						.subCon{
 							overflow-y: scroll;
+							-webkit-overflow-scrolling: touch;
 							height: 4rem;
 							ul li{
 								display: flex;

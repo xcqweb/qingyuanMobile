@@ -109,52 +109,56 @@
 		}
 		.back1{
 			display: block;
-			width: 0.5rem;
-			height: 0.5rem;
+			width: 1rem;
+			height: 0.8rem;
 			position: absolute;
 			padding: 0.02rem;
 			top: 0.66rem;
-			left: 0.32rem;
+			left: 0rem;
 			bottom: 0.24rem;
 			background: url(../../assets/images/title/back1.png) no-repeat 0.02rem;
-			background-size: 60%;
+			background-size: 30%;
+			background-position: 0.32rem;
 		}
 		
 		.back2{
 			display: block;
-			width: 0.5rem;
-			height: 0.5rem;
+			width: 1rem;
+			height: 0.8rem;
 			position: absolute;
 			padding: 0.02rem;
-			top: 0.22rem;
-			left: 0.32rem;
+			top: 0.05rem;
+			left: 0rem;
 			bottom: 0.24rem;
 			background: url(../../assets/images/title/back1.png) no-repeat 0.02rem;
-			background-size: 60%;
+			background-size: 30%;
+			background-position: 0.32rem;
 		}
 		
 		.user{
 			display: block;
-			width: 0.5rem;
-			height: 0.5rem;
+			width: 1rem;
+			height: 0.8rem;
 			position: absolute;
 			padding: 0.02rem;
-			top: 0.22rem;
-			left: 0.32rem;
+			top: 0.05rem;
+			left: 0rem;
 			bottom: 0.24rem;
 			background: url(../../assets/images/title/man.png) no-repeat 0.02rem;
-			background-size: 50%;
+			background-size: 26%;
+			background-position: 0.32rem;
 		}
 		.exact{
 			display: block;
-			width: 0.34rem;
-			height: 0.34rem;
+			width: 1rem;
+			height: 0.8rem;
 			padding: 0.05rem;
 			position: absolute;
-			top: 0.22rem;
-			right: 0.32rem;
+			top: 0rem;
+			right: 0rem;
 			background: url(../../assets/images/title/exact.png) no-repeat 0.02rem;
-			background-size: 80%;
+			background-size: 32%;
+			background-position: 0.32rem;
 		}
 	}
 	

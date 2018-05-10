@@ -13,7 +13,6 @@
 
 <script>
 	import MobileSelect from 'byted-mobile-select'
-//	VuePickers
 
 	export default{
 		data(){
@@ -58,7 +57,6 @@
 			
 		},
 		mounted(){
-			
 			
 			if(this.$store.state.type===1){
 				this.typeName = '国庆'

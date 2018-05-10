@@ -14,6 +14,15 @@ window.onload = function(){
 	FastClick.attach(document.body);
 }
 
+console.log(process.env.NODE_ENV)
+
+if(process.env.NODE_ENV==='development'){
+	window.API_URLS = 'http://localhost:8080/#/login'
+}else{ //production
+	window.API_URLS = 'http://120.55.190.57/qylym/cs/#/login'
+}
+
+ 
 
 Vue.prototype.$axios = instance; 
 window.axios = instance

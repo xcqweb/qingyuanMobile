@@ -393,6 +393,7 @@
 	.conBox{
 		height: 85vh;
 		overflow-y: scroll;
+		-webkit-overflow-scrolling: touch;
 		overflow-x: hidden;
 	}
 	.topTitle{

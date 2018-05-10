@@ -37,7 +37,6 @@
 				this.$store.commit('COMMIT_LOADING',false)
 				this.$store.commit('COMMIT_SHOWALERT',false) //关闭提示框
 				
-				
 				if(this.$store.state.save){
 					this.$store.commit('COMMIT_SUBMIT',true) //记录确认状态
 					this.$store.commit('COMMIT_SAVE',false)
@@ -46,7 +45,7 @@
 					}
 				}
 				if(this.$store.state.isBack){ //点击返回按钮
-					router.replace('golden')
+					router.push('golden')
 				}
 				if(this.$store.state.exit){ //点击退出按钮
 					this.$store.commit('COMMIT_EXIT',false)
@@ -55,7 +54,7 @@
 					this.$store.commit('COMMIT_ShOWINFO',false)
 					Bus.$emit('hideUser')
 					router.replace('login')
-
+					//window.location.href = API_URLS
 				}
 				e.preventDefault()
 				e.stopPropagation()

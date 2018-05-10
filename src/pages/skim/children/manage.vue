@@ -63,11 +63,12 @@
 			},
 			initData(page){
 				let parmas = {
-					userType:this.choseData.usertype,
-					type:this.choseData.type,
-					dataYear:this.choseData.year,
-					selDate:this.choseData.mDay,
-					key:this.choseData.key,
+					
+					userType:this.$store.state.companyname,
+					type:this.$store.state.type,
+					dataYear:this.$store.state.chooseYear,
+					selDate:this.$store.state.days.num,
+					key:this.$store.state.keys,
 					isImportant:0,
 					offset:page,
 					limit:300
@@ -93,13 +94,13 @@
 						this.$store.commit('COMMIT_LOADING',false)
 						if(!r.data.data.list || !r.data.data.list.rows[0]){
 							this.status = false
-							this.$store.commit('COMMIT_TIPTXT',{status:true,txt:'无数据!',err:true})
-						if(timer){
-							clearTimeout(timer)
-						}
-						var timer = setTimeout ( () => {
-							this.$store.commit('COMMIT_TIPTXT',{status:false,txt:'无数据!',err:true})
-						},2000)
+//							this.$store.commit('COMMIT_TIPTXT',{status:true,txt:'无数据!',err:true})
+//						if(timer){
+//							clearTimeout(timer)
+//						}
+//						var timer = setTimeout ( () => {
+//							this.$store.commit('COMMIT_TIPTXT',{status:false,txt:'无数据!',err:true})
+//						},2000)
 							return
 						}
 						
@@ -117,7 +118,6 @@
 				}else{
 					this.$store.commit('SKIM_DETIAL',{usertype:this.choseData.usertype,usercode:data,date:`${this.choseData.year}-${this.choseData.mDay}`})
 				}
-				
 				switch(this.choseData.usertype){
 					case '旅行社':
 					router.push({path:'touristDetial'});
@@ -128,7 +128,7 @@
 					case '景点':
 					router.push({path:'scienceDetial'});
 					break;
-					case '重点景点':
+					case '重点景区':
 					router.push({path:'scienceDetial'});
 					break;
 					case '各区旅游局':

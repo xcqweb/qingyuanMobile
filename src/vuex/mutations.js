@@ -1,6 +1,6 @@
 let year = new Date().getFullYear()
 
-export const state={
+export const replaceState={
   	commitDate:'', //上报日期
   	type:1, //上报黄金周类型
   	chooseYear:year, //上报年份
@@ -65,6 +65,8 @@ const COMMIT_TIPTXT= 'COMMIT_TIPTXT';
 const COMMIT_ARR= 'COMMIT_ARR';
 
 const COMMIT_LOADING= 'COMMIT_LOADING';
+const COMMIT_COMPANYNAME= 'COMMIT_COMPANYNAME';
+const COMMIT_KEYS= 'COMMIT_KEYS';
 
 
 
@@ -128,15 +130,23 @@ const mutations={
 		this.state.isLoading = val
 	},
 	
-	
 	//查看功能
 	[SKIM_DETIAL](state,val){
 		this.state.skimData = val
 	},
+	[COMMIT_COMPANYNAME](state,val){//类型
+		this.state.companyname = val
+	},
+	[COMMIT_KEYS](state,val){ //关键字
+		this.state.keys = val
+	},
 	
 	//重置vuex状态
-	[COMMIT_RESET](state,val){
-		this.state = state
+	[COMMIT_RESET](state){
+		Object.keys(this.state).forEach( (item,index) => {
+			this.state[item] = replaceState[item]
+		})
+		
 	}
 }
 
