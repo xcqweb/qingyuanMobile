@@ -1,10 +1,13 @@
 let year = new Date().getFullYear()
 
 export const replaceState={
-  	commitDate:'', //上报日期
+commitDate:'', //上报日期
   	type:1, //上报黄金周类型
   	chooseYear:year, //上报年份
-  	days:'', //黄金周第几天
+  	days:{
+  		num:'10-01',
+  		txt:'前一天'
+  	}, //黄金周第几天
   	alert:{
   		tips:'',
   		status:false
@@ -33,17 +36,19 @@ export const replaceState={
   	str:'',//春节日期
   	
   	//查看功能
-  	skimData:{
-  		usertype:'',
+ 	skimData:{
+  		usertype:'旅行社',
   		usercode:'',
   		date:'',
-  		dataYear:'',
-  		selDate:'',
+  		dataYear:year,
+  		selDate:'10-01',
   		dateIndex:0
   	},
+  	//查看功能筛选条件
+  	companyname:'旅行社',//单位类型
+  	keys:'',//关键字
   	isLoading:false,//加载动画
-  	
-  	
+  	dateIndex:1,//第几天
 }
 
 
@@ -67,6 +72,7 @@ const COMMIT_ARR= 'COMMIT_ARR';
 const COMMIT_LOADING= 'COMMIT_LOADING';
 const COMMIT_COMPANYNAME= 'COMMIT_COMPANYNAME';
 const COMMIT_KEYS= 'COMMIT_KEYS';
+const COMMIT_DATEINDEX= 'COMMIT_DATEINDEX';
 
 
 
@@ -139,6 +145,9 @@ const mutations={
 	},
 	[COMMIT_KEYS](state,val){ //关键字
 		this.state.keys = val
+	},
+	[COMMIT_DATEINDEX](state,val){ //关键字
+		this.state.dateIndex = val
 	},
 	
 	//重置vuex状态

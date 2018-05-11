@@ -1,7 +1,7 @@
 <template>
 	<div class="detial">
 		<div class="tip" v-show="!status">没有搜到匹配的记录</div>
-		<div class="manage1" v-if='choseData.usertype==="旅行社"&&status'>
+		<div class="manage1" v-if='$store.state.companyname==="旅行社"&&status'>
 			<div class="scrollBox">
 			<div class="l">
 				<ul class="title">
@@ -60,7 +60,7 @@
 			<div style="clear: both;"></div>
 		</div>
 		
-		<div class="manage2" v-if='choseData.usertype==="宾馆酒店"&&status'>
+		<div class="manage2" v-if='$store.state.companyname==="宾馆酒店"&&status'>
 			<div class="scrollBox">
 			<div class="l">
 				<ul class="title">
@@ -98,7 +98,7 @@
 			</div>
 		</div>
 		
-		<div class="manage2" v-if='(choseData.usertype==="景点" || choseData.usertype==="重点景区")&&status'>
+		<div class="manage2" v-if='($store.state.companyname==="景点" || $store.state.companyname==="重点景区")&&status'>
 			<div class="scrollBox">
 			<div class="l">
 				<ul class="title">
@@ -138,7 +138,7 @@
 			</div>
 		<!--</div>-->
 		
-		<div class="manage3" v-if='choseData.usertype==="各区旅游局"&&status'>
+		<div class="manage3" v-if='$store.state.companyname==="各区旅游局"&&status'>
 			<table class="l" width="50" cellpadding="0" cellspacing="0" border="0">
 				<th class="title" :class="comStyle">
 					<td>区域</td>
@@ -273,7 +273,6 @@
 						<td>{{$store.state.chooseYear}}前{{comDay}}天</td>
 						<td>同比%</td>
 					</tr>
-					
 				</table>
 				<table class="con" border="0" cellspacing="0" cellpadding="10" :class="comStyle">
 					<tr>
@@ -301,7 +300,6 @@
 			return{
 				dataList:[],
 				status:true,
-				day:1,
 				areaData:{},//地区数据
 				dataTotal:[],
 				totals:[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]
@@ -335,9 +333,7 @@
 						}
 						this.dataList = r.data.data.list.rows || r.data.data.list
 					if(this.dataList[0].new || this.dataList[0].old||this.dataList[1].new || this.dataList[1].old||this.dataList[2].new || this.dataList[2].old||this.dataList[3].new || this.dataList[3].old||this.dataList[4].new || this.dataList[4].old || this.dataList[5].new || this.dataList[5].old||this.dataList[6].new || this.dataList[6].old||this.dataList[7].new || this.dataList[7].old){
-						//debugger
 							
-							this.day = this.dataList[0].new.day;
 						
 						
 						this.dataList.forEach( (item,index) => {
@@ -493,7 +489,7 @@
 		},
 		computed:{
 			comDay(){
-				switch(this.day){
+				switch(this.$store.state.dateIndex+1){
 					case 1:
 					return '一';
 					case 2:
@@ -531,14 +527,14 @@
 		created(){
 			
 			let parmas = {
-				userType:this.choseData.usertype,
-				type:this.choseData.type,
-				dataYear:this.choseData.year,
-				selDate:this.choseData.mDay,
-				key:this.choseData.key,
+				userType:this.$store.state.companyname,
+				type:this.$store.state.type,
+				dataYear:this.$store.state.chooseYear,
+				selDate:this.$store.state.days.num,
+				key:this.$store.state.keys,
 				isImportant:0,
 				offset:1,
-				limit:1000
+				limit:300
 			}
 			this.getData(parmas)
 		}

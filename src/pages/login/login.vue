@@ -54,8 +54,8 @@
 </template>
 
 <script>
-	import router from '@/router'
 	import Bus from '@/common/bus'
+	import router from '@/router'
 export default {
   name: 'login',
   data(){

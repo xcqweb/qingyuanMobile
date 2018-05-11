@@ -122,12 +122,18 @@
 			.confirm{
 				flex: 1;
 				color: #686868;
+				&:active{
+					background-color: rgba(0, 0, 0, 0.42)
+				}
 			}
 			.confirmt{
 				flex: 1;
 				color: #686868;
 				font-size: 0.32rem;
 				font-weight: bold;
+				&:active{
+					background-color: rgba(0, 0, 0, 0.42)
+				}
 			}
 			.cancel:after{
 				content: '';
@@ -137,10 +143,16 @@
 				height: 0.72rem;
 				width: 2.7rem;
 				border-right: 0.03rem solid rgba(104,104,104,0.245);
+				&:active{
+					background-color: rgba(0, 0, 0, 0.42)
+				}
 			}
 			.cancel{
 				flex: 1;
 				color: #FB5050;
+				&:active{
+					background-color: rgba(0, 0, 0, 0.42)
+				}
 			}
 		}
 	}

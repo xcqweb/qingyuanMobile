@@ -23,6 +23,8 @@
 		props:['dateData'],
 		methods:{
 			showList(e){
+				e.stopPropagation();
+				e.preventDefault()
 				let _self = this
 				this.mySelect = new MobileSelect({
 			    trigger: '#dateBox', 
@@ -135,8 +137,10 @@
 				background-color: #fff;
 			}
 		}
+		&:active{
+				background-color: rgba(0, 0, 0, 0.42)
+			}
 	}
-	
 }
 
 

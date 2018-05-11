@@ -126,11 +126,14 @@
 	export default{
 		data(){
 			return{
+				t1:'',
+				t2:'',
+				t3:'',
 				companyname:'',
 			  	inputData1:{
 			  		id:3,
 			  		name:'接待总人数(万人次)',
-			  		inputType:'number',
+			  		inputType:'Number',
 			  		boxWidth:'6.86rem',
 			  		inputWidth:'3.48rem',
 			  		inputHeight:'0.54rem',
@@ -141,7 +144,7 @@
 				inputData2:{
 			  		id:3,
 			  		name:'旅游总收入(亿)',
-			  		inputType:'number',
+			  		inputType:'Number',
 			  		boxWidth:'6.86rem',
 			  		inputWidth:'3.48rem',
 			  		inputHeight:'0.54rem',
@@ -152,7 +155,7 @@
 				inputData3:{
 			  		id:3,
 			  		name:'其中外汇收入(万美金)',
-			  		inputType:'number',
+			  		inputType:'Number',
 			  		boxWidth:'6.86rem',
 			  		inputWidth:'3.48rem',
 			  		inputHeight:'0.54rem',
@@ -163,7 +166,7 @@
 				inputData4:{
 			  		id:3,
 			  		name:'接待总人数(万人次)',
-			  		inputType:'number',
+			  		inputType:'Number',
 			  		boxWidth:'6.86rem',
 			  		inputWidth:'3.48rem',
 			  		inputHeight:'0.54rem',
@@ -174,7 +177,7 @@
 				inputData5:{
 			  		id:3,
 			  		name:'旅游总收入(亿)',
-			  		inputType:'number',
+			  		inputType:'Number',
 			  		boxWidth:'6.86rem',
 			  		inputWidth:'3.48rem',
 			  		inputHeight:'0.54rem',
@@ -185,7 +188,7 @@
 				inputData6:{
 			  		id:3,
 			  		name:'接待总人数(万人次)',
-			  		inputType:'number',
+			  		inputType:'Number',
 			  		boxWidth:'6.86rem',
 			  		inputWidth:'3.48rem',
 			  		inputHeight:'0.54rem',
@@ -196,7 +199,7 @@
 				inputData7:{
 			  		id:3,
 			  		name:'旅游总收入(亿)',
-			  		inputType:'number',
+			  		inputType:'Number',
 			  		boxWidth:'6.86rem',
 			  		inputWidth:'3.48rem',
 			  		inputHeight:'0.54rem',
@@ -207,7 +210,7 @@
 				inputData8:{
 			  		id:3,
 			  		name:'接待总人数(万人次)',
-			  		inputType:'number',
+			  		inputType:'Number',
 			  		boxWidth:'6.86rem',
 			  		inputWidth:'3.48rem',
 			  		inputHeight:'0.54rem',
@@ -218,7 +221,7 @@
 				inputData9:{
 			  		id:3,
 			  		name:'其中国内人数(万人次)',
-			  		inputType:'number',
+			  		inputType:'Number',
 			  		boxWidth:'6.86rem',
 			  		inputWidth:'3.48rem',
 			  		inputHeight:'0.54rem',
@@ -229,7 +232,7 @@
 				inputData10:{
 			  		id:3,
 			  		name:'其中境外总人数(万人次)',
-			  		inputType:'number',
+			  		inputType:'Number',
 			  		boxWidth:'6.86rem',
 			  		inputWidth:'3.48rem',
 			  		inputHeight:'0.54rem',
@@ -240,7 +243,7 @@
 				inputData11:{
 			  		id:3,
 			  		name:'直报系统中宾馆数(家)',
-			  		inputType:'number',
+			  		inputType:'Number',
 			  		boxWidth:'6.86rem',
 			  		inputWidth:'3.48rem',
 			  		inputHeight:'0.54rem',
@@ -251,7 +254,7 @@
 				inputData12:{
 			  		id:3,
 			  		name:'接待人数(万人)',
-			  		inputType:'number',
+			  		inputType:'Number',
 			  		boxWidth:'6.86rem',
 			  		inputWidth:'3.48rem',
 			  		inputHeight:'0.54rem',
@@ -262,7 +265,7 @@
 				inputData13:{
 			  		id:3,
 			  		name:'其他社会宾馆数(家)',
-			  		inputType:'number',
+			  		inputType:'Number',
 			  		boxWidth:'6.86rem',
 			  		inputWidth:'3.48rem',
 			  		inputHeight:'0.54rem',
@@ -273,7 +276,7 @@
 				inputData14:{
 			  		id:3,
 			  		name:'接待人数(万人)',
-			  		inputType:'number',
+			  		inputType:'Number',
 				  		boxWidth:'6.86rem',
 			  		inputWidth:'3.48rem',
 			  		inputHeight:'0.54rem',
@@ -284,7 +287,7 @@
 				inputData15:{
 			  		id:3,
 			  		name:'接待总人数(万人)',
-			  		inputType:'number',
+			  		inputType:'Number',
 			  		boxWidth:'6.86rem',
 			  		inputWidth:'3.48rem',
 			  		inputHeight:'0.54rem',
@@ -295,7 +298,7 @@
 				inputData16:{
 			  		id:3,
 			  		name:'其中国内人数(万人)',
-			  		inputType:'number',
+			  		inputType:'Number',
 			  		boxWidth:'6.86rem',
 			  		inputWidth:'3.48rem',
 			  		inputHeight:'0.54rem',
@@ -306,7 +309,7 @@
 				inputData17:{
 			  		id:3,
 			  		name:'其中境外人数(万人)',
-			  		inputType:'number',
+			  		inputType:'Number',
 			  		boxWidth:'6.86rem',
 			  		inputWidth:'3.48rem',
 			  		inputHeight:'0.54rem',

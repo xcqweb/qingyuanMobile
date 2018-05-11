@@ -119,6 +119,9 @@
 			background: url(../../assets/images/title/back1.png) no-repeat 0.02rem;
 			background-size: 30%;
 			background-position: 0.32rem;
+			&:active{
+				background-color: rgba(0, 0, 0, 0.42)
+			}
 		}
 		
 		.back2{
@@ -133,6 +136,9 @@
 			background: url(../../assets/images/title/back1.png) no-repeat 0.02rem;
 			background-size: 30%;
 			background-position: 0.32rem;
+			&:active{
+				background-color: rgba(0, 0, 0, 0.42)
+			}
 		}
 		
 		.user{
@@ -147,6 +153,9 @@
 			background: url(../../assets/images/title/man.png) no-repeat 0.02rem;
 			background-size: 26%;
 			background-position: 0.32rem;
+			&:active{
+				background-color: rgba(0, 0, 0, 0.42)
+			}
 		}
 		.exact{
 			display: block;
@@ -159,6 +168,9 @@
 			background: url(../../assets/images/title/exact.png) no-repeat 0.02rem;
 			background-size: 32%;
 			background-position: 0.32rem;
+			&:active{
+				background-color: rgba(0, 0, 0, 0.42)
+			}
 		}
 	}
 	

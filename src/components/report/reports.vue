@@ -71,9 +71,9 @@
 		font-weight: bold;
 		color: #1CB394;
 		margin: 0.16rem auto;
-	}
-	.report:active{
-		color: #f00;
+		span:active{
+			background-color: rgba(0, 0, 0, 0.42)
+		}
 	}
 }
 	

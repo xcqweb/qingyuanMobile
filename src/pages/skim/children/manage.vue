@@ -42,8 +42,8 @@
 				}else{
 					let params = {
 						email:val,
-						dataYear:this.choseData.year,
-						selDate:this.choseData.mDay,
+						dataYear:this.$store.state.chooseYear,
+						selDate:this.$store.state.days.num,
 					}
 					this.$axios.get(API_URL+'/mobile/sendEmail/golden',{params:params}).then( (r) => {
 						if(r.data.code==='200' || r.data.code===200){
@@ -59,18 +59,16 @@
 						}
 					})
 				}
-				console.log(val,/^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/.test(val))
 			},
 			initData(page){
 				let parmas = {
-					
 					userType:this.$store.state.companyname,
 					type:this.$store.state.type,
 					dataYear:this.$store.state.chooseYear,
 					selDate:this.$store.state.days.num,
 					key:this.$store.state.keys,
 					isImportant:0,
-					offset:page,
+					offset:this.page,
 					limit:300
 				}
 			this.getData(parmas)
@@ -94,13 +92,6 @@
 						this.$store.commit('COMMIT_LOADING',false)
 						if(!r.data.data.list || !r.data.data.list.rows[0]){
 							this.status = false
-//							this.$store.commit('COMMIT_TIPTXT',{status:true,txt:'无数据!',err:true})
-//						if(timer){
-//							clearTimeout(timer)
-//						}
-//						var timer = setTimeout ( () => {
-//							this.$store.commit('COMMIT_TIPTXT',{status:false,txt:'无数据!',err:true})
-//						},2000)
 							return
 						}
 						
@@ -113,12 +104,12 @@
 				})
 			},
 			skim(data){
-				if(this.choseData.usertype==='各区旅游局'){
-					this.$store.commit('SKIM_DETIAL',{usertype:this.choseData.usertype,usercode:data,dataYear:this.choseData.year,selDate:this.choseData.mDay,dateIndex:0})
-				}else{
-					this.$store.commit('SKIM_DETIAL',{usertype:this.choseData.usertype,usercode:data,date:`${this.choseData.year}-${this.choseData.mDay}`})
-				}
-				switch(this.choseData.usertype){
+//				if(this.choseData.usertype==='各区旅游局'){
+					this.$store.commit('SKIM_DETIAL',{usertype:this.$store.state.companyname,usercode:data,dataYear:this.$store.state.chooseYear,selDate:this.$store.state.days.num,dateIndex:0,date:`${this.$store.state.chooseYear}-${this.$store.state.days.num}`})
+//				}else{
+//					this.$store.commit('SKIM_DETIAL',{usertype:this.$store.state.companyname,usercode:data,date:`${this.$store.state.chooseYear}-${this.$store.state.days.num}`})
+//				}
+				switch(this.$store.state.companyname){
 					case '旅行社':
 					router.push({path:'touristDetial'});
 					break;
@@ -255,6 +246,9 @@
 					color: #fff;
 					line-height: 0.46rem;
 					text-align: center;
+					&:active{
+						background-color: rgba(0, 0, 0, 0.3)
+					}
 				}
 				.btn2{
 					position: absolute;
@@ -269,6 +263,9 @@
 					color: #fff;
 					line-height: 0.46rem;
 					text-align: center;
+					&:active{
+						background-color: rgba(0, 0, 0, 0.42)
+					}
 				}
 			}
 		}

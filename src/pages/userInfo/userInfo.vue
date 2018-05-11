@@ -158,6 +158,9 @@
 				position: absolute;
 				left: 0;
 				top: 0.06rem;
+				&:active{
+					background-color: rgba(0, 0, 0, 0.42)
+				}
 			}
 			.txt{
 				color: #fff;
@@ -165,6 +168,9 @@
 				position: absolute;
 				left: 0.58rem;
 				font-weight: 100;
+				&:active{
+					background-color: rgba(0, 0, 0, 0.42)
+				}
 			}
 		}
 	}

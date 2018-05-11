@@ -1,7 +1,7 @@
 <template>
 	<div class="box4">
 		<div class="titles">{{goldData.titles}}</div>
-		<div class="selectBox" @click='showList'>
+		<div class="selectBox" @click='showList($event)'>
 			<p class="title" id="typeBox">{{typeName}}</p>
 			<span class="up"></span>
 			<span class="down"></span>
@@ -24,7 +24,9 @@
 		},
 		props:['goldData'],
 		methods:{
-			showList(){
+			showList(e){
+				e.stopPropagation();
+				e.preventDefault()
 				this.$store.commit('COMMIT_ISSCROLL',true)
 				let _self = this
 				this.mySelect = new MobileSelect({
@@ -141,6 +143,9 @@
 				background-color: #fff;
 			}
 		}
+		&:active{
+				background-color: rgba(0, 0, 0, 0.42)
+			}
 	}
 	
 }

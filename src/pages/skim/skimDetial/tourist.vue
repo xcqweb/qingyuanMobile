@@ -103,7 +103,7 @@
 			  	inputData1:{
 			  		id:1,
 			  		name:'接团数',
-			  		inputType:'number',
+			  		inputType:'Number',
 			  		placeHolder:'请输入接团数量',
 			  		boxWidth:'3.26rem',
 			  		inputWidth:'2.16rem',
@@ -114,7 +114,7 @@
 				inputData2:{
 				  		id:1,
 				  		name:'一日游',
-				  		inputType:'number',
+				  		inputType:'Number',
 				  		placeHolder:'请输入一日游人数',
 				  		boxWidth:'3.26rem',
 				  		inputWidth:'2.16rem',
@@ -125,7 +125,7 @@
 				inputData3:{
 				  		id:1,
 				  		name:'省外',
-				  		inputType:'number',
+				  		inputType:'Number',
 				  		placeHolder:'游客人数',
 				  		boxWidth:'2.06rem',
 				  		inputWidth:'1.26rem',
@@ -136,7 +136,7 @@
 				inputData4:{
 				  		id:1,
 				  		name:'省内',
-				  		inputType:'number',
+				  		inputType:'Number',
 				  		placeHolder:'游客人数',
 				  		boxWidth:'2.06rem',
 				  		inputWidth:'1.26rem',
@@ -147,7 +147,7 @@
 				inputData5:{
 				  		id:1,
 				  		name:'国际',
-				  		inputType:'number',
+				  		inputType:'Number',
 				  		placeHolder:'游客人数',
 				  		boxWidth:'2.06rem',
 				  		inputWidth:'1.26rem',
@@ -158,7 +158,7 @@
 				inputData6:{
 			  		id:1,
 			  		name:'组团数',
-			  		inputType:'number',
+			  		inputType:'Number',
 			  		placeHolder:'请输入接团数量',
 			  		boxWidth:'3.26rem',
 			  		inputWidth:'2.16rem',
@@ -169,7 +169,7 @@
 				inputData7:{
 				  		id:1,
 				  		name:'省内游',
-				  		inputType:'number',
+				  		inputType:'Number',
 				  		placeHolder:'游客人数',
 				  		boxWidth:'3.26rem',
 				  		inputWidth:'2.16rem',
@@ -180,7 +180,7 @@
 				inputData8:{
 			  		id:1,
 			  		name:'省外游',
-			  		inputType:'number',
+			  		inputType:'Number',
 			  		placeHolder:'请输入接团数量',
 			  		boxWidth:'3.26rem',
 			  		inputWidth:'2.16rem',
@@ -191,7 +191,7 @@
 				inputData9:{
 				  		id:1,
 				  		name:'香港游',
-				  		inputType:'number',
+				  		inputType:'Number',
 				  		placeHolder:'请输入游客人数',
 				  		boxWidth:'3.26rem',
 				  		inputWidth:'2.16rem',
@@ -202,7 +202,7 @@
 				inputData10:{
 				  		id:1,
 				  		name:'澳门游',
-				  		inputType:'number',
+				  		inputType:'Number',
 				  		placeHolder:'请输入游客人数',
 				  		boxWidth:'3.26rem',
 				  		inputWidth:'2.16rem',
@@ -213,7 +213,7 @@
 				inputData11:{
 				  		id:1,
 				  		name:'出国游',
-				  		inputType:'number',
+				  		inputType:'Number',
 				  		placeHolder:'请输入游客人数',
 				  		boxWidth:'3.26rem',
 				  		inputWidth:'2.16rem',
@@ -224,7 +224,7 @@
 				inputData12:{
 				  		id:1,
 				  		name:'欧洲游',
-				  		inputType:'number',
+				  		inputType:'Number',
 				  		placeHolder:'请输入游客人数',
 				  		boxWidth:'3.26rem',
 				  		inputWidth:'2.16rem',
@@ -235,7 +235,7 @@
 				inputData13:{
 				  		id:1,
 				  		name:'营业额(万元)',
-				  		inputType:'number',
+				  		inputType:'Number',
 				  		placeHolder:'请输入当日营业额(单位万元)',
 				  		boxWidth:'6.86rem',
 				  		inputWidth:'5.1rem',
@@ -246,7 +246,7 @@
 				inputData14:{
 				  		id:1,
 				  		name:'一日游',
-				  		inputType:'number',
+				  		inputType:'Number',
 				  		placeHolder:'请输入一日游人数',
 				  		boxWidth:'3.26rem',
 				  		inputWidth:'2.16rem',

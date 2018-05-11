@@ -87,7 +87,7 @@
 				inputData2:{
 			  		id:2,
 			  		name:'联系电话',
-			  		inputType:'number',
+			  		inputType:'Number',
 			  		placeHolder:'请输入联系电话',
 			  		boxWidth:'3.26rem',
 			  		inputWidth:'2rem',
@@ -99,7 +99,7 @@
 				inputData3:{
 			  		id:3,
 			  		name:'国内(人天)',
-			  		inputType:'number',
+			  		inputType:'Number',
 			  		placeHolder:'请输入接待国内游客人数',
 			  		boxWidth:'6.86rem',
 			  		inputWidth:'4.26rem',
@@ -109,7 +109,7 @@
 				inputData4:{
 			  		id:3,
 			  		name:'国际(人天)',
-			  		inputType:'number',
+			  		inputType:'Number',
 			  		placeHolder:'请输入接待国际游客人数',
 			  		boxWidth:'6.86rem',
 			  		inputWidth:'4.26rem',
@@ -119,7 +119,7 @@
 				inputData5:{
 			  		id:3,
 			  		name:'营业收入(万元)',
-			  		inputType:'number',
+			  		inputType:'Number',
 			  		placeHolder:'请输入今日营业收入',
 			  		boxWidth:'6.86rem',
 			  		inputWidth:'4.26rem',
@@ -129,7 +129,7 @@
 				inputData6:{
 			  		id:3,
 			  		name:'平均房价(元)',
-			  		inputType:'number',
+			  		inputType:'Number',
 			  		placeHolder:'请输入平均房价',
 			  		boxWidth:'6.86rem',
 			  		inputWidth:'4.26rem',
@@ -139,7 +139,7 @@
 				inputData7:{
 			  		id:3,
 			  		name:'开房率(%)',
-			  		inputType:'number',
+			  		inputType:'Number',
 			  		placeHolder:'请输入开房率',
 			  		boxWidth:'6.86rem',
 			  		inputWidth:'4.26rem',
@@ -149,7 +149,7 @@
 				inputData8:{
 			  		id:3,
 			  		name:'实际出租客房(间)',
-			  		inputType:'number',
+			  		inputType:'Number',
 			  		placeHolder:'请输入实际出租客房',
 			  		boxWidth:'6.86rem',
 			  		inputWidth:'4.26rem',

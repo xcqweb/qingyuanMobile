@@ -10,6 +10,7 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "alloytouch": "^0.2.5",
     "axios": "^0.17.0",
     "byted-mobile-select": "^1.0.1",
     "fastclick": "^1.0.6",

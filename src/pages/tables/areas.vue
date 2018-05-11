@@ -143,13 +143,13 @@
 	export default{
 		data(){
 			return{
-				r1:'',
-				r2:'',
+				r1:1,
+				r2:0,
 				r3:'',
-				r4:'',
-				r5:'',
-				r6:'',
-				r7:'',
+				r4:1,
+				r5:0,
+				r6:1,
+				r7:0,
 				r8:'',
 				r9:'',
 				r10:'',
@@ -166,7 +166,7 @@
 			  	inputData1:{
 			  		id:3,
 			  		name:'接待总人数(万人次)',
-			  		inputType:'number',
+			  		inputType:'Number',
 			  		placeHolder:'请输入当日接待总人数',
 			  		boxWidth:'6.86rem',
 			  		inputWidth:'3.48rem',
@@ -176,7 +176,7 @@
 				inputData2:{
 			  		id:3,
 			  		name:'旅游总收入(亿)',
-			  		inputType:'number',
+			  		inputType:'Number',
 			  		placeHolder:'请输入当日旅游总收入',
 			  		boxWidth:'6.86rem',
 			  		inputWidth:'3.48rem',
@@ -186,7 +186,7 @@
 				inputData3:{
 			  		id:3,
 			  		name:'其中外汇收入(万美金)',
-			  		inputType:'number',
+			  		inputType:'Number',
 			  		placeHolder:'请输入当日美金收入',
 			  		boxWidth:'6.86rem',
 			  		inputWidth:'3.48rem',
@@ -196,7 +196,7 @@
 				inputData4:{
 			  		id:3,
 			  		name:'接待总人数(万人次)',
-			  		inputType:'number',
+			  		inputType:'Number',
 			  		placeHolder:'请输入接待总人数',
 			  		boxWidth:'6.86rem',
 			  		inputWidth:'3.48rem',
@@ -206,7 +206,7 @@
 				inputData5:{
 			  		id:3,
 			  		name:'旅游总收入(亿)',
-			  		inputType:'number',
+			  		inputType:'Number',
 			  		placeHolder:'请输入当日旅游总收入',
 			  		boxWidth:'6.86rem',
 			  		inputWidth:'3.48rem',
@@ -216,7 +216,7 @@
 				inputData6:{
 			  		id:3,
 			  		name:'接待总人数(万人次)',
-			  		inputType:'number',
+			  		inputType:'Number',
 			  		placeHolder:'请输入接待总人数',
 			  		boxWidth:'6.86rem',
 			  		inputWidth:'3.48rem',
@@ -226,7 +226,7 @@
 				inputData7:{
 			  		id:3,
 			  		name:'旅游总收入(亿)',
-			  		inputType:'number',
+			  		inputType:'Number',
 			  		placeHolder:'请输入当日旅游总收入',
 			  		boxWidth:'6.86rem',
 			  		inputWidth:'3.48rem',
@@ -236,7 +236,7 @@
 				inputData8:{
 			  		id:3,
 			  		name:'接待总人数(万人次)',
-			  		inputType:'number',
+			  		inputType:'Number',
 			  		placeHolder:'请输入过夜总人数',
 			  		boxWidth:'6.86rem',
 			  		inputWidth:'3.48rem',
@@ -246,7 +246,7 @@
 				inputData9:{
 			  		id:3,
 			  		name:'其中国内人数(万人次)',
-			  		inputType:'number',
+			  		inputType:'Number',
 			  		placeHolder:'请输入国内总人数',
 			  		boxWidth:'6.86rem',
 			  		inputWidth:'3.48rem',
@@ -256,7 +256,7 @@
 				inputData10:{
 			  		id:3,
 			  		name:'其中境外总人数(万人次)',
-			  		inputType:'number',
+			  		inputType:'Number',
 			  		placeHolder:'请输入境外总人数',
 			  		boxWidth:'6.86rem',
 			  		inputWidth:'3.48rem',
@@ -266,7 +266,7 @@
 				inputData11:{
 			  		id:3,
 			  		name:'直报系统中宾馆数(家)',
-			  		inputType:'number',
+			  		inputType:'Number',
 			  		placeHolder:'请输入直报系统中宾馆数',
 			  		boxWidth:'6.86rem',
 			  		inputWidth:'3.48rem',
@@ -276,7 +276,7 @@
 				inputData12:{
 			  		id:3,
 			  		name:'接待人数(万人)',
-			  		inputType:'number',
+			  		inputType:'Number',
 			  		placeHolder:'请输入接待人数',
 			  		boxWidth:'6.86rem',
 			  		inputWidth:'3.48rem',
@@ -286,7 +286,7 @@
 				inputData13:{
 			  		id:3,
 			  		name:'其他社会宾馆数(家)',
-			  		inputType:'number',
+			  		inputType:'Number',
 			  		placeHolder:'请输入其他社会宾馆数',
 			  		boxWidth:'6.86rem',
 			  		inputWidth:'3.48rem',
@@ -296,7 +296,7 @@
 				inputData14:{
 			  		id:3,
 			  		name:'接待人数(万人)',
-			  		inputType:'number',
+			  		inputType:'Number',
 			  		placeHolder:'请输入接待人数',
 			  		boxWidth:'6.86rem',
 			  		inputWidth:'3.48rem',
@@ -306,7 +306,7 @@
 				inputData15:{
 			  		id:3,
 			  		name:'接待总人数(万人)',
-			  		inputType:'number',
+			  		inputType:'Number',
 			  		placeHolder:'请输入接待总人数',
 			  		boxWidth:'6.86rem',
 			  		inputWidth:'3.48rem',
@@ -316,7 +316,7 @@
 				inputData16:{
 			  		id:3,
 			  		name:'其中国内人数(万人)',
-			  		inputType:'number',
+			  		inputType:'Number',
 			  		placeHolder:'请输入国内人数',
 			  		boxWidth:'6.86rem',
 			  		inputWidth:'3.48rem',
@@ -326,7 +326,7 @@
 				inputData17:{
 			  		id:3,
 			  		name:'其中境外人数(万人)',
-			  		inputType:'number',
+			  		inputType:'Number',
 			  		placeHolder:'请输入境外人数',
 			  		boxWidth:'6.86rem',
 			  		inputWidth:'3.48rem',
@@ -377,9 +377,9 @@
 				let dates = this.$store.state.commitDate.split('-');
 				let y = dates[0];
 				let md = dates[1]+'-'+dates[2]
-				this.t11 = (this.r2*10000/this.r1).toFixed(2)
-				this.t22 = (this.r5*10000/this.r4).toFixed(2)
-				this.t33 = (this.r7*10000/this.r6).toFixed(2)
+				this.t11 = (this.r2*10000/this.r1?this.r1:1).toFixed(2)
+				this.t22 = (this.r5*10000/this.r4?this.r4:1).toFixed(2)
+				this.t33 = (this.r7*10000/this.r6?this.r6:1).toFixed(2)
 		  		params.append('travelRecPersonSum',this.r1)
 		  		params.append('travelRecIncomeSum',this.r2)
 		  		params.append('travelRecOutIncome',this.r3)
@@ -415,22 +415,36 @@
 				this.sendData(params)
 			},
 			get1(val){
-				this.r1 = val
+				if(val!=0){
+					this.r4 = val
+				}else{
+					this.r4 =1
+				}
 			},
 			get2(val){
 				this.r2 = val
+//				this.r1 = 1
 			},
 			get3(val){
 				this.r3 = val
 			},
 			get4(val){
-				this.r4 = val
+				if(val!=0){
+					this.r4 = val
+				}else{
+					this.r4 =1
+				}
+				
 			},
 			get5(val){
 				this.r5 = val
 			},
 			get6(val){
-				this.r6 = val
+				if(val!=0){
+					this.r6 = val
+				}else{
+					this.r6 =1
+				}
 			},
 			get7(val){
 				this.r7 = val
@@ -497,20 +511,18 @@
 		},
 		computed:{
 			t1(){
-				this.r1 = this.r1?this.r1:1
-				let n = (this.r2*10000/this.r1).toFixed(2)
+				
+				let n = (Number(this.r2)*10000/Number(this.r1?this.r1:1)).toFixed(2)
 				return n
 				
 				
 			},
 			t2(){
-				this.r4 = this.r4?this.r4:1
-				let n = (this.r5*10000/this.r4).toFixed(2)
+				let n = (Number(this.r5)*10000/Number(this.r4?this.r4:1)).toFixed(2)
 					return n
 			},
 			t3(){
-				this.r6 = this.r6?this.r6:1
-				let n = (this.r7*10000/this.r6).toFixed(2)
+				let n = (Number(this.r7)*10000/Number(this.r6?this.r6:1)).toFixed(2)
 					return n
 			},
 			computedTitle(){

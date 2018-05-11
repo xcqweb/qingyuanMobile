@@ -37,19 +37,18 @@ let year = new Date().getFullYear()
   	
   	//查看功能
   	skimData:{
-  		usertype:'',
+  		usertype:'旅行社',
   		usercode:'',
   		date:'',
-  		dataYear:'',
-  		selDate:'',
+  		dataYear:year,
+  		selDate:'10-01',
   		dateIndex:0
   	},
   	//查看功能筛选条件
   	companyname:'旅行社',//单位类型
   	keys:'',//关键字
   	isLoading:false,//加载动画
-  	
-  	
+  	dateIndex:0,//第几天
 }
 
 

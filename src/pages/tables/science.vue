@@ -75,7 +75,7 @@
 				inputData2:{
 			  		id:2,
 			  		name:'联系电话',
-			  		inputType:'number',
+			  		inputType:'Number',
 			  		placeHolder:'请输入联系电话',
 			  		boxWidth:'3.26rem',
 			  		inputWidth:'2rem',
@@ -87,7 +87,7 @@
 				inputData3:{
 			  		id:3,
 			  		name:'当日景区接待人数(人天)',
-			  		inputType:'number',
+			  		inputType:'Number',
 			  		placeHolder:'请输入当日景区接待人数',
 			  		boxWidth:'6.86rem',
 			  		inputWidth:'3.48rem',
@@ -97,7 +97,7 @@
 				inputData4:{
 			  		id:3,
 			  		name:'去年同期人数(人天)',
-			  		inputType:'number',
+			  		inputType:'Number',
 			  		placeHolder:'请输入去年同期人数',
 			  		boxWidth:'6.86rem',
 			  		inputWidth:'3.48rem',
@@ -107,7 +107,7 @@
 				inputData5:{
 			  		id:3,
 			  		name:'当日景区收入(万元)',
-			  		inputType:'number',
+			  		inputType:'Number',
 			  		placeHolder:'请输入当日景区收入',
 			  		boxWidth:'6.86rem',
 			  		inputWidth:'3.48rem',
@@ -117,7 +117,7 @@
 				inputData6:{
 			  		id:3,
 			  		name:'去年同期数(万元)',
-			  		inputType:'number',
+			  		inputType:'Number',
 			  		placeHolder:'请输入去年同期收入',
 			  		boxWidth:'6.86rem',
 			  		inputWidth:'3.48rem',
@@ -139,6 +139,7 @@
 		watch:{
 			r4:function(val){
 				if(val===0){
+					alert(val)
 					this.r4 = 1
 				}
 			},
@@ -187,10 +188,10 @@
 				let params = new FormData()
 		  		params.append('recPerson',this.r3)
 		  		params.append('lastYearRecPerson',this.r4)
-		  		params.append('personPercent',Number(this.r3)*100/Number(this.r4))
+		  		params.append('personPercent',Number(this.r3)*100/Number(this.r4?this.r4:1))
 		  		params.append('income',this.r5)
 		  		params.append('lastYearIncome',this.r6)
-		  		params.append('incomePercent',Number(this.r5)*100/Number(this.r6))
+		  		params.append('incomePercent',Number(this.r5)*100/Number(this.r6?this.r6:1))
 		  		params.append('description',this.r7)
 		  		params.append('userName',users.companyname)
 		  		params.append('userCode',users.username)
@@ -208,15 +209,26 @@
 			},
 			get3(val){
 				this.r3 = val
+				this.r4 =1
 			},
 			get4(val){
-				this.r4 = val
+				if(val!=0){
+					this.r4 = val
+				}else{
+					this.r4 =1
+				}
+				
 			},
 			get5(val){
 				this.r5 = val
+				this.r6 = 1
 			},
 			get6(val){
-				this.r6 = val
+				if(val!=0){
+					this.r6 = val
+				}else{
+					this.r6 =1
+				}
 			},
 			get7(val){
 				this.r7 = val
@@ -252,13 +264,11 @@
 		},
 		computed:{
 			t1(){
-				this.r4 = this.r4?this.r4:1
-				let n = (Number(this.r3)*100/Number(this.r4)).toFixed(2)
+				let n = (Number(this.r3)*100/Number(this.r4?this.r4:1)).toFixed(2)
 					return n+"%"
 			},
 			t2(){
-				this.r6 = this.r6?this.r6:1
-				let n = (Number(this.r5)*100/Number(this.r6)).toFixed(2)
+				let n = (Number(this.r5)*100/Number(this.r6?this.r6:1)).toFixed(2)
 					return n+"%"
 			},
 			computedTitle(){

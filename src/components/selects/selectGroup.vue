@@ -70,12 +70,6 @@
 			}
 		},
 		created(){
-			this.$nextTick( () => {
-				//this.showList1()
-				//this.showList2()
-				//this.showList3()
-				//this.showList4()
-			})
 			
 		},
 		methods:{
@@ -253,6 +247,8 @@
 				return str
 			},
 			showList1(e){
+					e.stopPropagation();
+					e.preventDefault()
 					let _self = this
 					this.mySelect1 = new MobileSelect({
 				    trigger: '#dateBox1', 
@@ -279,6 +275,8 @@
 				})
 			},
 			showList2(e){
+				e.stopPropagation();
+				e.preventDefault()
 				let _self = this
 					this.mySelect2 = new MobileSelect({
 				    trigger: '#dateBox2', 
@@ -304,6 +302,8 @@
 				})
 			},
 			showList3(e){
+				e.stopPropagation();
+				e.preventDefault()
 				let _self = this
 					this.mySelect3 = new MobileSelect({
 				    trigger: '#dateBox3',
@@ -319,7 +319,7 @@
 					    	_self.$store.commit('COMMIT_YEAR',data[0])
 					    	_self.choose3 = data[0]
 				    		_self.dIndex3 = indexArr[0]-1
-				    		//console.log(_self.choose3 ,_self.choose4,_self.choose2)
+				    		
 					    	if(_self.choose2==='国庆'){
 				    			_self.$emit('cData',{usertype:_self.choose1,type:1,year:data[0],mDay:_self.switchconutry(_self.choose4),key:_self.choose5})
 				    		}else{
@@ -330,6 +330,8 @@
 				})
 			},
 			showList4(e){
+				e.stopPropagation();
+				e.preventDefault()
 				let _self = this
 					this.mySelect4 = new MobileSelect({
 				    trigger: '#dateBox4',
@@ -345,6 +347,7 @@
 					    	}
 					    	
 					    	_self.choose4 = data[0]
+					    	_self.$store.commit('COMMIT_DATEINDEX',_self.switchIndex(data[0]))
 				    		_self.dIndex4 = indexArr[0]-1
 					    	if(_self.choose2==='国庆'){
 					    		_self.$store.commit('COMMIT_DAY',{num:_self.switchconutry(data[0]),txt:data[0]})
@@ -379,6 +382,7 @@
 			this.dIndex2= this.$store.state.type===1?0:1;
 			this.dIndex3 = this.choose3-year;
 			this.dIndex4 = this.switchIndex(this.$store.state.days.txt)
+			this.$store.commit('COMMIT_DATEINDEX',this.dIndex4)
 		}
 	}
 </script>
@@ -452,6 +456,9 @@
 					opacity:0.6881;
 					z-index: 1;
 				}
+				&:active{
+				background-color: rgba(0, 0, 0, 0.42)
+			}
 		}
 		
 		.titles2{
@@ -505,6 +512,9 @@
 					opacity:0.6881;
 					z-index: 1;
 				}
+				&:active{
+				background-color: rgba(0, 0, 0, 0.42)
+			}
 		}
 		
 		.titles3{
@@ -558,6 +568,9 @@
 					opacity:0.6881;
 					z-index: 1;
 				}
+				&:active{
+				background-color: rgba(0, 0, 0, 0.42)
+			}
 		}
 		
 		.titles4{
@@ -612,6 +625,9 @@
 					opacity:0.6881;
 					z-index: 1;
 				}
+				&:active{
+				background-color: rgba(0, 0, 0, 0.42)
+			}
 		}
 		
 		.titles5{
@@ -656,7 +672,11 @@
 					background-size: 70%;
 					opacity:0.6881;
 					z-index: 1;
+					&:active{
+						background-color: rgba(0, 0, 0, 0.42)
+					}
 				}
+				
 		}
 	}
 </style>

@@ -39,7 +39,7 @@ const router = new Router({
 		      path:'golden',
 		      component:Goldenweek,
 		      name:'golden',
-		      meta:{requireAuth:true,keepAlive:true}
+		      meta:{requireAuth:true}
 		    },
 		    {
 		      path:'tourist',

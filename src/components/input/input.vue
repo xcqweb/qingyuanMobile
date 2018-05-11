@@ -106,6 +106,7 @@
 			border: none;
 			top: 0.04rem;
 			outline: none;
+			-webkit-appearance: none;
 			background-color: transparent;
 		}
 		input::-webkit-input-placeholder{
@@ -132,6 +133,7 @@
 		input{
 			position: absolute;
 			font-size: 0.24rem;
+			-webkit-appearance: none;
 			height: 0.5rem;
 			top: 0.04rem;
 			border: 0.03rem solid rgba(21,21,21,0.28);
@@ -171,6 +173,7 @@
 			outline: #1CB394;
 			padding-left: 0.16rem;
 			border-radius: 0.04rem;
+			-webkit-appearance: none;
 			background-color: transparent;
 		}
 		input::-webkit-input-placeholder{
@@ -203,6 +206,7 @@
 			outline: #1CB394;
 			padding-left: 0.16rem;
 			border-radius: 0.04rem;
+			-webkit-appearance: none;
 			background-color: transparent;
 		}
 		textarea::-webkit-input-placeholder{

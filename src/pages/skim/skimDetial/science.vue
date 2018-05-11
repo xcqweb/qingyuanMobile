@@ -66,7 +66,7 @@
 				inputData2:{
 			  		id:2,
 			  		name:'联系电话',
-			  		inputType:'number',
+			  		inputType:'Number',
 			  		placeHolder:'请输入联系电话',
 			  		boxWidth:'3.26rem',
 			  		inputWidth:'2rem',
@@ -79,7 +79,7 @@
 				inputData3:{
 			  		id:3,
 			  		name:'当日景区接待人数(人天)',
-			  		inputType:'number',
+			  		inputType:'Number',
 			  		placeHolder:'请输入当日景区接待人数',
 			  		boxWidth:'6.86rem',
 			  		inputWidth:'3.48rem',
@@ -91,7 +91,7 @@
 				inputData4:{
 			  		id:3,
 			  		name:'去年同期人数(人天)',
-			  		inputType:'number',
+			  		inputType:'Number',
 			  		placeHolder:'请输入去年同期人数',
 			  		boxWidth:'6.86rem',
 			  		inputWidth:'3.48rem',
@@ -103,7 +103,7 @@
 				inputData5:{
 			  		id:3,
 			  		name:'当日景区收入(万元)',
-			  		inputType:'number',
+			  		inputType:'Number',
 			  		placeHolder:'请输入当日景区收入',
 			  		boxWidth:'6.86rem',
 			  		inputWidth:'3.48rem',
@@ -115,7 +115,7 @@
 				inputData6:{
 			  		id:3,
 			  		name:'去年同期数(万元)',
-			  		inputType:'number',
+			  		inputType:'Number',
 			  		placeHolder:'请输入去年同期收入',
 			  		boxWidth:'6.86rem',
 			  		inputWidth:'3.48rem',

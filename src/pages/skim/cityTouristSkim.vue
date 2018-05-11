@@ -6,12 +6,9 @@
 				<p @click="tab(false)" :class="{btmline:!status,active:!status}">报表明细</p>
 			</div>
 		</div>
-		<keep-alive>
-			<component 
-				:is='comcomponents2'
+			<select-group
 				@cData='getChooseData'
-			></component>
-		</keep-alive>
+			></select-group>
 		<keep-alive>
 			<component 
 				:is='comcomponents'
@@ -36,12 +33,6 @@
 			 comcomponents(){
 			 	return this.status ? 'manageSkim':'detialSkim'
 			 },
-			 comcomponents2(){
-			 	return 'selectGroup'
-			 }
-		},
-		mounted(){
-			//console.log(this.choseData)
 		},
 		methods:{
 			tab(data){
@@ -50,7 +41,6 @@
 			//获取筛选条件
 			getChooseData(data){
 				this.choseData = data
-				console.log(this.choseData)
 			}
 		}
 	}

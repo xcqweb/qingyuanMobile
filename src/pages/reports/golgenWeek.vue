@@ -67,7 +67,6 @@
 
 <script>
 	import Bus from '@/common/bus'
-	import router from '@/router'
 	import calendarTransform from '@/plugin/calendarTransform.js'
 	let date = new Date();
 	let year = date.getFullYear();
