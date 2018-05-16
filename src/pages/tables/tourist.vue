@@ -318,7 +318,7 @@
 							this.$store.commit('COMMIT_TIPTXT',{status:false,txt:'上报成功!',err:false})
 						},1000)
 						window.setTimeout(() => {
-							router.push('/golden')
+							router.push('golden')
 						},2000)
 					}
 				})
@@ -359,7 +359,7 @@
 			});
 			
 			Bus.$on('checkData',() => {
-				if(!this.r1 || !this.r2 ||!this.r3||!this.r4||!this.r5||!this.r6||!this.r7||!this.r8||!this.r9||!this.r10||!this.r11||!this.r12||!this.r13||!this.r14){
+				if(this.r1==='' || this.r2==='' ||this.r3===''||this.r4===''||this.r5===''||this.r6===''||this.r7===''||this.r8===''||this.r9===''||this.r10===''||this.r11===''||this.r12===''||this.r13===''||this.r14===''){
 					this.$store.commit('COMMIT_TIPTXT',{status:true,txt:'填写未完成!',err:true})
 						if(timer){
 							clearTimeout(timer)

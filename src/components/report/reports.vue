@@ -72,7 +72,7 @@
 		color: #1CB394;
 		margin: 0.16rem auto;
 		span:active{
-			background-color: rgba(0, 0, 0, 0.42)
+			background-color: rgba(0, 0, 0, 0.2)
 		}
 	}
 }

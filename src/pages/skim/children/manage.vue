@@ -249,6 +249,9 @@
 					&:active{
 						background-color: rgba(0, 0, 0, 0.3)
 					}
+					-webkit-user-select: none;
+					-ms-user-select: none;
+					-moz-user-select: none;
 				}
 				.btn2{
 					position: absolute;
@@ -266,6 +269,9 @@
 					&:active{
 						background-color: rgba(0, 0, 0, 0.42)
 					}
+					-webkit-user-select: none;
+					-ms-user-select: none;
+					-moz-user-select: none;
 				}
 			}
 		}

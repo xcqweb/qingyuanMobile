@@ -79,7 +79,7 @@
 	}
 </script>
 
-<style scoped lang='less'>
+<style scoped lang="less">
 .box9{
 	width: 100vw;
 	height: 100vh;
@@ -111,20 +111,26 @@
 			p{
 				color: #686868;
 				line-height: 0.44rem;
+				-webkit-user-select: none;
+				-ms-user-select: none;
+				-moz-user-select: none;
 			}
 		}
 		.bottom{
 			display: flex;
 			flex-direction: row;
 			text-align: center;
-			line-height: 0.92rem;
+			line-height: 0.94rem;
 			
 			.confirm{
 				flex: 1;
 				color: #686868;
 				&:active{
-					background-color: rgba(0, 0, 0, 0.42)
+					background-color: rgba(0, 0, 0, 0.2)
 				}
+				-webkit-user-select: none;
+				-ms-user-select: none;
+				-moz-user-select: none;
 			}
 			.confirmt{
 				flex: 1;
@@ -132,8 +138,11 @@
 				font-size: 0.32rem;
 				font-weight: bold;
 				&:active{
-					background-color: rgba(0, 0, 0, 0.42)
+					background-color: rgba(0, 0, 0, 0.2)
 				}
+				-webkit-user-select: none;
+				-ms-user-select: none;
+				-moz-user-select: none;
 			}
 			.cancel:after{
 				content: '';
@@ -146,13 +155,19 @@
 				&:active{
 					background-color: rgba(0, 0, 0, 0.42)
 				}
+				-webkit-user-select: none;
+				-ms-user-select: none;
+				-moz-user-select: none;
 			}
 			.cancel{
 				flex: 1;
 				color: #FB5050;
 				&:active{
-					background-color: rgba(0, 0, 0, 0.42)
+					background-color: rgba(0, 0, 0, 0.2)
 				}
+				-webkit-user-select: none;
+				-ms-user-select: none;
+				-moz-user-select: none;
 			}
 		}
 	}

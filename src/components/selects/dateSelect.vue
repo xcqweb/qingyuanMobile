@@ -74,6 +74,9 @@
 		line-height: 0.5rem;
 		margin-left: 0.2rem;
 		font-weight: bold;
+		-webkit-user-select: none;
+		-ms-user-select: none;
+		-moz-user-select: none;
 	}
 	.selectBox{
 		position: absolute;

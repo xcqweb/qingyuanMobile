@@ -6,7 +6,7 @@ commitDate:'', //上报日期
   	chooseYear:year, //上报年份
   	days:{
   		num:'10-01',
-  		txt:'前一天'
+  		txt:'第一天'
   	}, //黄金周第几天
   	alert:{
   		tips:'',

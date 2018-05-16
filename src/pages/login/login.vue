@@ -83,6 +83,17 @@ export default {
   	getData(){
   		this.$store.commit('COMMIT_LOADING',true)
   		this.$axios.get(API_URL+'/mobile/interface/login/html').then( r => {
+  			if(!r){
+						this.$store.commit('COMMIT_LOADING',false)
+						this.$store.commit('COMMIT_TIPTXT',{status:true,txt:'加载失败!',err:true})
+						if(timer){
+							clearTimeout(timer)
+						}
+						var timer = setTimeout ( () => {
+							this.$store.commit('COMMIT_TIPTXT',{status:false,txt:'加载失败!',err:true})
+						},2000)
+  				return
+  			}
   			if(r.data.code==='200' || r.data.code===200){
   				this.$store.commit('COMMIT_LOADING',false)
   				let re = r.data.data;

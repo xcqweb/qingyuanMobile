@@ -240,7 +240,7 @@
 			})
 			
 			Bus.$on('checkData',() => {
-				if(!this.r3||!this.r4||!this.r5||!this.r6||!this.r7||!this.name||!this.phone){
+				if(this.r3==='' || this.r4==='' || this.r5==='' || this.r6==='' || this.r7==='' || this.name==='' || this.phone===''){
 					this.$store.commit('COMMIT_TIPTXT',{status:true,txt:'填写未完成!',err:true})
 						if(timer){
 							clearTimeout(timer)

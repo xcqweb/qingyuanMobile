@@ -185,92 +185,92 @@
 						<td colspan="3">景区接待国外人数(万人)</td>
 					</tr>
 					<tr class="subt">
-						<td>{{$store.state.chooseYear-1}}前{{comDay}}天</td>
-						<td>{{$store.state.chooseYear}}前{{comDay}}天</td>
+						<td>{{$store.state.chooseYear-1}}第{{comDay}}天</td>
+						<td>{{$store.state.chooseYear}}第{{comDay}}天</td>
 						<td>同比%</td>
 						
-						<td>{{$store.state.chooseYear-1}}前{{comDay}}天</td>
-						<td>{{$store.state.chooseYear}}前{{comDay}}天</td>
+						<td>{{$store.state.chooseYear-1}}第{{comDay}}天</td>
+						<td>{{$store.state.chooseYear}}第{{comDay}}天</td>
 						<td>同比%</td>
 						
-						<td>{{$store.state.chooseYear-1}}前{{comDay}}天</td>
-						<td>{{$store.state.chooseYear}}前{{comDay}}天</td>
+						<td>{{$store.state.chooseYear-1}}第{{comDay}}天</td>
+						<td>{{$store.state.chooseYear}}第{{comDay}}天</td>
 						<td>同比%</td>
 						
-						<td>{{$store.state.chooseYear-1}}前{{comDay}}天</td>
-						<td>{{$store.state.chooseYear}}前{{comDay}}天</td>
+						<td>{{$store.state.chooseYear-1}}第{{comDay}}天</td>
+						<td>{{$store.state.chooseYear}}第{{comDay}}天</td>
 						<td>同比%</td>
 						
-						<td>{{$store.state.chooseYear-1}}前{{comDay}}天</td>
-						<td>{{$store.state.chooseYear}}前{{comDay}}天</td>
+						<td>{{$store.state.chooseYear-1}}第{{comDay}}天</td>
+						<td>{{$store.state.chooseYear}}第{{comDay}}天</td>
 						<td>同比%</td>
 						
-						<td>{{$store.state.chooseYear-1}}前{{comDay}}天</td>
-						<td>{{$store.state.chooseYear}}前{{comDay}}天</td>
+						<td>{{$store.state.chooseYear-1}}第{{comDay}}天</td>
+						<td>{{$store.state.chooseYear}}第{{comDay}}天</td>
 						<td>同比%</td>
 						
-						<td>{{$store.state.chooseYear-1}}前{{comDay}}天</td>
-						<td>{{$store.state.chooseYear}}前{{comDay}}天</td>
+						<td>{{$store.state.chooseYear-1}}第{{comDay}}天</td>
+						<td>{{$store.state.chooseYear}}第{{comDay}}天</td>
 						<td>同比%</td>
 						
-						<td>{{$store.state.chooseYear-1}}前{{comDay}}天</td>
-						<td>{{$store.state.chooseYear}}前{{comDay}}天</td>
+						<td>{{$store.state.chooseYear-1}}第{{comDay}}天</td>
+						<td>{{$store.state.chooseYear}}第{{comDay}}天</td>
 						<td>同比%</td>
 						
-						<td>{{$store.state.chooseYear-1}}前{{comDay}}天</td>
-						<td>{{$store.state.chooseYear}}前{{comDay}}天</td>
+						<td>{{$store.state.chooseYear-1}}第{{comDay}}天</td>
+						<td>{{$store.state.chooseYear}}第{{comDay}}天</td>
 						<td>同比%</td>
 						
-						<td>{{$store.state.chooseYear-1}}前{{comDay}}天</td>
-						<td>{{$store.state.chooseYear}}前{{comDay}}天</td>
+						<td>{{$store.state.chooseYear-1}}第{{comDay}}天</td>
+						<td>{{$store.state.chooseYear}}第{{comDay}}天</td>
 						<td>同比%</td>
 						
-						<td>{{$store.state.chooseYear-1}}前{{comDay}}天</td>
-						<td>{{$store.state.chooseYear}}前{{comDay}}天</td>
+						<td>{{$store.state.chooseYear-1}}第{{comDay}}天</td>
+						<td>{{$store.state.chooseYear}}第{{comDay}}天</td>
 						<td>同比%</td>
 						
-						<td>{{$store.state.chooseYear-1}}前{{comDay}}天</td>
-						<td>{{$store.state.chooseYear}}前{{comDay}}天</td>
+						<td>{{$store.state.chooseYear-1}}第{{comDay}}天</td>
+						<td>{{$store.state.chooseYear}}第{{comDay}}天</td>
 						<td>同比%</td>
 						
-						<td>{{$store.state.chooseYear-1}}前{{comDay}}天</td>
-						<td>{{$store.state.chooseYear}}前{{comDay}}天</td>
+						<td>{{$store.state.chooseYear-1}}第{{comDay}}天</td>
+						<td>{{$store.state.chooseYear}}第{{comDay}}天</td>
 						<td>同比%</td>
 						
-						<td>{{$store.state.chooseYear-1}}前{{comDay}}天</td>
-						<td>{{$store.state.chooseYear}}前{{comDay}}天</td>
+						<td>{{$store.state.chooseYear-1}}第{{comDay}}天</td>
+						<td>{{$store.state.chooseYear}}第{{comDay}}天</td>
 						<td>同比%</td>
 						
-						<td>{{$store.state.chooseYear-1}}前{{comDay}}天</td>
-						<td>{{$store.state.chooseYear}}前{{comDay}}天</td>
+						<td>{{$store.state.chooseYear-1}}第{{comDay}}天</td>
+						<td>{{$store.state.chooseYear}}第{{comDay}}天</td>
 						<td>同比%</td>
 						
-						<td>{{$store.state.chooseYear-1}}前{{comDay}}天</td>
-						<td>{{$store.state.chooseYear}}前{{comDay}}天</td>
+						<td>{{$store.state.chooseYear-1}}第{{comDay}}天</td>
+						<td>{{$store.state.chooseYear}}第{{comDay}}天</td>
 						<td>同比%</td>
 						
-						<td>{{$store.state.chooseYear-1}}前{{comDay}}天</td>
-						<td>{{$store.state.chooseYear}}前{{comDay}}天</td>
+						<td>{{$store.state.chooseYear-1}}第{{comDay}}天</td>
+						<td>{{$store.state.chooseYear}}第{{comDay}}天</td>
 						<td>同比%</td>
 						
-						<td>{{$store.state.chooseYear-1}}前{{comDay}}天</td>
-						<td>{{$store.state.chooseYear}}前{{comDay}}天</td>
+						<td>{{$store.state.chooseYear-1}}第{{comDay}}天</td>
+						<td>{{$store.state.chooseYear}}第{{comDay}}天</td>
 						<td>同比%</td>
 						
-						<td>{{$store.state.chooseYear-1}}前{{comDay}}天</td>
-						<td>{{$store.state.chooseYear}}前{{comDay}}天</td>
+						<td>{{$store.state.chooseYear-1}}第{{comDay}}天</td>
+						<td>{{$store.state.chooseYear}}第{{comDay}}天</td>
 						<td>同比%</td>
 						
-						<td>{{$store.state.chooseYear-1}}前{{comDay}}天</td>
-						<td>{{$store.state.chooseYear}}前{{comDay}}天</td>
+						<td>{{$store.state.chooseYear-1}}第{{comDay}}天</td>
+						<td>{{$store.state.chooseYear}}第{{comDay}}天</td>
 						<td>同比%</td>
 						
-						<td>{{$store.state.chooseYear-1}}前{{comDay}}天</td>
-						<td>{{$store.state.chooseYear}}前{{comDay}}天</td>
+						<td>{{$store.state.chooseYear-1}}第{{comDay}}天</td>
+						<td>{{$store.state.chooseYear}}第{{comDay}}天</td>
 						<td>同比%</td>
 						
-						<td>{{$store.state.chooseYear-1}}前{{comDay}}天</td>
-						<td>{{$store.state.chooseYear}}前{{comDay}}天</td>
+						<td>{{$store.state.chooseYear-1}}第{{comDay}}天</td>
+						<td>{{$store.state.chooseYear}}第{{comDay}}天</td>
 						<td>同比%</td>
 					</tr>
 				</table>
