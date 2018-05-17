@@ -111,7 +111,7 @@
 			
 			<div class="topTitlefi">
 				<span></span>
-				<p>酒店和社会旅馆</p>
+				<p>景(区)点</p>
 			</div>
 			<div class="con4">
 				<inputs
@@ -487,8 +487,6 @@
 			
 			Bus.$on('checkData',() => {
 				if(this.r1===''||this.r2===''||this.r3===''||this.r4===''||this.r5===''||this.r6===''||this.r7===''||this.r8===''||this.r9===''||this.r10===''||this.r11===''||this.r12===''||this.r13===''||this.r14==='' || this.r15==='' || this.r16==='' || this.r17===''){
-					alert(2121)
-					console.log(this.r1,this.r2,this.r3,this.r4,this.r5,this.r6,this.r7,this.r8,this.r9,this.r10,this.r11,this.r12,this.r13,this.r14,this.r15,this.r16,this.r17)
 					//填写未完成时记录状态
 					this.$store.commit('COMMIT_TIPTXT',{status:true,txt:'填写未完成!',err:true})
 					if(timer){

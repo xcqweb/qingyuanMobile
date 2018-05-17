@@ -327,7 +327,7 @@
 						//console.log(r.data.data.list)
 						this.status = true
 						this.$store.commit('COMMIT_LOADING',false)
-						if(!r.data.data.list){
+						if(!r.data.data.list || (r.data.data.list.rows?r.data.data.list.rows.length===0:!r.data.data.list)){
 							this.status = false
 							return
 						}
@@ -489,28 +489,29 @@
 		},
 		computed:{
 			comDay(){
-				switch(this.$store.state.dateIndex+1){
-					case 1:
-					return '一';
-					case 2:
-					return '二';
-					case 3:
-					return '三';
-					case 4:
-					return '四';
-					case 5:
-					return '五';
-					case 6:
-					return '六';
-					case 7:
-					return '七';
-					case 8:
-					return '八';
-					case 9:
-					return '九';
-					case 10:
-					return '十';
-				}
+				return this.$store.state.dateIndex+1
+//				switch(this.$store.state.dateIndex+1){
+//					case 1:
+//					return '一';
+//					case 2:
+//					return '二';
+//					case 3:
+//					return '三';
+//					case 4:
+//					return '四';
+//					case 5:
+//					return '五';
+//					case 6:
+//					return '六';
+//					case 7:
+//					return '七';
+//					case 8:
+//					return '八';
+//					case 9:
+//					return '九';
+//					case 10:
+//					return '十';
+//				}
 			},
 			comStyle(){ //安卓 苹果样式兼容 
 				let w = document.body.clientWidth
@@ -622,7 +623,7 @@
 		float: left;
 		overflow-x: scroll;
 		-webkit-overflow-scrolling: touch;
-		width: 60vw;
+		width: 57vw;
 		box-sizing: border-box;
 		.title{
 			min-width: 39rem;
@@ -752,7 +753,7 @@
 		float: left;
 		overflow-x: scroll;
 		-webkit-overflow-scrolling: touch;
-		width: 56vw;
+		width: 52vw;
 		box-sizing: border-box;
 		.title{
 			min-width: 18rem;
@@ -878,7 +879,7 @@
 	.r{
 		margin-top: 0.52rem;
 		margin-left: -1px;
-		width: 76vw;
+		width: 72vw;
 		float: left;
 		overflow-x: scroll;
 		-webkit-overflow-scrolling: touch;

@@ -30,7 +30,7 @@
 		
 		<div class="titles5">关键字</div>
 		<div class="selectBox5">
-			<input class="title" id="dateBox5" v-model="choose5"/>
+			<input type="text" class="title" id="dateBox5" v-model="choose5"/>
 			<span class="search" @click='showList5($event)'></span>
 		</div>
 		<div class="toast"></div>
@@ -53,11 +53,11 @@
 			return{
 				DataList1:['旅行社','宾馆酒店','景点','重点景区','各区旅游局'],
 				DataList2:['国庆','春节'],
-				DataList4:['第一天','第二天','第三天','第四天','第五天','第六天','第七天','第八天','第九天','第十天'],
+				DataList4:['第1天','第2天','第3天','第4天','第5天','第6天','第7天','第8天','第9天','第10天'],
 				choose1:'旅行社',
 				choose2:'国庆',
 				choose3:'2018',
-				choose4:'第一天',
+				choose4:'第1天',
 				choose5:'',
 				dIndex1:0,
 				dIndex2:0,
@@ -76,7 +76,7 @@
 			switchDate(val){
 				let str ='';
 				switch(val){
-					case '第一天':
+					case '第1天':
 					let infos1 = calendarTransform.lunar2solar(this.choose3-1,12,30,false)
 					if(infos1===-1 || infos1==='-1'){
 						infos1 = calendarTransform.lunar2solar(this.choose3-1,12,29,false)
@@ -84,47 +84,47 @@
 					str =  `${infos1.cMonth}-${infos1.cDay}`;
 					break;
 					
-					case '第二天':
+					case '第2天':
 					let infos2 = calendarTransform.lunar2solar(this.choose3,1,1,false)
 					str =  `${infos2.cMonth}-${infos2.cDay}`;
 					break;
 					
-					case '第三天':
+					case '第3天':
 					let infos3 = calendarTransform.lunar2solar(this.choose3,1,2,false)
 					str =  `${infos3.cMonth}-${infos3.cDay}`;
 					break;
 					
-					case '第四天':
+					case '第4天':
 					let infos4 = calendarTransform.lunar2solar(this.choose3,1,3,false)
 					str =  `${infos4.cMonth}-${infos4.cDay}`;
 					break;
 					
-					case '第五天':
+					case '第5天':
 					let infos5 = calendarTransform.lunar2solar(this.choose3,1,4,false)
 					str =  `${infos5.cMonth}-${infos5.cDay}`;
 					break;
 					
-					case '第六天':
+					case '第6天':
 					let infos6 = calendarTransform.lunar2solar(this.choose3,1,5,false)
 					str =  `${infos6.cMonth}-${infos6.cDay}`;
 					break;
 					
-					case '第七天':
+					case '第7天':
 					let infos7 = calendarTransform.lunar2solar(this.choose3,1,6,false)
 					str =  `${infos7.cMonth}-${infos7.cDay}`;
 					break;
 					
-					case '第八天':
+					case '第8天':
 					let infos8 = calendarTransform.lunar2solar(this.choose3,1,7,false)
 					str =  `${infos8.cMonth}-${infos8.cDay}`;
 					break;
 					
-					case '第九天':
+					case '第9天':
 					let infos9 = calendarTransform.lunar2solar(this.choose3,1,8,false)
 					str =  `${infos10.cMonth}-${infos9.cDay}`;
 					break;
 					
-					case '第十天':
+					case '第10天':
 					let infos10 = calendarTransform.lunar2solar(this.choose3,1,9,false)
 					str =  `${infos10.cMonth}-${infos10.cDay}`;
 					break;
@@ -134,43 +134,43 @@
 			switchconutry(val){
 				let str ='';
 				switch(val){
-					case '第一天':
+					case '第1天':
 					str =  '10-01';
 					break;
 					
-					case '第二天':
+					case '第2天':
 					str =  '10-02';
 					break;
 					
-					case '第三天':
+					case '第3天':
 					str =  '10-03';
 					break;
 					
-					case '第四天':
+					case '第4天':
 					str =  '10-04';
 					break;
 					
-					case '第五天':
+					case '第5天':
 					str =  '10-05';
 					break;
 					
-					case '第六天':
+					case '第6天':
 					str =  '10-06';
 					break;
 					
-					case '第七天':
+					case '第7天':
 					str =  '10-07';
 					break;
 					
-					case '第八天':
+					case '第8天':
 					str =  '10-08';
 					break;
 					
-					case '第九天':
+					case '第9天':
 					str =  '10-09';
 					break;
 					
-					case '第十天':
+					case '第10天':
 					str =  '10-10';
 					break;
 				}
@@ -179,43 +179,43 @@
 			switchIndex(val){
 				let str =0;
 				switch(val){
-					case '第一天':
+					case '第1天':
 					str =  0;
 					break;
 					
-					case '第二天':
+					case '第2天':
 					str =  1;
 					break;
 					
-					case '第三天':
+					case '第3天':
 					str =  2;
 					break;
 					
-					case '第四天':
+					case '第4天':
 					str =  3;
 					break;
 					
-					case '第五天':
+					case '第5天':
 					str =  4;
 					break;
 					
-					case '第六天':
+					case '第6天':
 					str =  5;
 					break;
 					
-					case '第七天':
+					case '第7天':
 					str =  6;
 					break;
 					
-					case '第八天':
+					case '第8天':
 					str =  7;
 					break;
 					
-					case '第九天':
+					case '第9天':
 					str =  8;
 					break;
 					
-					case '第十天':
+					case '第10天':
 					str =  9;
 					break;
 				}
@@ -293,9 +293,12 @@
 				    		_self.dIndex2 = indexArr[0]-1
 					    	if(data[0]==='国庆'){
 					    		_self.$store.commit('COMMIT_TYPE',1)
+					    		_self.$store.commit('COMMIT_DAY',{num:_self.switchconutry(_self.choose4),txt:_self.choose4})
 				    			_self.$emit('cData',{usertype:_self.choose1,type:1,year:_self.choose3,mDay:_self.switchconutry(_self.choose4),key:_self.choose5})
 				    		}else{
 				    			_self.$store.commit('COMMIT_TYPE',2)
+					    		_self.$store.commit('COMMIT_DAY',{num:_self.switchDate(_self.choose4),txt:_self.choose4})
+				    			
 				    			_self.$emit('cData',{usertype:_self.choose1,type:2,year:_self.choose3,mDay:_self.switchDate(_self.choose4),key:_self.choose5})
 				    		}
 				      } 
@@ -618,7 +621,7 @@
 				line-height: 0.5rem;
 				font-size: 0.24rem;
 				text-align: left;
-				padding-left: 0.3rem;
+				padding-left: 0.4rem;
 				position: absolute;
 				z-index: 100;
 				box-sizing: border-box;
@@ -686,9 +689,6 @@
 				position: absolute;
 				border: none;
 				outline: none;
-				-webkit-user-select: none;
-				-ms-user-select: none;
-				-moz-user-select: none;
 			}
 			.search{
 					position: absolute;
