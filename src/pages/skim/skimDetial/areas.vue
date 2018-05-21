@@ -97,7 +97,7 @@
 			
 			<div class="topTitlefi">
 				<span></span>
-				<p>酒店和社会旅馆</p>
+				<p>景(区)点</p>
 			</div>
 			<div class="con4">
 				<inputs
