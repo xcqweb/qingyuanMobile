@@ -51,6 +51,7 @@
 					this.$store.commit('COMMIT_EXIT',false)
 					window.sessionStorage.removeItem('userInfo')
 					window.sessionStorage.removeItem('users')
+					setCookie('users',getCookie('users'),-1)
 					this.$store.commit('COMMIT_ShOWINFO',false)
 					Bus.$emit('hideUser')
 					router.replace('login')

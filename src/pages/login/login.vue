@@ -7,11 +7,11 @@
     	<div class="loginForm">
     			<p class="user" :class="{error:isError}">
     				<label for="user" class="icon"></label>
-    				<input class="txt" type="text" id="user" value="用户名" v-model="loginInfo.username" @focus="focu"/>
+    				<input class="txt" type="text" id="user" value="用户名" v-model="loginInfo.username" @focus="focu" autocomplete="off"/>
     			</p>
     			<p class="psw"  :class="{error:isError}">
     				<label for="psw" class="icon"></label>
-    				<input class="txt" type="password" id="psw" v-model="loginInfo.password" @focus="focu" @keyup.enter="login($event)"/>
+    				<input class="txt" type="password" id="psw" v-model="loginInfo.password" @focus="focu" @keyup.enter="login($event)" autocomplete="off"/>
     			</p>
     			<!--<p class="getPsw">
     				<label for="rio" class="txt">记住密码</label>
@@ -154,8 +154,17 @@ export default {
   				
   				this.$store.commit('COMMIT_LOADING',false)
 					this.$store.commit('COMMIT_USERINFO',{companyname:reData.companyName,usertype:reData.userType})				
-		   window.sessionStorage.setItem('users',JSON.stringify({'username':reData.userName,'usertype':reData.userType,'companyname':reData.companyName}))
+		   
+		   if(this.ver){
+		   	setCookie('users',JSON.stringify({'username':reData.userName,'usertype':reData.userType,'companyname':reData.companyName}))
+		   }else{
+		   	 window.sessionStorage.setItem('users',JSON.stringify({'username':reData.userName,'usertype':reData.userType,'companyname':reData.companyName}))
+		   }
+		   
+  		
 		   	router.replace({path:'/'})
+		   	
+		   	
 		   	
   			}else{
   				this.isError = true
@@ -195,7 +204,7 @@ export default {
   	this.getData()
   },
   mounted(){
-  	this.ver = /version\/9.0/i.test(navigator.userAgent)
+  	this.ver = /iphone\ OS\ 9\_3\_5/i.test(navigator.userAgent)
   },
  
 }
@@ -344,8 +353,6 @@ export default {
 			height: 0.7rem;
 			left: 0.5rem;
 			bottom: 0.86rem;
-			color: #898989;
-		
 			.btn{
 				display: block;
 				position: absolute;
@@ -358,7 +365,6 @@ export default {
 				text-align: center;
 				line-height: 0.78rem;
 				height: 0.78rem;
-				color: #898989;
 				font-size: 0.3rem;
 				background: linear-gradient(to right, #5EC240, #7FD826);
 				border: none;

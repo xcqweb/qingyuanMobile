@@ -9,6 +9,9 @@ import rem  from '@/common/rem.js'
 import store from '@/vuex/index'
 import instance from '@/http'
 import FastClick from 'fastclick'
+import {setCookie,getCookie} from '@/common/cookie'
+
+
 
 window.onload = function(){
 	FastClick.attach(document.body);
@@ -23,7 +26,8 @@ if(process.env.NODE_ENV==='development'){
 }
 
  
-
+window.setCookie = setCookie
+window.getCookie = getCookie
 Vue.prototype.$axios = instance; 
 window.axios = instance
 Vue.config.productionTip = false

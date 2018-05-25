@@ -16,26 +16,26 @@
 		<!--类型一-->
 		<div class="one" :style="{width:inputData.boxWidth}" :class="{outlines:isOutline}" v-show="inputData.id===1">
 			<label for="Oinput">{{inputData.name}}</label>
-			<input :type="inputData.inputType" id="Oinput" :style="{width:inputData.inputWidth,marginLeft:inputData.maright}" @focus="foc" @blur="bl" :placeholder="inputData.placeHolder" v-model="val" @keyup="transform" v-if="!inputData.disable"/>
-			<input :type="inputData.inputType" id="Oinput" :style="{width:inputData.inputWidth,marginLeft:inputData.maright}" v-model="inputData.num" readonly="readonly" v-else/>
+			<input type="number" id="Oinput" :style="{width:inputData.inputWidth,marginLeft:inputData.maright}" @focus="foc" @blur="bl" :placeholder="inputData.placeHolder" v-model="val" @keyup="transform" v-if="!inputData.disable"/>
+			<input type="number" id="Oinput" :style="{width:inputData.inputWidth,marginLeft:inputData.maright}" v-model="inputData.num" readonly="readonly" v-else/>
 		</div>
 		<!--.类型二文本-->
 		<div class="two" :style="{width:inputData.boxWidth}" v-show="inputData.id===2">
 			<label for="Oinput2" :style="{left:inputData.left}">{{inputData.name}}</label>
-			<input :type="inputData.inputType" id="Oinput2" :style="{width:inputData.inputWidth,marginLeft:inputData.maright,right:inputData.right}" @focus="foc" @blur="bl" :placeholder="inputData.placeHolder" v-model="val" v-if="!inputData.disable" />
-			<input :type="inputData.inputType" id="Oinput2" :style="{width:inputData.inputWidth,marginLeft:inputData.maright,right:inputData.right}" v-model="inputData.num" v-else readonly="readonly"/>
+			<input type="number" id="Oinput2" :style="{width:inputData.inputWidth,marginLeft:inputData.maright,right:inputData.right}" @focus="foc" @blur="bl" :placeholder="inputData.placeHolder" v-model="val" v-if="!inputData.disable" />
+			<input type="number" id="Oinput2" :style="{width:inputData.inputWidth,marginLeft:inputData.maright,right:inputData.right}" v-model="inputData.num" v-else readonly="readonly"/>
 		</div>
 		
 		<div class="three" :style="{width:inputData.boxWidth}" v-show="inputData.id===3">
 			<label for="Oinput2">{{inputData.name}}</label>
-			<input :type="inputData.inputType" id="Oinput2" :style="{width:inputData.inputWidth,marginLeft:inputData.maright}" @focus="foc" @blur="bl" :placeholder="inputData.placeHolder" v-model="val" @keyup="transform" v-if="!inputData.disable" />
-			<input :type="inputData.inputType" id="Oinput2" :style="{width:inputData.inputWidth,marginLeft:inputData.maright}" v-model="inputData.num" readonly="readonly"  v-else />
+			<input type="number" id="Oinput2" :style="{width:inputData.inputWidth,marginLeft:inputData.maright}" @focus="foc" @blur="bl" :placeholder="inputData.placeHolder" v-model="val" @keyup="transform" v-if="!inputData.disable" />
+			<input type="number" id="Oinput2" :style="{width:inputData.inputWidth,marginLeft:inputData.maright}" v-model="inputData.num" readonly="readonly"  v-else />
 		</div>
 		
 		<div class="four" :style="{width:inputData.boxWidth}" v-show="inputData.id===4">
 			<label for="Oinput2">{{inputData.name}}</label>
-			<textarea :type="inputData.inputType" id="Oinput2" :style="{width:inputData.inputWidth,marginLeft:inputData.maright}" @focus="foc" @blur="bl" :placeholder="inputData.placeHolder" v-model="val" v-if="!inputData.disable"></textarea>
-			<textarea :type="inputData.inputType" id="Oinput2" :style="{width:inputData.inputWidth,marginLeft:inputData.maright}" readonly="readonly" v-model="inputData.num" v-else></textarea>
+			<textarea  id="Oinput2" :style="{width:inputData.inputWidth,marginLeft:inputData.maright}" @focus="foc" @blur="bl" :placeholder="inputData.placeHolder" v-model="val" v-if="!inputData.disable"></textarea>
+			<textarea  id="Oinput2" :style="{width:inputData.inputWidth,marginLeft:inputData.maright}" readonly="readonly" v-model="inputData.num" v-else></textarea>
 			
 		</div>
 		

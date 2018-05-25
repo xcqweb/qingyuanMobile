@@ -61,7 +61,7 @@
 				r4:'',
 				r5:'',
 				r6:'',
-				r7:"",
+				r7:'',
 			  	inputData1:{
 			  		id:2,
 			  		name:'填报人',
@@ -184,7 +184,7 @@
 				
 			},
 			send(){
-				let users = JSON.parse(window.sessionStorage.getItem('users'))
+				let users = JSON.parse(window.sessionStorage.getItem('users'))||JSON.parse(getCookie('users'))
 				let params = new FormData()
 		  		params.append('recPerson',this.r3)
 		  		params.append('lastYearRecPerson',this.r4)

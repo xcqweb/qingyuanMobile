@@ -161,6 +161,8 @@
 				if(window.sessionStorage.getItem('users')){
 				let users = JSON.parse(window.sessionStorage.getItem('users'))
 				this.users = users
+			}else{
+				this.users = JSON.parse(getCookie('users'))
 			}
 			let params = {}
 			if(this.$store.state.type===1){
@@ -372,7 +374,6 @@
 			}
 		},
 		mounted(){
-			
 			this.$nextTick( () => {
 				this.$store.commit('COMMIT_TIPTXT',{status:false,txt:'',err:true})
 				this.$store.commit('COMMIT_SUBMIT',false)
@@ -404,7 +405,6 @@
 			this.$store.commit('COMMIT_TIPTXT',{status:false,txt:'',err:true})
 			this.$store.commit('COMMIT_SUBMIT',false)
 			this.$store.commit('COMMIT_SAVE',false)
-			
 		},
 		
 	}

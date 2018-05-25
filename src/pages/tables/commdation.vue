@@ -231,7 +231,7 @@
 			},
 			send(){
 				this.totalCount = Number(this.r3)+Number(this.r4)
-				let users = JSON.parse(window.sessionStorage.getItem('users'))
+				let users = JSON.parse(window.sessionStorage.getItem('users'))||JSON.parse(getCookie('users'))
 				let params = new FormData()
 		  		params.append('totalAcceptNum',this.totalCount)
 		  		params.append('inCountryNum',this.r3)

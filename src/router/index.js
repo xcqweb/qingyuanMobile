@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-
+import {getCookie} from '@/common/cookie'
 
 let Login = () => import ('@/pages/login/login')
 let Goldenweek = () => import ('@/pages/reports/golgenWeek')
@@ -98,7 +98,7 @@ const router = new Router({
 		//注册全局钩子用来拦截导航
    router.beforeEach((to, from, next) => {
 		//获取sessionStorage里面的users
-     let users = window.sessionStorage.getItem('users');
+     let users = window.sessionStorage.getItem('users')||JSON.parse(getCookie('users'));
      
 		//判断要去的路由有没有requiresAuth
      if(to.meta.requireAuth){

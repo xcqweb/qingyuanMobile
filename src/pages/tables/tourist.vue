@@ -327,7 +327,7 @@
 				this.receviceTotal = Number(this.r1)+Number(this.r2)+Number(this.r3)
 				this.groupTotals = Number(this.r4)+Number(this.r5)
 				this.leaveTotal = Number(this.r6)+Number(this.r7)+Number(this.r8)+Number(this.r9)
-				let users = JSON.parse(window.sessionStorage.getItem('users'))
+				let users = JSON.parse(window.sessionStorage.getItem('users'))||JSON.parse(getCookie('users'))
 				let params = new FormData()
 		  		params.append('groupReceptionNum',this.r11)
 		  		params.append('personReceptionNum',this.receviceTotal)

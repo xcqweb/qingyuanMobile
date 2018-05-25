@@ -39,9 +39,11 @@
 			if(window.sessionStorage.getItem('users')){
 				let users = JSON.parse(window.sessionStorage.getItem('users'))
 				this.type = users.usertype
+			}else{
+				let u = JSON.parse(getCookie('users'));
+				this.type = u.usertype
 			}
 		},
-		computed:{}
 	}
 </script>
 

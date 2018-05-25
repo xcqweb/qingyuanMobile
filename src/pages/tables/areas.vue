@@ -372,7 +372,7 @@
 			},
 			send(){
 				
-				let users = JSON.parse(window.sessionStorage.getItem('users'))
+				let users = JSON.parse(window.sessionStorage.getItem('users')) || JSON.parse(getCookie('users'))
 				let params = new FormData()
 				let dates = this.$store.state.commitDate.split('-');
 				let y = dates[0];

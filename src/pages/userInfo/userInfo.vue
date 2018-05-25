@@ -73,7 +73,7 @@
 				}else if(window.sessionStorage.getItem('users')){
 					return JSON.parse(window.sessionStorage.getItem('users'))
 				}else{
-					return {companyname:'',usertype:''}
+					return JSON.parse(getCookie('users'))
 				}
 			}
 		},
