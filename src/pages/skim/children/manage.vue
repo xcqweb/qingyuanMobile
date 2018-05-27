@@ -111,19 +111,19 @@
 //				}
 				switch(this.$store.state.companyname){
 					case '旅行社':
-					router.push({path:'touristDetial'});
+					router.replace({path:'touristDetial'});
 					break;
 					case '宾馆酒店':
-					router.push({path:'commdationDetial'});
+					router.replace({path:'commdationDetial'});
 					break;
 					case '景点':
-					router.push({path:'scienceDetial'});
+					router.replace({path:'scienceDetial'});
 					break;
 					case '重点景区':
-					router.push({path:'scienceDetial'});
+					router.replace({path:'scienceDetial'});
 					break;
 					case '各区旅游局':
-					router.push({path:'areaDetial'});
+					router.replace({path:'areaDetial'});
 					break;
 				}
 			},
@@ -131,7 +131,7 @@
 		},
 		watch:{
 			choseData:{
-				handler:function(val){
+				handler:function(val,oldVal){
 					let parmas = {
 						userType:val.usertype,
 						type:val.type,

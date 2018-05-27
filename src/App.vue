@@ -16,7 +16,6 @@
     <tips
     	 v-show="comShow"
     ></tips>
-     <user-info></user-info>
      <tip-info
      	:alerts='tipTxt'
      	></tip-info>

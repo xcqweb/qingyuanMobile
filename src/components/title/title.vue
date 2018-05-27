@@ -16,7 +16,7 @@
 		<div class="fixBox">
 			<p class="titles" v-if="titleData.smallTitle" :title="titleData.title">{{titleData.title}}</p>
 			
-	    	<p class="smallTitle" v-else>{{titleData.title}}</p>
+	    	<p class="smallTitle" v-else><font>{{titleData.title}}</font></p>
 	    	<span class="user" @click='showuser($event)' v-if="titleData.showUser"></span>
 			<span class="back2" @click='back($event)' v-if="status"></span>
 			<span class="back2" @click='backskim($event)' v-if="titleData.skimgoBack"></span>
@@ -49,6 +49,9 @@
 				}
 			})
 		},
+		beforeDestroy(){
+			Bus.$off('checkData')
+		},
 		methods:{
 			send(e){
 				Bus.$emit('checkData')
@@ -65,10 +68,10 @@
 			showuser(){
 				this.$store.commit('COMMIT_ISSCROLL',true)
 				this.$store.commit('COMMIT_ShOWINFO',true)
-				Bus.$emit('showUser')
+				this.$emit('showUser')
 			},
 			backskim(){
-				router.go(-1)
+				router.replace('golden')
 			},
 			back(e){
 				this.$store.commit('COMMIT_ISBACK',true)
@@ -91,7 +94,8 @@
 			font-size: 0.44rem;
 			color: #fff;
 			text-shadow: 8px 4px rgba(0,0,0,0.1);
-			width: 100%;
+			width: 80%;
+			margin: auto;
 			text-align: center;
 			height: 0.6rem;
 			padding-top: 0.56rem;
@@ -103,13 +107,25 @@
 			width: 100vw;
 			text-align: center;
 			height: 0.6rem;
+			width: 70%;
+			margin: auto;
 			padding-top: 0.16rem;
 			line-height: 0.6rem;
 			font-size: 0.34rem !important;
+			overflow: scroll;
+			& ::-webkit-scrollbar {display:none}
+			/*text-overflow: ellipsis;
+			white-space: nowrap;
+			overflow: hidden;*/
+			font{
+				width: auto;
+				white-space: nowrap;
+				font-size: 0.34rem !important;
+			}
 		}
 		.back1{
 			display: block;
-			width: 1rem;
+			width: 0.8rem;
 			height: 0.8rem;
 			position: absolute;
 			padding: 0.02rem;
@@ -127,10 +143,10 @@
 		.back2{
 			display: block;
 			width: 1rem;
-			height: 0.8rem;
+			height: 0.85rem;
 			position: absolute;
 			padding: 0.02rem;
-			top: 0.05rem;
+			top: 0;
 			left: 0rem;
 			bottom: 0.24rem;
 			background: url(../../assets/images/title/back1.png) no-repeat 0.02rem;
@@ -144,10 +160,10 @@
 		.user{
 			display: block;
 			width: 1rem;
-			height: 0.8rem;
+			height: 0.85rem;
 			position: absolute;
 			padding: 0.02rem;
-			top: 0.05rem;
+			top: 0;
 			left: 0rem;
 			bottom: 0.24rem;
 			background: url(../../assets/images/title/man.png) no-repeat 0.02rem;

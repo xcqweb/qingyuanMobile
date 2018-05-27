@@ -1,103 +1,69 @@
 <template>
-	<div class="box4">
-		<div class="titles">{{goldData.titles}}</div>
+	<div class="box5">
+		<div class="titles">{{dateData.titles}}</div>
 		<div class="selectBox" @click='showList($event)'>
-			<p class="title" id="typeBox">{{typeName}}</p>
+			<p class="title" id="dateBox">{{currentYear}}</p>
 			<span class="up"></span>
 			<span class="down"></span>
 		</div>
-		
-
 	</div>
 </template>
 
 <script>
 	import MobileSelect from 'byted-mobile-select'
-
+	let year =  new Date().getFullYear()
 	export default{
 		data(){
 			return{
-				typeName:'国庆',
-				tIndex:0,
+				currentYear:year,
+				dIndex:0,
 				mySelect:null
 			}
 		},
-		props:['goldData'],
+		props:['dateData'],
 		methods:{
 			showList(e){
 				e.stopPropagation();
 				e.preventDefault()
-				this.$store.commit('COMMIT_ISSCROLL',true)
 				let _self = this
 				this.mySelect = new MobileSelect({
-			    trigger: '#typeBox', 
-			    title:'选择类型',
+			    trigger: '#dateBox', 
+			    title:'选择时间',
 			    wheels: [
-			                {data:this.goldData.list},
+			                {data:this.dateData.list},
 			            ],
-			    position:[this.tIndex], //初始化定位 两个轮子都选中在索引1的选项
+			    position:[this.dIndex], //初始化定位 两个轮子都选中在索引1的选项
 			    callback:function(indexArr, data){
 			    	
-			    	_self.$store.commit('COMMIT_ISSCROLL',false)
 			    	if(!data){
 			    		return
 			    	}
-			            _self.typeName = data[0]
-						if(data[0]==='国庆'){
-							_self.$emit('types',1)
-							_self.$store.commit('COMMIT_TYPE',1)
-							this.tIndex = 0
-						}else{
-							_self.$emit('types',2)
-							_self.$store.commit('COMMIT_TYPE',2)
-							this.tIndex = 1
-						}
-			      }
-			  })
-			},
-			
-			
+			    		if(year===data[0]){
+			    			this.dIndex = 0
+			    		}else{
+			    			this.dIndex = year-data[0]
+			    		}
+			    		
+			            _self.$store.commit('COMMIT_YEAR',data[0])
+						_self.currentYear = data[0]
+						_self.$emit('dates',data[0])
+			      } 
+			})
+			}
 		},
 		mounted(){
-			let _self = this
-				this.mySelect = new MobileSelect({
-			    trigger: '#typeBox', 
-			    title:'选择类型',
-			    wheels: [
-			                {data:this.goldData.list},
-			            ],
-			    position:[this.tIndex], //初始化定位 两个轮子都选中在索引1的选项
-			    callback:function(indexArr, data){
-			    	
-			    	_self.$store.commit('COMMIT_ISSCROLL',false)
-			    	if(!data){
-			    		return
-			    	}
-			            _self.typeName = data[0]
-						if(data[0]==='国庆'){
-							_self.$emit('types',1)
-							_self.$store.commit('COMMIT_TYPE',1)
-							this.tIndex = 0
-						}else{
-							_self.$emit('types',2)
-							_self.$store.commit('COMMIT_TYPE',2)
-							this.tIndex = 1
-						}
-			      }
-			  })
-			if(this.$store.state.type===1){
-				this.typeName = '国庆'
-				this.tIndex = 0
+			if(year===this.$store.state.chooseYear){
+				this.dIndex = 0
 			}else{
-				this.typeName = '春节'
-				this.tIndex = 1
+				this.dIndex = year-this.$store.state.chooseYear
 			}
+			this.currentYear = this.$store.state.chooseYear
 		}
 	}
 </script>
 
 <style scoped lang='less'>
-.box4{
+.box5{
 	color: #797979;
 	margin-top: 1.16rem;
 	margin-left: 0.32rem;
@@ -106,6 +72,7 @@
 		position: absolute;
 		font-size: 0.28rem;
 		line-height: 0.5rem;
+		margin-left: 0.2rem;
 		font-weight: bold;
 		-webkit-user-select: none;
 		-ms-user-select: none;
@@ -113,25 +80,23 @@
 	}
 	.selectBox{
 		position: absolute;
-		left: 1.66rem;
+		left: 1.2rem;
 		width: 1.3rem;
 		height: 0.5rem;
 		border: 0.03rem solid #C4C4C4;
 		border-radius: 0.06rem;
 		box-sizing: border-box;
 		z-index: -1;
+
 		.title{
 			width: 100%;
 			height: 100%;
 			line-height: 0.5rem;
 			font-size: 0.24rem;
 			text-align: left;
-			padding-left: 0.3rem;
+			padding-left: 0.2rem;
 			position: absolute;
 			z-index: 100;
-			-webkit-user-select: none;
-			-ms-user-select: none;
-			-moz-user-select: none;
 		}
 		.up{
 				position: absolute;
@@ -157,14 +122,15 @@
 			}
 		.list{
 			font-size: 0.24rem;
-			width: 1.28rem;
+			width: 1.26rem;
 			background-color: #fff;
-			box-shadow: 0.02rem 0.02rem 0.02rem 0.02rem #c4c4c4;
-			border: 0.005rem solid #c4c4c4;
+			height: 2rem;
+			overflow-y: scroll;
+			border-radius: 0.04rem;
+			box-shadow: 0.03rem 0.03rem 0 0.03rem #c4c4c4;
 			position: absolute;
 			top: 0.5rem;
 			left: 0;
-			z-index: 100;
 			li{
 				text-align: center;
 				line-height: 0.42rem;
@@ -178,6 +144,24 @@
 				background-color: rgba(0, 0, 0, 0.42)
 			}
 	}
-	
 }
+
+
+			.list::-webkit-scrollbar{
+			    width: 0.04rem;
+			    height: 0.2rem;
+			}
+			/*定义滚动条的轨道，内阴影及圆角*/
+			.list::-webkit-scrollbar-track{
+			    -webkit-box-shadow: inset 0 0 6px rgba(255,255,255,1);
+			    border-radius: 10px;
+			}
+			/*定义滑块，内阴影及圆角*/
+			.list::-webkit-scrollbar-thumb{
+			    width: 1px;
+			    height: 0.5rem;
+			    border-radius: 10px;
+			    -webkit-box-shadow: inset 0 0 6px #C4C4C4;
+			    background-color: #0F2059;
+			}
 </style>

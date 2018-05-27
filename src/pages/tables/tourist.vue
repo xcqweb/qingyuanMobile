@@ -304,7 +304,7 @@
 							this.$store.commit('COMMIT_TIPTXT',{status:false,txt:'上报失败!',err:true})
 						},1000)
 						window.setTimeout(() => {
-							router.push('/golden')
+							router.replace('/golden')
 						},2000)
 						return;
 					}
@@ -318,7 +318,7 @@
 							this.$store.commit('COMMIT_TIPTXT',{status:false,txt:'上报成功!',err:false})
 						},1000)
 						window.setTimeout(() => {
-							router.push('golden')
+							router.replace('golden')
 						},2000)
 					}
 				})

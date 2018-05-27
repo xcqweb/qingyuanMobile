@@ -374,6 +374,104 @@
 		},
 		
 		mounted(){
+				let _self = this
+				this.mySelect1 = new MobileSelect({
+			    trigger: '#dateBox1', 
+			    title:'选择单位',
+			    wheels: [
+			                {data:_self.DataList1}
+			            ],
+			    position:[_self.dIndex1], //初始化定位 两个轮子都选中在索引1的选项
+			    callback:function(indexArr, data){
+				    	if(!data){
+				    		return
+				    	}
+				    	_self.$store.commit('COMMIT_COMPANYNAME',data[0])
+				    	_self.choose1 = data[0]
+			    		_self.dIndex1 = indexArr[0]-1
+			    		if(_self.choose2==='国庆'){
+			    			
+			    			_self.$emit('cData',{usertype:data[0],type:1,year:_self.choose3,mDay:_self.switchconutry(_self.choose4),key:_self.choose5})
+			    		}else{
+			    			_self.$emit('cData',{usertype:data[0],type:2,year:_self.choose3,mDay:_self.switchDate(_self.choose4),key:_self.choose5})
+			    		}
+				    	
+			      } 
+			})
+			this.mySelect2 = new MobileSelect({
+				    trigger: '#dateBox2', 
+				    title:'选择类型',
+				    wheels: [
+				                {data:this.DataList2}
+				            ],
+				    position:[_self.dIndex2], //初始化定位 两个轮子都选中在索引1的选项
+				    callback:function(indexArr, data){
+					    	if(!data){
+					    		return
+					    	}
+					    	_self.choose2 = data[0]
+				    		_self.dIndex2 = indexArr[0]-1
+					    	if(data[0]==='国庆'){
+					    		_self.$store.commit('COMMIT_TYPE',1)
+					    		_self.$store.commit('COMMIT_DAY',{num:_self.switchconutry(_self.choose4),txt:_self.choose4})
+				    			_self.$emit('cData',{usertype:_self.choose1,type:1,year:_self.choose3,mDay:_self.switchconutry(_self.choose4),key:_self.choose5})
+				    		}else{
+				    			_self.$store.commit('COMMIT_TYPE',2)
+					    		_self.$store.commit('COMMIT_DAY',{num:_self.switchDate(_self.choose4),txt:_self.choose4})
+				    			
+				    			_self.$emit('cData',{usertype:_self.choose1,type:2,year:_self.choose3,mDay:_self.switchDate(_self.choose4),key:_self.choose5})
+				    		}
+				      } 
+				})
+			this.mySelect3 = new MobileSelect({
+				    trigger: '#dateBox3',
+				    title:'选择年份',
+				    wheels: [
+				                {data:yearData}
+				            ],
+				    position:[_self.dIndex3], //初始化定位 两个轮子都选中在索引1的选项
+				    callback:function(indexArr, data){
+					    	if(!data){
+					    		return
+					    	}
+					    	_self.$store.commit('COMMIT_YEAR',data[0])
+					    	_self.choose3 = data[0]
+				    		_self.dIndex3 = indexArr[0]-1
+				    		
+					    	if(_self.choose2==='国庆'){
+				    			_self.$emit('cData',{usertype:_self.choose1,type:1,year:data[0],mDay:_self.switchconutry(_self.choose4),key:_self.choose5})
+				    		}else{
+				    			_self.$emit('cData',{usertype:_self.choose1,type:2,year:data[0],mDay:_self.switchDate(_self.choose4),key:_self.choose5})
+				    		}
+					    	
+				      } 
+				})
+			this.mySelect4 = new MobileSelect({
+				    trigger: '#dateBox4',
+				    title:'选择时间',
+				    wheels: [
+				                {data:_self.DataList4}
+				            ],
+				    position:[_self.dIndex4], //初始化定位 两个轮子都选中在索引1的选项
+				    callback:function(indexArr, data){
+				    	
+					    	if(!data){
+					    		return
+					    	}
+					    	
+					    	_self.choose4 = data[0]
+					    	_self.$store.commit('COMMIT_DATEINDEX',_self.switchIndex(data[0]))
+				    		_self.dIndex4 = indexArr[0]-1
+					    	if(_self.choose2==='国庆'){
+					    		_self.$store.commit('COMMIT_DAY',{num:_self.switchconutry(data[0]),txt:data[0]})
+				    			_self.$emit('cData',{usertype:_self.choose1,type:1,year:_self.choose3,mDay:_self.switchconutry(data[0]),key:_self.choose5})
+				    		}else{
+				    			_self.$store.commit('COMMIT_DAY',{num:_self.switchDate(data[0]),txt:data[0]})
+				    			_self.$emit('cData',{usertype:_self.choose1,type:2,year:_self.choose3,mDay:_self.switchDate(data[0]),key:_self.choose5})
+				    		}
+					    	
+				      } 
+				})
 			//获取之第的选择条件
 			this.choose1 = this.$store.state.companyname;
 			this.choose2 = this.$store.state.type===1?'国庆':'春节';

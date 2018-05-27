@@ -378,17 +378,16 @@
 						n.trigger && (n.trigger.innerHTML = t), n.callback(n.getIndexArr(), n.getJson())
 					}), n.trigger && n.trigger.addEventListener("click", function(e) {
 						e.preventDefault();
-						e.preventDefault();
-						e.preventDefault();
 						e.stopPropagation();
-						n.mobileSelect.classList.add("mobileSelect-show")
-						n.mobileSelect.classList.add("mobileSelect-show")
 						n.mobileSelect.classList.add("mobileSelect-show")
 					}), n.grayLayer.addEventListener("click", function(e) {
 						e.preventDefault();
 						e.stopPropagation();
 						n.mobileSelect.classList.remove("mobileSelect-show")
-					}), n.grayLayer.addEventListener("touchmove", function(e) {
+					}),  n.grayLayer.addEventListener("touchmove", function(e) {
+						e.preventDefault();
+						e.stopPropagation();
+					}),n.grayLayer.addEventListener("touchmove", function(e) {
 						e.preventDefault();
 						e.stopPropagation();
 					}) ,n.popUp.addEventListener("click", function() {

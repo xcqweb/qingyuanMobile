@@ -468,8 +468,7 @@
 		},
 		watch:{
 			choseData:{
-				handler:function(val){
-					console.log(val)
+				handler:function(val,oldVal){
 					let parmas = {
 						userType:val.usertype,
 						type:val.type,
@@ -604,7 +603,7 @@
 				text-align: center;
 				justify-content: center;
 				align-items: center;
-				height: 0.86rem;
+				height: 1.2rem;
 				border-bottom: 1px solid rgba(118, 118, 118,0.12);
 				span{
 					word-wrap: break-word;
@@ -668,7 +667,7 @@
 				text-align: center;
 				justify-content: center;
 				align-items: center;
-				height: 0.86rem;
+				height: 1.2rem;
 				border-bottom: 1px solid rgba(118, 118, 118,0.12);
 				span{
 					word-wrap: break-word;
@@ -734,7 +733,7 @@
 				text-align: center;
 				justify-content: center;
 				align-items: center;
-				height: 0.86rem;
+				height: 1.2rem;
 				border-bottom: 1px solid rgba(118, 118, 118,0.12);
 				span{
 					word-wrap: break-word;
@@ -797,7 +796,7 @@
 				text-align: center;
 				justify-content: center;
 				align-items: center;
-				height: 0.86rem;
+				height: 1.2rem;
 				border-bottom: 1px solid rgba(118, 118, 118,0.12);
 				span{
 					word-wrap: break-word;

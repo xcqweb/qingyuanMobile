@@ -17,12 +17,12 @@
 			return{
 				currentYear:year,
 				dIndex:0,
-				mySelect:null
 			}
 		},
 		props:['dateData'],
 		methods:{
 			showList(e){
+				
 				e.stopPropagation();
 				e.preventDefault()
 				let _self = this
@@ -52,6 +52,30 @@
 			}
 		},
 		mounted(){
+			let _self = this
+			this.mySelect = new MobileSelect({
+			    trigger: '#dateBox', 
+			    title:'选择时间',
+			    wheels: [
+			                {data:this.dateData.list},
+			            ],
+			    position:[this.dIndex], //初始化定位 两个轮子都选中在索引1的选项
+			    callback:function(indexArr, data){
+			    	
+			    	if(!data){
+			    		return
+			    	}
+			    		if(year===data[0]){
+			    			this.dIndex = 0
+			    		}else{
+			    			this.dIndex = year-data[0]
+			    		}
+			    		
+			            _self.$store.commit('COMMIT_YEAR',data[0])
+						_self.currentYear = data[0]
+						_self.$emit('dates',data[0])
+			      } 
+			})
 			if(year===this.$store.state.chooseYear){
 				this.dIndex = 0
 			}else{
@@ -97,6 +121,9 @@
 			padding-left: 0.2rem;
 			position: absolute;
 			z-index: 100;
+			-webkit-user-select: none;
+			-ms-user-select: none;
+			-moz-user-select: none;
 		}
 		.up{
 				position: absolute;

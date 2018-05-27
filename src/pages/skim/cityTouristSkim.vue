@@ -64,6 +64,9 @@
 					height: 0.58rem;
 					position: relative;
 					color: rgba(255,255,255,0.62);
+					-webkit-user-select: none;
+					-ms-user-select: none;
+					-moz-user-select: none;
 				}
 				
 				

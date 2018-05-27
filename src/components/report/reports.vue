@@ -73,6 +73,9 @@
 		font-weight: bold;
 		color: #1CB394;
 		margin: 0.16rem auto;
+		-webkit-user-select: none;
+		-ms-user-select: none;
+		-moz-user-select: none;
 		span:active{
 			background-color: rgba(0, 0, 0, 0.2)
 		}

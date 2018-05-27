@@ -106,6 +106,7 @@ const router = new Router({
          next();
        }else{
          next({
+     	  replace: true,
           path: 'login',
           query: {redirect: to.fullPath}   //将跳转的路由path作为参数，登录成功后跳转到该路由
          });

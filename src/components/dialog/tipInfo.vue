@@ -10,14 +10,7 @@
 </template>
 
 <script>
-	import router from '@/router'
-	import Bus from '@/common/bus'
 	export default{
-		data(){
-			return{
-				
-			}
-		},
 		props:['alerts'],
 		computed:{
 			comIcon(){
@@ -28,16 +21,6 @@
 				}
 			}
 		},
-		methods:{
-			confirm(e){
-				e.preventDefault()
-				e.stopPropagation()
-			},
-			cancel(e){
-				e.preventDefault()
-				e.stopPropagation()
-			}
-		}
 	}
 </script>
 

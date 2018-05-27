@@ -1,8 +1,12 @@
 <template>
-		<div class="goldweek" id="box2" :style="{transform:left}">
-			<div class="toast" v-show="comStatus" @click="showToast" id="rrr"></div>
+	<div class="mainBox" :style="{left:left}"  id="box2" >
+		<user-info style="float: left;"></user-info>
+	
+		<div class="goldweek"style="float: left;">
+			<div class="toast" v-show="comStatus" id="rrr"></div>
 				<comtitle
 					:titleData='titleData'
+					@showUser='showUsers'
 				></comtitle>
 				<!--市旅游局-->
 				<div class="topTitle" v-show="isCity">
@@ -62,6 +66,7 @@
 					 v-show="!isCity"
 				></tourist-skim>
 				<loading></loading>
+		</div>
 		</div>
 </template>
 
@@ -149,14 +154,22 @@
 				dateyear:this.$store.state.chooseYear,
 				str:'',
 				isShow:false,
-				left:'0%',
-				flag:true,
-			  	
+				left:'-3.1rem',
 			}
 			
 		},
 		props:[],
 		methods:{
+			
+			showUsers(){
+				let t = document.getElementById('rrr');
+				this.showToasts()
+				t.addEventListener('click',(e) => {
+					this.$store.commit('COMMIT_ShOWINFO',false)
+					this.move(false)
+				},false)
+			},
+			
 			initData(){
 				if(window.sessionStorage.getItem('users')){
 				let users = JSON.parse(window.sessionStorage.getItem('users'))
@@ -249,42 +262,17 @@
 			getDates(data){
 				this.dateyear = data
 			},
-			showToast(e){
+			showToasts(e){
 				let _self = this
-				this.$store.commit('COMMIT_ShOWINFO',false)
-				this.$store.commit('COMMIT_ISSCROLL',false)
-				Bus.$emit('hideUser')
-				this.move()
+				this.move(true)
 			},
 			
-			move(){
-				this.flag = !this.flag
+			move(flag){
 				let _self = this
-				
-				if(this.flag){
-					let num=41;
-					function mover(){
-						if(num<0){
-							//num-=20;
-							window.requestAnimationFrame(mover)
-						}else{
-							num=0
-						}
-						_self.left= `translate3d(${num}%,0,0)`
-					}
-					window.requestAnimationFrame(mover)
+				if(flag){
+					_self.left= `0`
 				}else{
-					let num=41;
-					function movel(){
-						if(num<41){
-							num+=500;
-							window.requestAnimationFrame(movel)
-						}else{
-							num=41
-						}
-						_self.left= `translate3d(${num}%,0,0)`
-					}
-					window.requestAnimationFrame(movel)
+					_self.left= `-3.1rem`
 				}
 			},
 			
@@ -374,15 +362,54 @@
 			}
 		},
 		mounted(){
+			let t = document.getElementById('rrr');
+			let box2 = document.querySelector('#box2')
 			this.$nextTick( () => {
 				this.$store.commit('COMMIT_TIPTXT',{status:false,txt:'',err:true})
 				this.$store.commit('COMMIT_SUBMIT',false)
 				this.$store.commit('COMMIT_SAVE',false)
-				let t = document.getElementById('rrr');
+				let sX = 0,
+				    eX = 0,
+				    sY = 0,
+				    eY = 0;
 				t.addEventListener('touchmove',function(e){
 					e.preventDefault();
 				},false)
 				
+				box2.addEventListener('touchstart',(e) => {
+					sX = e.changedTouches[0].screenX
+					sY = e.changedTouches[0].screenY
+				},false)
+				
+				box2.addEventListener('touchmove',(e) => {
+					eX = e.changedTouches[0].screenX
+					eY = e.changedTouches[0].screenY
+				},false)
+				
+				box2.addEventListener('touchend',(e) => {
+					eX = e.changedTouches[0].screenX
+					eY = e.changedTouches[0].screenY
+					if(Math.abs(eY-sY)>20){
+						sY = 0
+				    	eY = 0
+						return
+					}
+					if(eX-sX>40){
+						this.$store.commit('COMMIT_ShOWINFO',true)
+						this.showToasts()
+						t.addEventListener('click',() => {
+							this.$store.commit('COMMIT_ShOWINFO',false)
+							this.move(false)
+						},false)
+					}else if(eX-sX<-40){
+						this.$store.commit('COMMIT_ShOWINFO',false)
+						this.move(false)
+					}
+					sX = 0
+				    eX = 0
+				    sY = 0
+				    eY = 0
+				},false)
 			})
 			
 			this.initData()
@@ -390,10 +417,6 @@
 			if(this.users.companyname==='清远市旅游局'){
 				this.isCity = false;
 			}
-			
-			Bus.$on('showUser',() => {
-				this.move()
-			})
 			
 		},
 		beforeDestroy(){
@@ -411,14 +434,18 @@
 </script>
 
 <style scoped lang="less"> 
-
+.mainBox{
+	 width: 200vw;
+	 overflow: scroll;
+	 position: relative;
+	 left: -3.1rem;
+	 transition: 0.2s all ease;
+}
 .goldweek{
-	width: 100%;
+	width: 100vw;
 	height: 100vh;
-	position: fixed;
+	position: relative;
 	left: 0;
-	-webkit-transform: translate3d(0,0,0);
-    transform: translate3d(0,0,0);
     -webkit-overflow-scrolling: touch;
     z-index: 100;
     
@@ -427,7 +454,7 @@
 		height: 100vh;
 		overflow: hidden;
 		background-color: rgba(0,0,0,0.14);
-		position: fixed;
+		position: absolute;
 		top: 0;
 		left: 0;
 		z-index: 100000;

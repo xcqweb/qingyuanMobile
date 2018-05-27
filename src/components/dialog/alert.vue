@@ -3,12 +3,9 @@
 		<div class="con">
 			<div class="top"><p>{{alerts.tips}}</p></div>
 			<div class="bottom">
-				
 				<p class="confirmt" @click='confirm($event)' v-if="!alerts.status">确定</p>
-				
 				<p class="cancel" @click='cancel($event)' v-show="alerts.status">取消</p>
-				<p class="confirm" v-if="alerts.status" @touchstart='confirm($event)'>确定</p>
-				
+				<p class="confirm" v-if="alerts.status" @click='confirm($event)'>确定</p>
 			</div>
 		</div>
 	</div>
@@ -26,9 +23,10 @@
 		props:['alerts'],
 		mounted(){
 			this.$nextTick( () => {
-				let b = document.getElementById('alertBox')
+				let b = document.querySelector('#alertBox')
 				b.addEventListener('touchmove',function(e){
 					e.preventDefault()
+					e.stopPropagation()
 				},false)
 			})
 		},
@@ -45,7 +43,7 @@
 					}
 				}
 				if(this.$store.state.isBack){ //点击返回按钮
-					router.push('golden')
+					router.replace('golden')
 				}
 				if(this.$store.state.exit){ //点击退出按钮
 					this.$store.commit('COMMIT_EXIT',false)
@@ -80,7 +78,7 @@
 	}
 </script>
 
-<style scoped lang="less">
+<style scoped="scoped" lang="less">
 .box9{
 	width: 100vw;
 	height: 100vh;
