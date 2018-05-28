@@ -374,6 +374,21 @@
 		},
 		
 		mounted(){
+			
+			//获取之第的选择条件
+			this.choose1 = this.$store.state.companyname;
+			this.choose2 = this.$store.state.type===1?'国庆':'春节';
+			this.choose3 = this.$store.state.chooseYear;
+			this.choose4 = this.$store.state.days.txt;
+			this.choose5 = this.$store.state.keys;
+			
+			this.dIndex1= this.switchType(this.$store.state.companyname);
+			this.dIndex2= this.$store.state.type===1?0:1;
+			this.dIndex3 = this.choose3-year;
+			this.dIndex4 = this.switchIndex(this.$store.state.days.txt)
+			this.$store.commit('COMMIT_DATEINDEX',this.dIndex4)
+			
+			
 				let _self = this
 				this.mySelect1 = new MobileSelect({
 			    trigger: '#dateBox1', 
@@ -472,18 +487,7 @@
 					    	
 				      } 
 				})
-			//获取之第的选择条件
-			this.choose1 = this.$store.state.companyname;
-			this.choose2 = this.$store.state.type===1?'国庆':'春节';
-			this.choose3 = this.$store.state.chooseYear;
-			this.choose4 = this.$store.state.days.txt;
-			this.choose5 = this.$store.state.keys;
 			
-			this.dIndex1= this.switchType(this.$store.state.companyname);
-			this.dIndex2= this.$store.state.type===1?0:1;
-			this.dIndex3 = this.choose3-year;
-			this.dIndex4 = this.switchIndex(this.$store.state.days.txt)
-			this.$store.commit('COMMIT_DATEINDEX',this.dIndex4)
 		}
 	}
 </script>
@@ -531,6 +535,7 @@
 				height: 100%;
 				line-height: 0.5rem;
 				font-size: 0.24rem;
+				padding-right: 0.15rem;
 				text-align: left;
 				text-align: center;
 				position: absolute;

@@ -23,8 +23,8 @@ module.exports = {
   },
   dev: {
     env: require('./dev.env'),
-	host:process.env.NODE_ENV === 'production' ? 'http://192.168.1.19:8090/qylym' : '192.168.1.106',
-    port: 9001,
+	host:process.env.NODE_ENV === 'production' ? 'http://192.168.1.19:8090/qylym' : '192.168.1.19',
+    port: 8080,
     autoOpenBrowser: true,
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',

@@ -59,6 +59,14 @@
 			
 		},
 		mounted(){
+			if(this.$store.state.type===1){
+				this.typeName = '国庆'
+				this.tIndex = 0
+			}else{
+				this.typeName = '春节'
+				this.tIndex = 1
+			}
+			
 			let _self = this
 				this.mySelect = new MobileSelect({
 			    trigger: '#typeBox', 
@@ -85,13 +93,6 @@
 						}
 			      }
 			  })
-			if(this.$store.state.type===1){
-				this.typeName = '国庆'
-				this.tIndex = 0
-			}else{
-				this.typeName = '春节'
-				this.tIndex = 1
-			}
 		}
 	}
 </script>

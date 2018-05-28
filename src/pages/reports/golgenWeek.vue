@@ -368,48 +368,51 @@
 				this.$store.commit('COMMIT_TIPTXT',{status:false,txt:'',err:true})
 				this.$store.commit('COMMIT_SUBMIT',false)
 				this.$store.commit('COMMIT_SAVE',false)
-				let sX = 0,
-				    eX = 0,
-				    sY = 0,
-				    eY = 0;
-				t.addEventListener('touchmove',function(e){
-					e.preventDefault();
+				t.addEventListener('touchmove',(e) => {
+					e.preventDefault()
 				},false)
-				
-				box2.addEventListener('touchstart',(e) => {
-					sX = e.changedTouches[0].screenX
-					sY = e.changedTouches[0].screenY
-				},false)
-				
-				box2.addEventListener('touchmove',(e) => {
-					eX = e.changedTouches[0].screenX
-					eY = e.changedTouches[0].screenY
-				},false)
-				
-				box2.addEventListener('touchend',(e) => {
-					eX = e.changedTouches[0].screenX
-					eY = e.changedTouches[0].screenY
-					if(Math.abs(eY-sY)>20){
-						sY = 0
-				    	eY = 0
-						return
-					}
-					if(eX-sX>40){
-						this.$store.commit('COMMIT_ShOWINFO',true)
-						this.showToasts()
-						t.addEventListener('click',() => {
-							this.$store.commit('COMMIT_ShOWINFO',false)
-							this.move(false)
-						},false)
-					}else if(eX-sX<-40){
-						this.$store.commit('COMMIT_ShOWINFO',false)
-						this.move(false)
-					}
-					sX = 0
-				    eX = 0
-				    sY = 0
-				    eY = 0
-				},false)
+//				let sX = 0,
+//				    eX = 0,
+//				    sY = 0,
+//				    eY = 0;
+//				t.addEventListener('touchmove',function(e){
+//					e.preventDefault();
+//				},false)
+//				
+//				box2.addEventListener('touchstart',(e) => {
+//					sX = e.changedTouches[0].screenX
+//					sY = e.changedTouches[0].screenY
+//				},false)
+//				
+//				box2.addEventListener('touchmove',(e) => {
+//					eX = e.changedTouches[0].screenX
+//					eY = e.changedTouches[0].screenY
+//				},false)
+//				
+//				box2.addEventListener('touchend',(e) => {
+//					eX = e.changedTouches[0].screenX
+//					eY = e.changedTouches[0].screenY
+//					if(Math.abs(eY-sY)>20){
+//						sY = 0
+//				    	eY = 0
+//						return
+//					}
+//					if(eX-sX>40){
+//						this.$store.commit('COMMIT_ShOWINFO',true)
+//						this.showToasts()
+//						t.addEventListener('click',() => {
+//							this.$store.commit('COMMIT_ShOWINFO',false)
+//							this.move(false)
+//						},false)
+//					}else if(eX-sX<-40){
+//						this.$store.commit('COMMIT_ShOWINFO',false)
+//						this.move(false)
+//					}
+//					sX = 0
+//				    eX = 0
+//				    sY = 0
+//				    eY = 0
+//				},false)
 			})
 			
 			this.initData()

@@ -104,11 +104,7 @@
 				})
 			},
 			skim(data){
-//				if(this.choseData.usertype==='各区旅游局'){
 					this.$store.commit('SKIM_DETIAL',{usertype:this.$store.state.companyname,usercode:data,dataYear:this.$store.state.chooseYear,selDate:this.$store.state.days.num,dateIndex:0,date:`${this.$store.state.chooseYear}-${this.$store.state.days.num}`})
-//				}else{
-//					this.$store.commit('SKIM_DETIAL',{usertype:this.$store.state.companyname,usercode:data,date:`${this.$store.state.chooseYear}-${this.$store.state.days.num}`})
-//				}
 				switch(this.$store.state.companyname){
 					case '旅行社':
 					router.replace({path:'touristDetial'});

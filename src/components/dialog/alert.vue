@@ -26,7 +26,6 @@
 				let b = document.querySelector('#alertBox')
 				b.addEventListener('touchmove',function(e){
 					e.preventDefault()
-					e.stopPropagation()
 				},false)
 			})
 		},

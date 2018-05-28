@@ -52,6 +52,13 @@
 			}
 		},
 		mounted(){
+			if(year===this.$store.state.chooseYear){
+				this.dIndex = 0
+			}else{
+				this.dIndex = year-this.$store.state.chooseYear
+			}
+			this.currentYear = this.$store.state.chooseYear
+			
 			let _self = this
 			this.mySelect = new MobileSelect({
 			    trigger: '#dateBox', 
@@ -76,12 +83,7 @@
 						_self.$emit('dates',data[0])
 			      } 
 			})
-			if(year===this.$store.state.chooseYear){
-				this.dIndex = 0
-			}else{
-				this.dIndex = year-this.$store.state.chooseYear
-			}
-			this.currentYear = this.$store.state.chooseYear
+			
 		}
 	}
 </script>
