@@ -29,6 +29,14 @@
 				},false)
 			})
 		},
+		beforeDestroy(){
+			this.$off('showUser')
+			this.$off('hideUser')
+			let b = document.querySelector('#alertBox')
+			b.removeEventListener('touchmove',function(e){
+				e.preventDefault()
+			},false)
+		},
 		methods:{
 			confirm(e){
 				this.$store.commit('COMMIT_LOADING',false)
@@ -52,7 +60,6 @@
 					this.$store.commit('COMMIT_ShOWINFO',false)
 					Bus.$emit('hideUser')
 					router.replace('login')
-					//window.location.href = API_URLS
 				}
 				e.preventDefault()
 				e.stopPropagation()

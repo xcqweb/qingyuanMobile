@@ -26,7 +26,6 @@ axios.interceptors.request.use = instance.interceptors.request.use;
         }
     );
     
-    
  //http response 拦截器
  instance.interceptors.response.use(
     response =>{

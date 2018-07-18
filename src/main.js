@@ -13,7 +13,7 @@ import {setCookie,getCookie} from '@/common/cookie'
 
 
 
-window.onload = function(){
+window.onload = function(){//解决移动端点击延迟300ms
 	FastClick.attach(document.body);
 }
 
@@ -38,7 +38,7 @@ rem(document,window)
 Vue.config.productionTip = true
 Vue.config.devtools = true
 
-Vue.mixin({
+Vue.mixin({ //混合组件,在各个页面直接调用
 	components:{
 		...conponents
 	}

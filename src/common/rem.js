@@ -1,6 +1,6 @@
 /*
- 	@author --  xcq -- 2018-4-20
- * */
+ 	 2018-4-20
+*/
 
 export default function (doc, win) {
     var docEl = doc.documentElement,

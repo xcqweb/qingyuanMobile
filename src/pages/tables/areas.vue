@@ -509,6 +509,10 @@
 				router.replace('golden')
 			}
 		},
+		beforeDestroy(){
+			this.$off('sendData')
+			this.$off('checkData')
+		},
 		computed:{
 			t1(){
 				

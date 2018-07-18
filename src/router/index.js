@@ -17,7 +17,14 @@ let ScienceDetial = () => import ('@/pages/skim/skimDetial/science')
 Vue.use(Router)
 
 const router = new Router({
-	mode:'hash',
+  mode:'hash',
+  scrollBehavior (to, from, savedPosition) {
+	  if (savedPosition) {
+	    return savedPosition
+	  } else {
+	    return { x: 0, y: 0 }
+	  }
+	},
   routes: [
     {
       path:'/',
@@ -106,7 +113,7 @@ const router = new Router({
          next();
        }else{
          next({
-     	  replace: true,
+     	  	replace: true,
           path: 'login',
           query: {redirect: to.fullPath}   //将跳转的路由path作为参数，登录成功后跳转到该路由
          });
